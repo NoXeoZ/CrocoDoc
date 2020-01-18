@@ -22,6 +22,10 @@ public class Structure {
         this.name = name;
         this.role = role;
     }
+    public Structure(String name, int role) {
+        this.name = name;
+        this.role = role;
+    }
 
     public Structure() {
     }
