@@ -21,6 +21,21 @@ public class Affectation {
 
     public Affectation() {
     }
+    public Affectation(Date dateDebut,Date dateFin) {
+        this.dateDebut=dateDebut;
+        this.dateFin=dateFin;
+    }
+
+    public Affectation(Date dateDebut,Date dateFin,Structure structure) {
+        this.dateDebut=dateDebut;
+        this.dateFin=dateFin;
+        this.structure=structure;
+    }
+
+    public Affectation(Structure structure) {
+        this.structure=structure;
+    }
+
 
     public Long getId() {
         return id;
