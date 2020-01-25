@@ -1,22 +1,37 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
-    </mat-card-header>
-
-    <form class="example-form">
-      <mat-card-content>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+<div class="logo">
+  <img src="assets/img/logo.png" alt="LogoAPHP" />
+</div>
+<div class="card">
+    <form   [formGroup]="formGroup"  (ngSubmit)="login()">
+      <mat-icon>account_circle</mat-icon>
+      <p class="field">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input formControlName="username"
+            matInput placeholder="Placeholder">
+          <mat-icon matPrefix>@</mat-icon>
+          <mat-error *ngIf="!formGroup.controls['username'].valid && formGroup.controls['username'].touched">
+            {{ getErrorlogin() }}
+          </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+      </p >
+      <p class="field">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            class="field" matInput placeholder="Placeholder">
+          <mat-icon matPrefix>https</mat-icon>
+          <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+            {{ getErrorPassord() }}
+          </mat-error>
         </mat-form-field>
-      </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+      </p>
+      <button  mat-raised-button type="submit" class="button" [disabled]="!formGroup.valid">
+        Se connecter</button>
+      <p >
+        <a class="color" href="">Mot de passe oublié</a>
+      </p>
     </form>
-  </mat-card>
 
 </div>
