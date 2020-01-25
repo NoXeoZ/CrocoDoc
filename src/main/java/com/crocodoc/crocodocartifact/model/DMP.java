@@ -1,8 +1,8 @@
 package com.crocodoc.crocodocartifact.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.*;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -11,4 +11,6 @@ public class DMP {
     @Id
     @GeneratedValue(strategy = AUTO)
     private long id;
+    @OneToMany(mappedBy = "dmp")
+    private List<Hospitalisation> hospitalisations;
 }
