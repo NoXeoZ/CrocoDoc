@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-public class structureRessource {
+public class StructureRessource {
     @Autowired
     private StructureService structureService;
 
