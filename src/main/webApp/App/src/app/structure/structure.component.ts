@@ -8,14 +8,10 @@ import {Structure} from "../model/structure";
   styleUrls: ['./structure.component.css']
 })
 export class StructureComponent implements OnInit {
-
   constructor(private structureService:StructureService) { }
-
   listStructures:any;
-
   @Output()
   updateStructure = new EventEmitter<Structure>();
-
   ngOnInit() {
     this.onGetStructures()
   }
@@ -27,13 +23,8 @@ export class StructureComponent implements OnInit {
         error => {console.log(error);
         })
   }
-
   refresh($event: any) {
     this.structureService.getStructures().subscribe(
       data => this.listStructures = data
-    );
-
-
-  }
-
+    );}
 }

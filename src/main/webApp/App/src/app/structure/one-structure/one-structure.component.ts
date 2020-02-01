@@ -17,14 +17,11 @@ export class OneStructureComponent implements OnInit {
 
   ngOnInit() {
   }
-
   onDeleteStructure(id: any){
     this.structureService
       .deleteStructure(this.structure.id)
       .subscribe(
         data=> this.deleteStructure.emit(this.structure),
         error => {console.log(error);
-        })
-  }
-
+        })}
 }

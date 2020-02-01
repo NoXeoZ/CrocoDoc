@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UpdateStructureComponent } from './update-structure.component';
 
 describe('UpdateStructureComponent', () => {

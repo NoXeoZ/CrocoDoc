@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {Structure} from "../../model/structure";
 import {StructureService} from "../structure.service";
 
@@ -42,10 +41,7 @@ export class StructureEditComponent implements OnInit {
         error=>console.log(error)
       );
   }
-
   reset(){
     this.formGroup.reset();
   }
-
-
 }
