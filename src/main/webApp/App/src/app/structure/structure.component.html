@@ -1,0 +1,20 @@
+
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/structures/edit"><mat-icon> add</mat-icon></a>
+  <span class="title">Structure</span>
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Name</th>
+      <th class="mat-cell">Role</th>
+    </tr>
+    <tbody *ngIf="listStructures">
+
+    <tr *ngFor="let s of listStructures;" [structure]="s" (deleteStructure)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+
+</mat-card>
