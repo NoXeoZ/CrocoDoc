@@ -23,6 +23,7 @@ import { StructureEditComponent } from './structure/edit/structure-edit.componen
 import { OneStructureComponent } from './structure/one-structure/one-structure.component';
 import { UpdateStructureComponent } from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
+import { DmpComponent } from './dmp/dmp.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {HttpClientModule} from "@angular/common/http";
     StructureEditComponent,
     OneStructureComponent,
     UpdateStructureComponent,
+    DmpComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import {StructureComponent} from "./structure/structure.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
+import {DmpComponent} from "./dmp/dmp.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,18 @@ const routes: Routes = [
   },
   {
     path: 'structures/update/:id',
+    component: UpdateStructureComponent
+  },
+  {
+    path: 'dmp',
+    component: DmpComponent
+  },
+  {
+    path: 'dmp/edit',
+    component: StructureEditComponent
+  },
+  {
+    path: 'dmp/update/:id',
     component: UpdateStructureComponent
   }
 
