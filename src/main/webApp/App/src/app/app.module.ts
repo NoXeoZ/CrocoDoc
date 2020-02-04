@@ -24,7 +24,6 @@ import { OneStructureComponent } from './structure/one-structure/one-structure.c
 import { UpdateStructureComponent } from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DmpComponent } from './dmp/dmp.component';
-import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { UserComponent } from './user/user.component';
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
-    UserComponent,
   ],
   imports: [
     BrowserModule,
