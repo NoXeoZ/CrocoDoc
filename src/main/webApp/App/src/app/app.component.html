@@ -1,2 +1,11 @@
-<app-dmp>
-</app-dmp>
+
+
+<div *ngIf="isConnected">
+  <app-dmp [name]="login"></app-dmp>
+</div>
+<div *ngIf="!isConnected">
+  <app-authentification (loginEvent)="getAthentification($event)" (token)="setIsConnected($event)"></app-authentification>
+</div>
+<div *ngIf="isAdmin">
+  <app-navbar></app-navbar>
+</div>

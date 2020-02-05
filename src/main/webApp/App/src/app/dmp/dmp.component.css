@@ -1,10 +1,17 @@
 .sidenav-container {
-  height: 100%;
+  position: absolute;
+  top:11%;
+  height: 90%;
+  width:100%
+
 }
 
 .sidenav {
-  width: 200px;
+  position: absolute;
+  background-color: palegreen;
+  width: 50px;
 }
+
 
 .sidenav .mat-toolbar {
   background: inherit;
@@ -14,9 +21,12 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  height: 10%;
 }
 mat-toolbar {
   background-color: darkgreen;
+  width:100%
+
 }
 mat-toolbar #icon{
   background-color: red;
@@ -24,10 +34,13 @@ mat-toolbar #icon{
 }
 mat-toolbar .icon{
   color: white;
+  width: 100px;
+  height: 100px;
 }
-mat-toolbar span{
+mat-toolbar .span{
   display: inline-block;
-  margin: 0 600px;
+  position: absolute;
+  right : 0;
   color: white;
   text-decoration: none;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map, shareReplay} from "rxjs/operators";
@@ -9,6 +9,12 @@ import {map, shareReplay} from "rxjs/operators";
   styleUrls: ['./dmp.component.css']
 })
 export class DmpComponent implements OnInit {
+  @Input()
+  private name:string;
+
+  isDmp=false;
+  isStructure=false;
+  isSejour=false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -18,6 +24,7 @@ export class DmpComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
+    this.isSejour=true;
   }
 
 
