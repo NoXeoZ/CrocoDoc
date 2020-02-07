@@ -32,7 +32,7 @@ public class ProfileService {
         return profileRepository.save(profile);
     }
 
-    public Optional<Profile> getProfileInfosForAdmin(Long idUser){
+    public Optional<Profile> getProfileInfos(Long idUser){
         return Optional.ofNullable(profileRepository.findById(idUser).orElseThrow(NotFoundException::new));
     }
 

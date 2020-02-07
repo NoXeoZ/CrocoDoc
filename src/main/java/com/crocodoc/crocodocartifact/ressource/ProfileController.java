@@ -25,14 +25,17 @@ public class ProfileController {
         return profileService.create(profile);
     }
 
-    @GetMapping("/profile/{id}")
-    public Optional<Profile> getOne(@PathVariable Long id) {
-        try{
-            return profileService.getProfileInfosForAdmin(id);
-        }catch(Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+    @GetMapping("/profile/{key}")
+    public Optional<Profile> getOne(@PathVariable String key) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            return profileService.getProfileInfos(p.getId());
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
+
+
 
     @DeleteMapping("/profile/{id}")
     public void delete(@PathVariable Long id) {
@@ -50,11 +53,22 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/{key}/{id}")
-    public Profile updateAdmin(@PathVariable String key,@RequestBody Profile profile, @PathVariable Long id) {
+    public Profile updateProfileForAdmin(@PathVariable String key,@RequestBody Profile profile, @PathVariable Long id) {
         Profile p=Authentification.getProfile(key);
 
         if(p!=null && p.isChief()) {
             return profileService.updateProfileForAdmin(id, profile);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("/profile/{key}/{id}")
+    public Optional<Profile> getProfileForAdmin(@PathVariable String key,@RequestBody Profile profile, @PathVariable Long id) {
+        Profile p=Authentification.getProfile(key);
+
+        if(p!=null && p.isChief()) {
+            return profileService.getProfileInfos(id);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
