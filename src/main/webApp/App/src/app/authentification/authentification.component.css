@@ -3,22 +3,38 @@
 }
 .mat-card-cvr{
   width: 100%;
-
   align-items: center;
 }
 .color{
   color: darkolivegreen;
 }
+
 .logo{
-  text-align: right;
+  position:absolute;
+  top:0;
+  right:0;
+  max-width : 200px;
+  width : 20%;
+  margin: 10px 10px;
+  display:flex;
 }
+
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .card{
   text-align:center;
   margin: 0 auto;
   width: 15%;
+  height: 100%;
   display:flex;
-  background-color: darkgreen;
 }
+
 a:hover{
   color: white;
 }
+
+

@@ -1,15 +1,16 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Structure} from "../model/structure";
+import {StructureService} from "../structure/structure.service";
 import {Router} from "@angular/router";
-import {Structure} from "../../model/structure";
-import {StructureService} from "../structure.service";
 
 @Component({
-  selector: 'app-structure',
-  templateUrl: './structure-edit.component.html',
-  styleUrls: ['./structure-edit.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class StructureEditComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+
 
   formGroup: FormGroup;
 
@@ -45,3 +46,5 @@ export class StructureEditComponent implements OnInit {
     this.formGroup.reset();
   }
 }
+
+

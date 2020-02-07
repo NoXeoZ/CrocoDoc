@@ -24,6 +24,10 @@ import { OneStructureComponent } from './structure/one-structure/one-structure.c
 import { UpdateStructureComponent } from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DmpComponent } from './dmp/dmp.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileEditComponent } from './profile/edit/profile-edit.component';
+import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
+import { OneProfileComponent } from './profile/one-profile/one-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { DmpComponent } from './dmp/dmp.component';
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
+    ProfileComponent,
+    ProfileEditComponent,
+    UpdateProfileComponent,
+    OneProfileComponent,
   ],
   imports: [
     BrowserModule,

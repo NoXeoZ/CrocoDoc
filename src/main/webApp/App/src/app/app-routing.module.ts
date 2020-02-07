@@ -7,6 +7,8 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {ProfileEditComponent} from "./profile/edit/profile-edit.component";
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
   {
     path: 'dmp/update/:id',
     component: UpdateStructureComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'profile/edit',
+    component: ProfileEditComponent
   }
 
 ];
