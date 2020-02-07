@@ -3,33 +3,36 @@ package com.crocodoc.crocodocartifact.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import java.util.Objects;
+
+import java.io.Serializable;
 
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-@Table(name="Type")
-public class Type implements Serializable{
+public class Type implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = AUTO)
 
     private long id;
     private String name ;
 
-    public Type(String path){
-        this.path=path;
+    public Type(){
+        super();
     }
 
-    @Id
-    @GeneratedValue(strategy = AUTO)
-    @Column(name="TYPE_ID")
+    public Type(String name){
+        this.name=name;
+    }
+
+
     public long getId() {
         return id;
     }
 
 
-    @Column(name = "TYPE_NAME")
-    public String getPath() {
-        return path;
+    public String getName() {
+        return name;
     }
 
 }
