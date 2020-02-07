@@ -10,21 +10,24 @@ export class AppComponent {
   title = 'app';
   isConnected = false;
   isAdmin=false;
-  login='';
-  password='';
+  loginlist:Array<string>;
+  connectKey='';
 
-  setIsConnected($event) {
-    if ($event==1){
+  getAthentification($event: Array<string>) {
+    this.loginlist=$event;
+    this.connectKey=this.loginlist[0];
+    if(this.connectKey!=null){
       this.isConnected=true;
     }else {
       this.isConnected=false;
     }
   }
 
-  getAthentification($event: Authetification) {
-    this.login=$event.login;
-    this.password=$event.password;
-    console.log(this.password)
-    console.log(this.login)
+  disconnect($event: boolean) {
+    if($event==true){
+      this.isConnected=false;
+    }else {
+      this.isConnected=false;
+    }
   }
 }

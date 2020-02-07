@@ -15,11 +15,11 @@
     </span>
   <span>
         <a routerLink="/profil">
-         <input type="text" readonly="true" value="{{name}}" >
+         <input type="text" readonly="true" value="{{fullname}}" >
       </a>
    </span>
   <span>
-        <a routerLink="/login">
+        <a (click)="desconnect()">
       <img width="75%" src="assets/img/logout.png" alt="logout" />
         </a>
   </span>

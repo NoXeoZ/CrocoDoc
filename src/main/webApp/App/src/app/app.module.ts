@@ -24,6 +24,7 @@ import { OneStructureComponent } from './structure/one-structure/one-structure.c
 import { UpdateStructureComponent } from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DmpComponent } from './dmp/dmp.component';
+import {MatSnackBarModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DmpComponent } from './dmp/dmp.component';
     MatSidenavModule,
     MatListModule,
     LayoutModule,
+    MatSnackBarModule,
 
   ],
   providers: [],

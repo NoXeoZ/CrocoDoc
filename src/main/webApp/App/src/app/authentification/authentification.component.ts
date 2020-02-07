@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthentificationService} from "./authentification.service";
-import {Authetification} from "../model/authetification";
+import {MatSnackBar} from '@angular/material';
+
 
 @Component({
   selector: 'app-authentification',
@@ -12,13 +12,11 @@ import {Authetification} from "../model/authetification";
 export class AuthentificationComponent implements OnInit {
   formGroup: FormGroup;
   @Output()
-  token= new EventEmitter<number>();
-  @Output()
-  loginEvent=new EventEmitter<Authetification>();
+  loginEvent=new EventEmitter<Array<string>>();
 
   constructor(   private formBuilder: FormBuilder,
                  private authentificationService:AuthentificationService,
-                 private router: Router) { }
+                 private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -30,12 +28,10 @@ export class AuthentificationComponent implements OnInit {
     this.authentificationService
       .logIn(this.formGroup.value)
       .subscribe(
-        data=>{this.token.emit(1) ;
-                      console.log("login data=>",data);
-        },
-        error=>console.log(error)
+        data=> this.loginEvent.emit(data),
+        error=> {
+          this.snackBar.open("Wrong login or Password", "ok", {verticalPosition: 'top'});
+        }
       );
-   // this.token.emit(1);
-    this.loginEvent.emit(this.formGroup.value);
   }
 }

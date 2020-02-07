@@ -39,15 +39,13 @@ public class Authentification {
             infos.add(uuid.toString());
             infos.add(getProfile(uuid.toString()).getFirstName());
             infos.add(getProfile(uuid.toString()).getLastName());
-            //infos.add(getProfile(uuid.toString()).getFirstName());
-            //return uuid.toString();
             return infos;
         }catch(Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"wrong login and password");
         }
     }
 
-    @PostMapping("/disconnect/{key}")
+    @GetMapping("/disconnect/{key}")
     public boolean disconnect(@PathVariable String key){
         if(connexions.containsKey(key)){
             connexions.remove(key);
