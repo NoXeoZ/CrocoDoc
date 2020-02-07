@@ -12,6 +12,8 @@ import static javax.persistence.GenerationType.AUTO;
 @Entity
 public class Acte implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = AUTO)
     private long id;
     private Date date;
     private Type type;
@@ -23,8 +25,6 @@ public class Acte implements Serializable {
         this.path=path;
     }
 
-    @Id
-    @GeneratedValue(strategy = AUTO)
     public long getId() {
         return id;
     }

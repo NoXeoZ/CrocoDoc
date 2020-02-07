@@ -13,7 +13,6 @@ public class Type implements Serializable {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-
     private long id;
     private String name ;
 
