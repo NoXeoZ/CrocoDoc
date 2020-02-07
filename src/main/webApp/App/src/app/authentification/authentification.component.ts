@@ -27,15 +27,15 @@ export class AuthentificationComponent implements OnInit {
     });
   }
   login() {
-   /* this.authentificationService
+    this.authentificationService
       .logIn(this.formGroup.value)
       .subscribe(
         data=>{this.token.emit(1) ;
                       console.log("login data=>",data);
         },
         error=>console.log(error)
-      );*/
-    this.token.emit(1);
+      );
+   // this.token.emit(1);
     this.loginEvent.emit(this.formGroup.value);
   }
 }
