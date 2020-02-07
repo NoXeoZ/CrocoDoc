@@ -1,13 +1,18 @@
 package com.crocodoc.crocodocartifact.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 public class Hospitalisation implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = AUTO)
     private long id;
     private Date startDate;
     private Date endDate;
@@ -20,8 +25,6 @@ public class Hospitalisation implements Serializable {
         this.endDate=endDate;
     }
 
-    @Id
-    @GeneratedValue(strategy = AUTO)
     public long getId() {
         return id;
     }
