@@ -38,7 +38,7 @@ class structureRessourceTest {
     }
 
     @Test
-    void post() {
+    void create() {
         Structure structure = new Structure("structure1",1);
         structure.setId(1L);
         when(structureService.create(structure)).thenReturn(structure);
@@ -75,7 +75,7 @@ class structureRessourceTest {
   /*  }
 
     @Test
-    void put() {
+    void update() {
         Structure structure = new Structure("structure1",1);
         Structure structure2 = new Structure("structure2",2);
         structure.setId(1L);
