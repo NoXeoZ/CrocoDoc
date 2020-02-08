@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
+
 @Entity
 public class Affectation {
     @Id
