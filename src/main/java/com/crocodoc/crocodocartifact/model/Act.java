@@ -1,5 +1,7 @@
 package com.crocodoc.crocodocartifact.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -7,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "act")
+@Table(name = "acts")
 public class Act {
     @Id
     @GeneratedValue
@@ -25,6 +27,11 @@ public class Act {
     @Column(name = "images")
     @Basic(fetch = FetchType.LAZY)
     private HashMap<String, byte[]> images= new HashMap<>();
+
+    @ManyToOne
+    @JoinColumn(name = "id_assignment", nullable = false)
+    @JsonBackReference
+    private Assignment assignment;
 
     protected  Act() {}
 
@@ -45,6 +52,10 @@ public class Act {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
         this.description = Objects.requireNonNull(description);
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public ActType getType() {
@@ -93,5 +104,15 @@ public class Act {
 
     public Set<String> getImagesTitles() {
         return images.keySet();
+    }
+
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(Assignment assignment) {
+        if(!draft)
+            throw new IllegalStateException("The act has been validate and can no longer be modify.");
+        this.assignment = Objects.requireNonNull(assignment);
     }
 }

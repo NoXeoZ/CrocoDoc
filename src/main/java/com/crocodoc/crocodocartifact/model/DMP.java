@@ -114,4 +114,15 @@ public class DMP {
     public void addHospitalization(Hospitalization o) {
         hospitalizations.add(Objects.requireNonNull(o));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof DMP)) return false;
+        return Objects.equals(id, ((DMP) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, lastname, birth, birthCity, socialSecurityNumber);
+    }
 }
