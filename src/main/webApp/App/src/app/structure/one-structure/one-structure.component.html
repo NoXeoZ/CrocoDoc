@@ -1,0 +1,8 @@
+<td>{{structure.name}}</td>
+<td>{{structure.role}}</td>
+<td>
+  <a mat-mini-fab class="icon" (click)="onDeleteStructure(structure.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab class="icon" routerLink="update/{{structure.id}}"><mat-icon> create</mat-icon>
+  </a>
+</td>

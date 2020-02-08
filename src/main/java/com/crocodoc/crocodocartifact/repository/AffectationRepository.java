@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AffectationRepository  extends CrudRepository<Affectation,Long> {
+
 }
-/*@Repository
-public interface AffectationRepository extends JpaRepository<Affectation,Long> {
-}*/

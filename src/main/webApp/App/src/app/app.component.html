@@ -1,0 +1,11 @@
+
+
+<div *ngIf="isConnected">
+  <app-dmp [loginlist]="loginlist" (disconnectEvent)="disconnect($event)"></app-dmp>
+</div>
+<div *ngIf="!isConnected">
+  <app-authentification (loginEvent)="getAthentification($event)"></app-authentification>
+</div>
+<div *ngIf="isAdmin">
+  <app-navbar></app-navbar>
+</div>

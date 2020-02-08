@@ -14,10 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 public class Authentification {
@@ -34,17 +31,21 @@ public class Authentification {
     }
 
     @RequestMapping(path = "/connect/{login}/{password}", method = RequestMethod.GET)
-    public String connect(@PathVariable String login, @PathVariable String password){
+    public List<String> connect(@PathVariable String login, @PathVariable String password){
         try{
             UUID uuid = UUID.randomUUID();
             connexions.put(uuid.toString(),authentificationService.getProfile(login, password).get());
-            return uuid.toString();
+            List<String> infos=new ArrayList<String>();
+            infos.add(uuid.toString());
+            infos.add(getProfile(uuid.toString()).getFirstName());
+            infos.add(getProfile(uuid.toString()).getLastName());
+            return infos;
         }catch(Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"wrong login and password");
         }
     }
 
-    @PostMapping("/disconnect/{key}")
+    @GetMapping("/disconnect/{key}")
     public boolean disconnect(@PathVariable String key){
         if(connexions.containsKey(key)){
             connexions.remove(key);
