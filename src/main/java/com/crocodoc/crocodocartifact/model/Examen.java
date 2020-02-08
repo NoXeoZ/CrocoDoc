@@ -12,4 +12,6 @@ public class Examen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
+
+    private String state;
 }

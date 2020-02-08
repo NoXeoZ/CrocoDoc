@@ -3,6 +3,7 @@ package com.crocodoc.crocodocartifact.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +17,8 @@ public class Hospitalisation implements Serializable {
     private long id;
     private Date startDate;
     private Date endDate;
+    @ManyToOne
+    private DMP dmp;
 
     public Hospitalisation(){
         super();
