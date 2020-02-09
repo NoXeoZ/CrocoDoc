@@ -20,6 +20,8 @@ public class Act {
     private LocalDateTime createdAt;
     @Column(name = "draft", nullable = false)
     private boolean draft = true;
+
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "type", nullable = false)
     private ActType type;
 
@@ -33,11 +35,17 @@ public class Act {
     @JsonBackReference
     private Assignment assignment;
 
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
+    private Profile user;
+
     protected  Act() {}
 
-    public Act(String description, ActType type) {
-        this.description = Objects.requireNonNull(description);
+    public Act(Profile user, ActType type, Assignment assignment, String description) {
+        this.user = Objects.requireNonNull(user);
         this.type = Objects.requireNonNull(type);
+        this.assignment = Objects.requireNonNull(assignment);
+        this.description = Objects.requireNonNull(description);
     }
 
     public long getId() {
@@ -66,6 +74,10 @@ public class Act {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
         this.type = Objects.requireNonNull(type);
+    }
+
+    public boolean isDraft() {
+        return draft;
     }
 
     public void validate() {
@@ -114,5 +126,26 @@ public class Act {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
         this.assignment = Objects.requireNonNull(assignment);
+    }
+
+    public Profile getUser() {
+        return user;
+    }
+
+    public void setUser(Profile user) {
+        if(!draft)
+            throw new IllegalStateException("The act has been validate and can no longer be modify.");
+        this.user = Objects.requireNonNull(user);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Act)) return false;
+        return Objects.equals(id, ((Act) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, user, assignment);
     }
 }
