@@ -23,7 +23,7 @@ public class DMP {
     @Column(name = "birth_city", nullable = false)
     private String birthCity;
     @Column(name = "social_security_number", nullable = false)
-    private int socialSecurityNumber;
+    private String socialSecurityNumber;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "email")
@@ -37,12 +37,12 @@ public class DMP {
     /** Juste for JPA */
     protected DMP() {}
 
-    public DMP(String firstname, String lastname, Date birth, String birthCity, int socialSecurityNumber, String phoneNumber, String email) {
+    public DMP(String firstname, String lastname, Date birth, String birthCity, String socialSecurityNumber, String phoneNumber, String email) {
         this.firstname = Objects.requireNonNull(firstname);
         this.lastname = Objects.requireNonNull(lastname);
         this.birth = Objects.requireNonNull(birth);
         this.birthCity = Objects.requireNonNull(birthCity);
-        this.socialSecurityNumber = socialSecurityNumber;
+        this.socialSecurityNumber = Objects.requireNonNull(socialSecurityNumber);
         this.phoneNumber = phoneNumber; // can be null
         this.email = email; // can be null
     }
@@ -83,12 +83,12 @@ public class DMP {
         this.birthCity = Objects.requireNonNull(birthCity);
     }
 
-    public int getSocialSecurityNumber() {
+    public String getSocialSecurityNumber() {
         return socialSecurityNumber;
     }
 
-    public void setSocialSecurityNumber(int socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = Objects.requireNonNull(socialSecurityNumber);
     }
 
     public String getPhoneNumber() {
@@ -117,8 +117,17 @@ public class DMP {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DMP)) return false;
-        return Objects.equals(id, ((DMP) o).getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DMP dmp = (DMP) o;
+
+        if (id != dmp.id) return false;
+        if (!firstname.equals(dmp.firstname)) return false;
+        if (!lastname.equals(dmp.lastname)) return false;
+        if (!birth.equals(dmp.birth)) return false;
+        if (!birthCity.equals(dmp.birthCity)) return false;
+        return socialSecurityNumber.equals(dmp.socialSecurityNumber);
     }
 
     @Override

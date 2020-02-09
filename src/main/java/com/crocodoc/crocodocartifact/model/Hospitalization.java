@@ -79,17 +79,23 @@ public class Hospitalization implements Serializable {
         return new ArrayList<>(assignments); // defensive copy
     }
 
-    public void addAssignments(Assignment... assignments) {
-        for(Assignment a : Objects.requireNonNull(assignments)) {
-            this.assignments.add(a);
-            a.setHospitalization(this);
-        }
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(Objects.requireNonNull(assignment));
+        assignment.setHospitalization(this);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Hospitalization)) return false;
-        return Objects.equals(id, ((Hospitalization) o).getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Hospitalization that = (Hospitalization) o;
+
+        if (id != that.id) return false;
+        if (!startDate.equals(that.startDate)) return false;
+        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
+        if (!hospital.equals(that.hospital)) return false;
+        return dmp.equals(that.dmp);
     }
 
     @Override

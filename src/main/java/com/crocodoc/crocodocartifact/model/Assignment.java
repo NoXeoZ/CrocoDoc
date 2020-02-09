@@ -39,13 +39,15 @@ public class Assignment {
     /** Just for JPA */
     protected Assignment() { }
 
-    public Assignment(Structure service) {
+    public Assignment(Structure service, Hospitalization hospitalization) {
         this.service = Objects.requireNonNull(service);
+        this.hospitalization = Objects.requireNonNull(hospitalization);
         startDate = LocalDateTime.now();
     }
 
-    public Assignment(Structure service, LocalDateTime startDate, LocalDateTime endDate) {
+    public Assignment(Structure service, Hospitalization hospitalization, LocalDateTime startDate, LocalDateTime endDate) {
         this.service = Objects.requireNonNull(service);
+        this.hospitalization = Objects.requireNonNull(hospitalization);
         this.startDate = Objects.requireNonNull(startDate);
         this.endDate = Objects.requireNonNull(endDate);
     }
@@ -94,32 +96,26 @@ public class Assignment {
         return new ArrayList<>(acts); // defensive copy
     }
 
-    public void addActs(Act... acts) {
-        for(Act a : Objects.requireNonNull(acts)) {
-            this.acts.add(a);
-            a.setAssignment(this);
-        }
+    public void addAct(Act act) {
+        this.acts.add(Objects.requireNonNull(act));
+        act.setAssignment(this);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Assignment)) return false;
-        return Objects.equals(id, ((Assignment) o).getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Assignment that = (Assignment) o;
+
+        if (id != that.id) return false;
+        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
+        if (!service.equals(that.service)) return false;
+        return hospitalization.equals(that.hospitalization);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, startDate, service);
-    }
-
-    @Override
-    /* TODO : see why it is here, remove this useless function */
-    public String toString() {
-        return "Affectation{" +
-                "id=" + id +
-                ", dateDebut=" + startDate +
-                ", dateFin=" + endDate +
-                ", service=" + service +
-                '}';
     }
 }
