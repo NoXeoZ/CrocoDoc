@@ -1,8 +1,8 @@
 package com.crocodoc.crocodocartifact.resource;
 
+import com.crocodoc.crocodocartifact.model.Profile;
 import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.service.StructureService;
-import com.crocodoc.crocodocartifact.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,32 +18,53 @@ public class StructureResource {
     @Autowired
     private StructureService structureService;
 
-    @GetMapping("/structures")
-    public List<Structure> getAll() {
-        return structureService.getAll();
-    }
-
-    @PostMapping("/structures")
-    public ResponseEntity<Structure> post(@Valid @RequestBody Structure structure) {
-        return new ResponseEntity<>(structureService.create(structure), HttpStatus.CREATED);
-    }
-
-    @GetMapping("structures/{id}")
-    public Optional<Structure> getOne(@PathVariable Long id) {
-        try{
-            return structureService.getOne(id);
-        }catch(NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  id : "+  id  +  " inconnu");
+    @GetMapping("/structures/{key}")
+    public List<Structure> getAll(@PathVariable String key) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            return structureService.getAll();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
-    @DeleteMapping("structures/{id}")
-    public void delete(@PathVariable Long id) {
-        structureService.delete(id);
+    @PostMapping("/structures/{key}")
+    public ResponseEntity<Structure> post(@PathVariable String key, @Valid @RequestBody Structure structure) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            return new ResponseEntity<>(structureService.create(structure), HttpStatus.CREATED);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
     }
 
-    @PostMapping("structures/{id}")
-    public Structure put(@PathVariable Long id, @Valid  @RequestBody Structure structure) {
-        return structureService.update(structure);
+    @GetMapping("structures/{key}/{id}")
+    public Optional<Structure> getOne(@PathVariable String key, @PathVariable Long id) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            return structureService.getOne(id);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @DeleteMapping("structures/{key}/{id}")
+    public void delete(@PathVariable String key, @PathVariable Long id) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            structureService.delete(id);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @PostMapping("structures/{key}/{id}")
+    public Structure put(@PathVariable String key, @PathVariable Long id, @Valid  @RequestBody Structure structure) {
+        Profile p=Authentification.getProfile(key);
+        if(p!=null) {
+            return structureService.update(structure);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
     }
 }

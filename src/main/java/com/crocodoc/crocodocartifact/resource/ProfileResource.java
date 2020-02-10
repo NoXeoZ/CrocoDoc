@@ -1,4 +1,4 @@
-package com.crocodoc.crocodocartifact.ressource;
+package com.crocodoc.crocodocartifact.resource;
 
 
 import com.crocodoc.crocodocartifact.model.Profile;
@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @RestController
-public class ProfileController {
+public class ProfileResource {
     @Autowired
     private ProfileService profileService;
 
@@ -27,9 +27,9 @@ public class ProfileController {
 
     @GetMapping("/profile/{key}")
     public Optional<Profile> getOne(@PathVariable String key) {
-        Profile p=Authentification.getProfile(key);
+        Profile p= Authentification.getProfile(key);
         if(p!=null) {
-            return profileService.getProfileInfos(p.getId());
+            return profileService.getProfile(p.getId());
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
@@ -45,8 +45,8 @@ public class ProfileController {
     @PostMapping("/profile/{key}")
     public Profile update(@PathVariable String key,@RequestBody Profile profile) {
         Profile p=Authentification.getProfile(key);
-        if(p!=null) {
-            return profileService.updateProfile(p, profile);
+        if(p!=null && p.getId()==profile.getId()) {
+            return profileService.updateProfile(profile);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
@@ -68,7 +68,7 @@ public class ProfileController {
         Profile p=Authentification.getProfile(key);
 
         if(p!=null && p.isChief()) {
-            return profileService.getProfileInfos(id);
+            return profileService.getProfile(id);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
