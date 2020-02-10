@@ -7,6 +7,8 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
+import {AssignementComponent} from './assignement/assignement.component';
+import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 
 const routes: Routes = [
   {
@@ -40,7 +42,15 @@ const routes: Routes = [
   {
     path: 'dmp/update/:id',
     component: UpdateStructureComponent
-  }
+  },
+  {
+    path: 'assignement',
+    component: AssignementComponent
+  },
+  {
+    path: 'assignement/edit',
+    component: EditAssignementComponent
+  },
 
 ];
 

@@ -25,6 +25,9 @@ import { UpdateStructureComponent } from './structure/update-structure/update-st
 import {HttpClientModule} from "@angular/common/http";
 import { DmpComponent } from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
+import { AssignementComponent } from './assignement/assignement.component';
+import { EditAssignementComponent } from './assignement/edit-assignement/edit-assignement.component';
+import { OneAssignementComponent } from './assignement/one-assignement/one-assignement.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import {MatSnackBarModule} from "@angular/material";
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
+    AssignementComponent,
+    EditAssignementComponent,
+    OneAssignementComponent,
   ],
   imports: [
     BrowserModule,
