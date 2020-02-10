@@ -90,4 +90,48 @@ class StructureTest {
         assertEquals(test, test2.getParent());
         assertNotEquals(test2, test2.getParent());
     }
+
+    @Test
+    void getSpecialities() {
+        Structure test = new Structure("Hôpital @Test", StructureType.HOSPITAL);
+        assertEquals(0, test.getSpecialities().size());
+    }
+
+    @Test
+    void addSpeciality() {
+        Structure test = new Structure("Hôpital @Test", StructureType.HOSPITAL);
+        Speciality spe1 = new Speciality("Spécialité 1", "Petite description tu coco");
+        Speciality spe2 = new Speciality("Spécialité 2", "Petite description tu coco");
+        Speciality spe3 = new Speciality("Spécialité 3", "Petite description tu coco");
+
+        test.addSpeciality(spe1);
+        test.addSpeciality(spe2);
+        test.addSpeciality(spe3);
+
+        assertEquals(3, test.getSpecialities().size());
+        assertTrue(test.getSpecialities().contains(spe1));
+        assertTrue(test.getSpecialities().contains(spe2));
+        assertTrue(test.getSpecialities().contains(spe3));
+
+        assertThrows(NullPointerException.class, ()->{ test.addSpeciality(null);});
+        assertThrows(NullPointerException.class, ()->{ test.addSpeciality((Speciality) null);});
+    }
+
+    @Test
+    void removeSpeciality() {
+        Structure test = new Structure("Hôpital @Test", StructureType.HOSPITAL);
+        Speciality spe1 = new Speciality("Spécialité 1", "Petite description tu coco");
+        Speciality spe2 = new Speciality("Spécialité 2", "Petite description tu coco");
+        Speciality spe3 = new Speciality("Spécialité 3", "Petite description tu coco");
+
+        test.addSpeciality(spe1);
+        test.addSpeciality(spe2);
+        test.addSpeciality(spe3);
+
+        test.removeSpeciality(spe2);
+        assertEquals(2, test.getSpecialities().size());
+        assertFalse(test.getSpecialities().contains(spe2));
+        assertTrue(test.getSpecialities().contains(spe1));
+        assertTrue(test.getSpecialities().contains(spe3));
+    }
 }

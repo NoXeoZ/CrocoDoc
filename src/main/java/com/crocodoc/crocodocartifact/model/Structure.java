@@ -2,7 +2,7 @@ package com.crocodoc.crocodocartifact.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Objects;
+import java.util.*;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -24,6 +24,13 @@ public class Structure {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_parent", nullable = false)
     private Structure parent;
+
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name="structures_specialities",
+            joinColumns=@JoinColumn(name="structure_id", referencedColumnName="ID"),
+            inverseJoinColumns=@JoinColumn(name="speciality_ID", referencedColumnName="ID"))
+    private Set<Speciality> specialities = new HashSet<>();
 
     /** JPA */
     Structure() {}
@@ -69,6 +76,18 @@ public class Structure {
         if(this.equals(Objects.requireNonNull(parent)))
             throw new IllegalArgumentException("Structure parent can't be the structure itself");
         this.parent = parent;
+    }
+
+    public List<Speciality> getSpecialities() {
+        return new ArrayList<>(specialities);
+    }
+
+    public void addSpeciality(Speciality speciality) {
+        specialities.add(Objects.requireNonNull(speciality));
+    }
+
+    public void removeSpeciality(Speciality speciality) {
+        specialities.remove(Objects.requireNonNull(speciality));
     }
 
     @Override
