@@ -1,4 +1,4 @@
-package com.crocodoc.crocodocartifact.ressource;
+package com.crocodoc.crocodocartifact.resource;
 
 import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.service.StructureService;
@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class StructureRessource {
+public class StructureResource {
     @Autowired
     private StructureService structureService;
 
     @GetMapping("/structures")
-    public Iterable<Structure> getAll() {
+    public List<Structure> getAll() {
         return structureService.getAll();
     }
 
     @PostMapping("/structures")
     public ResponseEntity<Structure> post(@Valid @RequestBody Structure structure) {
         return new ResponseEntity<>(structureService.create(structure), HttpStatus.CREATED);
-
     }
 
     @GetMapping("structures/{id}")
@@ -33,7 +33,7 @@ public class StructureRessource {
         try{
             return structureService.getOne(id);
         }catch(NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  id : "+  id  +  " inconnu");
         }
     }
 
@@ -43,7 +43,7 @@ public class StructureRessource {
     }
 
     @PostMapping("structures/{id}")
-    public Structure put(@PathVariable Long id,@Valid  @RequestBody Structure structure) {
-        return structureService.update(id, structure);
+    public Structure put(@PathVariable Long id, @Valid  @RequestBody Structure structure) {
+        return structureService.update(structure);
     }
 }
