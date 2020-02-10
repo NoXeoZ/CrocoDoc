@@ -1,5 +1,5 @@
 package com.crocodoc.crocodocartifact.service;
-
+/*
 import com.crocodoc.crocodocartifact.model.Profile;
 import com.crocodoc.crocodocartifact.repository.ProfileRepository;
 import com.crocodoc.crocodocartifact.service.errors.NotFoundException;
@@ -42,4 +42,4 @@ public class ProfileService {
         profile.setId(p);
         return profileRepository.save(profile);
     }
-}
+}*/

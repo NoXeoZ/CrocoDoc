@@ -2,6 +2,8 @@ package com.crocodoc.crocodocartifact.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StructureTest {
@@ -133,5 +135,29 @@ class StructureTest {
         assertFalse(test.getSpecialities().contains(spe2));
         assertTrue(test.getSpecialities().contains(spe1));
         assertTrue(test.getSpecialities().contains(spe3));
+    }
+
+    @Test
+    void getChief() {
+        Structure test = new Structure("Hôpital @Test", StructureType.HOSPITAL);
+        assertNull(test.getChief());
+    }
+
+    @Test
+    void setChief() {
+        Structure test = new Structure("Hôpital @Test", StructureType.HOSPITAL);
+        User user1 = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
+        User user2 = new User("zadzad", "zedazazd", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
+
+        test.setChief(user1);
+        assertEquals(user1, test.getChief());
+        assertNotEquals(user2, test.getChief());
+
+        test.setChief(user2);
+        assertEquals(user2, test.getChief());
+        assertNotEquals(user1, test.getChief());
+
+        test.setChief(null);
+        assertNull(test.getChief());
     }
 }

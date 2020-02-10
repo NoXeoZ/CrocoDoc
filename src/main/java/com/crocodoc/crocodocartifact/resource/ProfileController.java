@@ -1,5 +1,5 @@
-package com.crocodoc.crocodocartifact.ressource;
-
+package com.crocodoc.crocodocartifact.resource;
+/*
 
 import com.crocodoc.crocodocartifact.model.Profile;
 import com.crocodoc.crocodocartifact.service.ProfileService;
@@ -75,3 +75,4 @@ public class ProfileController {
     }
 
 }
+*/

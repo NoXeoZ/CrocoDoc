@@ -1,5 +1,5 @@
 package com.crocodoc.crocodocartifact.service;
-
+/*
 import com.crocodoc.crocodocartifact.model.Profile;
 import com.crocodoc.crocodocartifact.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +35,4 @@ public class AuthentificationService {
         //return Optional.ofNullable(profileRepository.findByMail(mail).orElseThrow(NotFoundException::new));
 
     }
-}
+}*/

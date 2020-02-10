@@ -1,5 +1,5 @@
-package com.crocodoc.crocodocartifact.ressource;
-
+package com.crocodoc.crocodocartifact.resource;
+/*
 import com.crocodoc.crocodocartifact.model.Profile;
 import com.crocodoc.crocodocartifact.service.AuthentificationService;
 import com.crocodoc.crocodocartifact.service.errors.NotFoundException;
@@ -16,7 +16,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;*/
-import java.util.*;
+/*import java.util.*;
 
 @RestController
 public class Authentification {
@@ -84,4 +84,4 @@ public class Authentification {
             return false;
         }
     }*/
-}
+//}
