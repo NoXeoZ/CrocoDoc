@@ -9,6 +9,8 @@ import {UpdateStructureComponent} from "./structure/update-structure/update-stru
 import {DmpComponent} from "./dmp/dmp.component";
 import {AssignementComponent} from './assignement/assignement.component';
 import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
+import {DmpAdminComponent} from './dmp-admin/dmp-admin.component';
+import {DmpAdminEditComponent} from './dmp-admin/edit/dmp-admin-edit.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,14 @@ const routes: Routes = [
   {
     path: 'dmp/edit',
     component: StructureEditComponent
+  },
+  {
+    path: 'dmpAdmin',
+    component: DmpAdminComponent
+  },
+  {
+    path: 'dmpAdmin/edit',
+    component: DmpAdminEditComponent
   },
   {
     path: 'dmp/update/:id',

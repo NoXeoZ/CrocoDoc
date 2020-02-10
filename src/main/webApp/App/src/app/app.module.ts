@@ -28,6 +28,9 @@ import {MatSnackBarModule} from "@angular/material";
 import { AssignementComponent } from './assignement/assignement.component';
 import { EditAssignementComponent } from './assignement/edit-assignement/edit-assignement.component';
 import { OneAssignementComponent } from './assignement/one-assignement/one-assignement.component';
+import { DmpAdminComponent } from './dmp-admin/dmp-admin.component';
+import { DmpAdminEditComponent } from './dmp-admin/edit/dmp-admin-edit.component';
+import { OneDmpComponent } from './dmp-admin/one-dmp/one-dmp.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { OneAssignementComponent } from './assignement/one-assignement/one-assig
     AssignementComponent,
     EditAssignementComponent,
     OneAssignementComponent,
+    DmpAdminComponent,
+    DmpAdminEditComponent,
+    OneDmpComponent,
   ],
   imports: [
     BrowserModule,
