@@ -1,5 +1,5 @@
 package com.crocodoc.crocodocartifact.model;
-/*
+
 import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
@@ -15,7 +15,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.EXAM, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals("La description deabzejnaze^€&éeé&]€é nzkeazk ezae", act.getDescription());
@@ -29,7 +29,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.EXAM, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         act.setDescription("jzae zeza@azezè ");
@@ -47,7 +47,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.EXAM, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertNull(act.getCreatedAt());
@@ -65,7 +65,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.EXAM, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(ActType.EXAM, act.getType());
@@ -80,7 +80,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(ActType.OBSERVATION, act.getType());
@@ -98,7 +98,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
 
@@ -112,7 +112,7 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
 
@@ -146,7 +146,7 @@ class ActTest {
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
         Assignment assignment2 = new Assignment(test2, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(assignment, act.getAssignment());
@@ -161,7 +161,7 @@ class ActTest {
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
         Assignment assignment2 = new Assignment(test2, hospitalization);
-        Profile user = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(assignment, act.getAssignment());
@@ -178,8 +178,8 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
-        Profile user2 = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
+        User user2 = new User("zdzad", "zdzdzdzd", new Date(System.currentTimeMillis()), "sdsdsds", "phone-dfqdfq", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(user, act.getUser());
@@ -192,8 +192,8 @@ class ActTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         Assignment assignment = new Assignment(test, hospitalization);
-        Profile user = new Profile();
-        Profile user2 = new Profile();
+        User user = new User("Cyril", "Harranger", new Date(System.currentTimeMillis()), "address_zer", "phone-number", "email@gmail.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
+        User user2 = new User("dazddazd", "Harranger", new Date(System.currentTimeMillis()), "zdazdzad", "phone-number", "email@zdz.fe", "passwor^d*9851", "dazdza.B", UserType.DOCTOR, test);
 
         Act act = new Act(user, ActType.OBSERVATION, assignment, "La description deabzejnaze^€&éeé&]€é nzkeazk ezae");
         assertEquals(user, act.getUser());
@@ -204,4 +204,4 @@ class ActTest {
         assertNotEquals(user, act.getUser());
     }
 }
-*/
+
