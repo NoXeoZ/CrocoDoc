@@ -141,8 +141,16 @@ public class Act {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Act)) return false;
-        return Objects.equals(id, ((Act) o).getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Act act = (Act) o;
+
+        if (id != act.id) return false;
+        if (draft != act.draft) return false;
+        if (!description.equals(act.description)) return false;
+        if (!createdAt.equals(act.createdAt)) return false;
+        return type == act.type;
     }
 
     @Override
