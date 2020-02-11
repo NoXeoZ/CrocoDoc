@@ -1,4 +1,4 @@
-package com.crocodoc.crocodocartifact.ressource;
+package com.crocodoc.crocodocartifact.resource;
 
 import com.crocodoc.crocodocartifact.model.Assignment;
 import com.crocodoc.crocodocartifact.model.Structure;

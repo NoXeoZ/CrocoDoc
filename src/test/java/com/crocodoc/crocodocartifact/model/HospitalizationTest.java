@@ -11,7 +11,7 @@ class HospitalizationTest {
 
     @Test
     void getandSetStartDate() {
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
 
         Hospitalization hospitalization = new Hospitalization(test, dmp);
@@ -28,7 +28,7 @@ class HospitalizationTest {
 
     @Test
     void getAndSetEndDate() {
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         assertNull(hospitalization.getEndDate());
@@ -43,7 +43,7 @@ class HospitalizationTest {
 
     @Test
     void finish() {
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
 
         Hospitalization hospitalization = new Hospitalization(test, dmp);
@@ -58,18 +58,18 @@ class HospitalizationTest {
 
     @Test
     void getHospital() {
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
 
         Hospitalization hospitalization = new Hospitalization(test, dmp);
 
         assertEquals(test.getName(), hospitalization.getHospital().getName());
-        assertEquals(test.getRole(), hospitalization.getHospital().getRole());
+        assertEquals(test.getType(), hospitalization.getHospital().getType());
     }
 
     @Test
     void getDMP() {
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
 
         Hospitalization hospitalization = new Hospitalization(test, dmp);
@@ -86,8 +86,8 @@ class HospitalizationTest {
 
     @Test
     void getandAddAssignments() {
-        Structure test = new Structure("Hopitalzer", 1);
-        Structure test2 = new Structure("Secteur zbeul", 3);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
+        Structure test2 = new Structure("Secteur zbeul", StructureType.SERVICE);
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
 
         Hospitalization hospitalization = new Hospitalization(test, dmp);

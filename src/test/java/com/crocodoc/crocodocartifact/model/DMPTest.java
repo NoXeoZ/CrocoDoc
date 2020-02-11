@@ -158,7 +158,7 @@ class DMPTest {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         assertEquals(0, dmp.getHospitalization().size());
 
-        Structure test = new Structure("Hopitalzer", 1);
+        Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         Hospitalization hospitalization = new Hospitalization(test, dmp);
 
         dmp.addHospitalization(hospitalization);
