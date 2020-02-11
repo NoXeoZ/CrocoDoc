@@ -31,6 +31,10 @@ import { OneAssignementComponent } from './assignement/one-assignement/one-assig
 import { DmpAdminComponent } from './dmp-admin/dmp-admin.component';
 import { DmpAdminEditComponent } from './dmp-admin/edit/dmp-admin-edit.component';
 import { OneDmpComponent } from './dmp-admin/one-dmp/one-dmp.component';
+import { SpecialityComponent } from './speciality/speciality.component';
+import { EditSpecialityComponent } from './speciality/edit-speciality/edit-speciality.component';
+import { OneSpecialityComponent } from './speciality/one-speciality/one-speciality.component';
+import { UpdateSpecialityComponent } from './speciality/update-speciality/update-speciality.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { OneDmpComponent } from './dmp-admin/one-dmp/one-dmp.component';
     DmpAdminComponent,
     DmpAdminEditComponent,
     OneDmpComponent,
+    SpecialityComponent,
+    EditSpecialityComponent,
+    OneSpecialityComponent,
+    UpdateSpecialityComponent,
   ],
   imports: [
     BrowserModule,

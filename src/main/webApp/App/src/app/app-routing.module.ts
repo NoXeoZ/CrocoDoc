@@ -11,6 +11,9 @@ import {AssignementComponent} from './assignement/assignement.component';
 import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {DmpAdminComponent} from './dmp-admin/dmp-admin.component';
 import {DmpAdminEditComponent} from './dmp-admin/edit/dmp-admin-edit.component';
+import {SpecialityComponent} from './speciality/speciality.component';
+import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
+import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 
 const routes: Routes = [
   {
@@ -32,6 +35,18 @@ const routes: Routes = [
   {
     path: 'structures/update/:id',
     component: UpdateStructureComponent
+  },
+  {
+    path: 'speciality',
+    component: SpecialityComponent
+  },
+  {
+    path: 'speciality/edit',
+    component: EditSpecialityComponent
+  },
+  {
+    path: 'speciality/update/:id',
+    component: UpdateSpecialityComponent
   },
   {
     path: 'dmp',

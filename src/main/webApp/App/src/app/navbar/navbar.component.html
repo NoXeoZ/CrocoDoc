@@ -3,14 +3,18 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Crocodhoc</mat-toolbar>
+    <mat-toolbar>
+      <img  src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+    </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home">Home</a>
       <a mat-list-item routerLink="/">Hospitalisation</a>
       <a mat-list-item routerLink="/structures">Structure</a>
+      <a mat-list-item routerLink="/speciality">Speciality</a>
       <a mat-list-item routerLink="/profil">Profil</a>
       <a mat-list-item routerLink="/assignement">Assignement</a>
       <a mat-list-item routerLink="/dmpAdmin">Dmp</a>
+
 
 
     </mat-nav-list>
