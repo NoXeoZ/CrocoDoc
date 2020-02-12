@@ -28,6 +28,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile/edit/profile-edit.component';
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 import { OneProfileComponent } from './profile/one-profile/one-profile.component';
+import {MatSnackBarModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { OneProfileComponent } from './profile/one-profile/one-profile.component
     MatSidenavModule,
     MatListModule,
     LayoutModule,
+    MatSnackBarModule,
 
   ],
   providers: [],

@@ -1,5 +1,6 @@
+<div class="bodyPage">
 <div class="logo">
-  <img src="assets/img/logo.png" alt="LogoAPHP" />
+  <img width="20%" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
 </div>
 <div class="card">
     <form   [formGroup]="formGroup"  (ngSubmit)="login()">
@@ -7,31 +8,19 @@
       <p class="field">
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input formControlName="username"
-            matInput placeholder="Placeholder">
+          <input formControlName="login" matInput placeholder="Login">
           <mat-icon matPrefix>@</mat-icon>
-          <mat-error *ngIf="!formGroup.controls['username'].valid && formGroup.controls['username'].touched">
-            {{ getErrorlogin() }}
-          </mat-error>
         </mat-form-field>
       </p >
       <p class="field">
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input
-            formControlName="password"
-            class="field" matInput placeholder="Placeholder">
+          <input formControlName="password" type="password" class="field" matInput placeholder="Placeholder">
           <mat-icon matPrefix>https</mat-icon>
-          <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
-            {{ getErrorPassord() }}
-          </mat-error>
         </mat-form-field>
       </p>
-      <button  mat-raised-button type="submit" class="button" >
-        Se connecter</button>
-      <p >
-        <a class="color" href="">Mot de passe oublié</a>
-      </p>
+      <button  mat-raised-button type="submit" class="button" [disabled]="!formGroup.valid">Se connecter</button>
+      <p ><a class="color" href="">Mot de passe oublié</a> </p>
     </form>
-
+</div>
 </div>
