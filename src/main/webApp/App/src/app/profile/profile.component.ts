@@ -1,8 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Structure} from "../model/structure";
-import {StructureService} from "../structure/structure.service";
-import {Router} from "@angular/router";
+import {ProfileService} from "./profile.service";
+import {Profile} from "../model/profile";
 
 @Component({
   selector: 'app-profile',
@@ -10,41 +8,44 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  constructor(private profileService:ProfileService) { }
 
-
-  formGroup: FormGroup;
+  listProfiles : Array<Profile> = [{
+    "id" : 1,
+    "lastName": "Daniel",
+    "firstName": "Randrianjatovo",
+    "birthDate": new Date(),
+    "address": "41 avenue andré malraux",
+   "phoneNumber" : "0651712962",
+    "mail": "d.randrianjatovo@gmail.com",
+    "specialities": ["Rice","Vlad"]
+  },
+    {
+      "id" : 1,
+      "lastName": "Daniel",
+      "firstName": "Randrianjatovo",
+      "birthDate": new Date(),
+      "address": "41 avenue andré malraux",
+      "phoneNumber" : "0651712962",
+      "mail": "d.randrianjatovo@gmail.com",
+      "specialities": ["Rice","Vlad"]
+    }];
 
   @Output()
-  createStructure= new EventEmitter<Structure>();
-
-  constructor(private formBuilder: FormBuilder,
-              private structureService:StructureService,
-              protected router: Router,
-  ) {
-  }
-
+  updateProfile = new EventEmitter<Profile>();
   ngOnInit() {
-    this.createForm();
+    this.onGetProfiles()
   }
-
-  createForm() {
-    this.formGroup = this.formBuilder.group({
-      'name': [null, Validators.required],
-      'role': [null, Validators.required],
-    });
-  }
-  onCreateStructure(){
-    this.structureService
-      .createStructure(this.formGroup.value)
+  onGetProfiles(){
+    this.profileService
+      .getProfiles()
       .subscribe(
-        data=>{this.createStructure.emit(this.formGroup.value);
-          this.router.navigate(['/structures'])},
-        error=>console.log(error)
-      );
+        data=>{this.listProfiles=data;},
+        error => {console.log(error);
+        })
   }
-  reset(){
-    this.formGroup.reset();
-  }
+  refresh($event: any) {
+    this.profileService.getProfiles().subscribe(
+      data => this.listProfiles = data
+    );}
 }
-
-

@@ -16,6 +16,8 @@ import {DmpAdminEditComponent} from './dmp-admin/edit/dmp-admin-edit.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {UpdateProfileComponent} from "./profile/update-profile/update-profile.component";
+import {OneProfileLargeComponent} from "./profile/one-profile-large/one-profile-large.component";
 
 const routes: Routes = [
   {
@@ -79,13 +81,21 @@ const routes: Routes = [
     component: EditAssignementComponent
   },
   {
-    path: 'profile',
+    path: 'profiles',
     component: ProfileComponent
   },
   {
-    path: 'profile/edit',
+    path: 'profiles/edit',
     component: ProfileEditComponent
-  }
+  },
+  {
+    path: 'profiles/update/:id',
+    component: UpdateProfileComponent
+  },
+  {
+    path: 'profile',
+    component: OneProfileLargeComponent
+  },
 
 ];
 

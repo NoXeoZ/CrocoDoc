@@ -1,0 +1,19 @@
+.list1{
+  float: left;
+  background-color: cornflowerblue;
+}
+
+.list1 .mat-list-item{
+  color:white;
+  text-align: center;
+}
+mat-toolbar {
+  background-color: darkgreen;
+}
+mat-toolbar .title{
+  color: white;
+}
+mat-toolbar .icon{
+  background-color: green;
+  color: black;
+}

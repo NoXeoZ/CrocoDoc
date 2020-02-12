@@ -1,0 +1,39 @@
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/profiles/update/:id"><mat-icon> edit</mat-icon></a>
+  <span class="title">Profile</span>
+</mat-toolbar>
+<div class="list1">
+  <mat-list>
+    <mat-list-item>Last name :</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>First name : </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Birth date :</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Address : </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Phone number :</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Email : </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Specialities :</mat-list-item>
+  </mat-list>
+</div>
+
+<mat-list>
+  <mat-list-item>{{profile.lastName}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.firstName}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.birthDate}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.address}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.phoneNumber}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.mail}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>{{profile.specialities}}</mat-list-item>
+
+
+</mat-list>

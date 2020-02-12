@@ -39,6 +39,7 @@ import { SpecialityComponent } from './speciality/speciality.component';
 import { EditSpecialityComponent } from './speciality/edit-speciality/edit-speciality.component';
 import { OneSpecialityComponent } from './speciality/one-speciality/one-speciality.component';
 import { UpdateSpecialityComponent } from './speciality/update-speciality/update-speciality.component';
+import { OneProfileLargeComponent } from './profile/one-profile-large/one-profile-large.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { UpdateSpecialityComponent } from './speciality/update-speciality/update
     EditSpecialityComponent,
     OneSpecialityComponent,
     UpdateSpecialityComponent,
+    OneProfileLargeComponent,
   ],
   imports: [
     BrowserModule,

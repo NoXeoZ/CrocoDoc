@@ -1,18 +1,69 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Structure} from "../../model/structure";
+import {ProfileService} from "../profile.service";
+import {Profile} from "../../model/profile";
 
 @Component({
-  selector: 'app-edit',
+  selector: 'app-profile',
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
 
-  ngOnInit() {
+  @Output()
+  createProfile= new EventEmitter<Profile>();
+
+  constructor(private formBuilder: FormBuilder,
+              private profileService:ProfileService,
+              protected router: Router,
+  ) {
   }
 
+  ngOnInit() {
+    this.createForm();
+  }
+
+  id : number;
+  lastName:string;
+  firstName : string;
+  birthDate : string;
+  address : string;
+  phoneNumber : string;
+  mail : string;
+  specialities: Array<string>;
+
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      'lastName': [null, Validators.required],
+      'firstName': [null, Validators.required],
+      'birthDate': [null, Validators.required],
+      'address': [null, Validators.required],
+      'phoneNumber': [null, Validators.required],
+      'mail': [null, Validators.required],
+      'specialities':[this.formBuilder.array([ this.createItem() ]),Validators.required],
+    });
+  }
+  onCreateProfile(){
+    this.profileService
+      .createProfile(this.formGroup.value)
+      .subscribe(
+        data=>{this.createProfile.emit(this.formGroup.value);
+          this.router.navigate(['/profiles'])},
+        error=>console.log(error)
+      );
+  }
+  reset(){
+    this.formGroup.reset();
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      specialities1: '',
+      specialities2: '',
+      specialities3: '',
+    });
+  }
 }
