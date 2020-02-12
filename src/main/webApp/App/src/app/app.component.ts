@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Authetification} from "./model/authetification";
+import {Authentification} from "./model/authentification";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,7 @@ export class AppComponent {
     this.connectKey=this.loginlist[0];
     if(this.connectKey!=null){
       this.isConnected=true;
+      this.isAdmin=true;
     }else {
       this.isConnected=false;
     }

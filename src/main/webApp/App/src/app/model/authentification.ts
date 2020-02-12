@@ -1,4 +1,5 @@
-export interface Authetification{
+export interface Authentification{
   login :string;
   password : string;
 }
+

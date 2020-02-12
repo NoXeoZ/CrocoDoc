@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/assignement/edit"><mat-icon> add</mat-icon></a>
+  <span class="title">Assignement</span>
+</mat-toolbar>
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Start Date</th>
+      <th class="mat-cell">End Date</th>
+      <th class="mat-cell">Service</th>
+
+    </tr>
+    <tbody *ngIf="listAssignement">
+    <tr *ngFor="let a of listAssignement;" [assignement]="a" >
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

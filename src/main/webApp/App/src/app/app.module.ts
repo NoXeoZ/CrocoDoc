@@ -25,6 +25,16 @@ import { UpdateStructureComponent } from './structure/update-structure/update-st
 import {HttpClientModule} from "@angular/common/http";
 import { DmpComponent } from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
+import { AssignementComponent } from './assignement/assignement.component';
+import { EditAssignementComponent } from './assignement/edit-assignement/edit-assignement.component';
+import { OneAssignementComponent } from './assignement/one-assignement/one-assignement.component';
+import { DmpAdminComponent } from './dmp-admin/dmp-admin.component';
+import { DmpAdminEditComponent } from './dmp-admin/edit/dmp-admin-edit.component';
+import { OneDmpComponent } from './dmp-admin/one-dmp/one-dmp.component';
+import { SpecialityComponent } from './speciality/speciality.component';
+import { EditSpecialityComponent } from './speciality/edit-speciality/edit-speciality.component';
+import { OneSpecialityComponent } from './speciality/one-speciality/one-speciality.component';
+import { UpdateSpecialityComponent } from './speciality/update-speciality/update-speciality.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +47,16 @@ import {MatSnackBarModule} from "@angular/material";
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
+    AssignementComponent,
+    EditAssignementComponent,
+    OneAssignementComponent,
+    DmpAdminComponent,
+    DmpAdminEditComponent,
+    OneDmpComponent,
+    SpecialityComponent,
+    EditSpecialityComponent,
+    OneSpecialityComponent,
+    UpdateSpecialityComponent,
   ],
   imports: [
     BrowserModule,

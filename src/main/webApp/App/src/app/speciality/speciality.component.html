@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/speciality/edit"><mat-icon> add</mat-icon></a>
+  <span class="title">Speciality</span>
+</mat-toolbar>
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Name</th>
+      <th class="mat-cell">Description</th>
+    </tr>
+    <tbody *ngIf="listSpecialities">
+    <tr *ngFor="let s of listSpecialities;" [structure]="s" (deleteSeciality)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>
