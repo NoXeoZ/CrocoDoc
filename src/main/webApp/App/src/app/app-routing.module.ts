@@ -9,6 +9,13 @@ import {UpdateStructureComponent} from "./structure/update-structure/update-stru
 import {DmpComponent} from "./dmp/dmp.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileEditComponent} from "./profile/edit/profile-edit.component";
+import {AssignementComponent} from './assignement/assignement.component';
+import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
+import {DmpAdminComponent} from './dmp-admin/dmp-admin.component';
+import {DmpAdminEditComponent} from './dmp-admin/edit/dmp-admin-edit.component';
+import {SpecialityComponent} from './speciality/speciality.component';
+import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
+import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 
 const routes: Routes = [
   {
@@ -32,6 +39,18 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
+    path: 'speciality',
+    component: SpecialityComponent
+  },
+  {
+    path: 'speciality/edit',
+    component: EditSpecialityComponent
+  },
+  {
+    path: 'speciality/update/:id',
+    component: UpdateSpecialityComponent
+  },
+  {
     path: 'dmp',
     component: DmpComponent
   },
@@ -40,8 +59,24 @@ const routes: Routes = [
     component: StructureEditComponent
   },
   {
+    path: 'dmpAdmin',
+    component: DmpAdminComponent
+  },
+  {
+    path: 'dmpAdmin/edit',
+    component: DmpAdminEditComponent
+  },
+  {
     path: 'dmp/update/:id',
     component: UpdateStructureComponent
+  },
+  {
+    path: 'assignement',
+    component: AssignementComponent
+  },
+  {
+    path: 'assignement/edit',
+    component: EditAssignementComponent
   },
   {
     path: 'profile',

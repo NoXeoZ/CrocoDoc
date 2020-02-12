@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StructureEditComponent } from './structure-edit.component';
 
-describe('DmpAdminEditComponent', () => {
-  let component: StructureEditComponent;
-  let fixture: ComponentFixture<StructureEditComponent>;
+import { UpdateSpecialityComponent } from './update-speciality.component';
+
+describe('UpdateSpecialityComponent', () => {
+  let component: UpdateSpecialityComponent;
+  let fixture: ComponentFixture<UpdateSpecialityComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StructureEditComponent ]
+      declarations: [ UpdateSpecialityComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StructureEditComponent);
+    fixture = TestBed.createComponent(UpdateSpecialityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
