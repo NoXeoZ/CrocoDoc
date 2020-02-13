@@ -37,11 +37,12 @@ public class Act {
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
-    private Profile user;
+    private User user;
 
-    protected  Act() {}
+    /** JPA */
+    Act() {}
 
-    public Act(Profile user, ActType type, Assignment assignment, String description) {
+    public Act(User user, ActType type, Assignment assignment, String description) {
         this.user = Objects.requireNonNull(user);
         this.type = Objects.requireNonNull(type);
         this.assignment = Objects.requireNonNull(assignment);
@@ -128,11 +129,11 @@ public class Act {
         this.assignment = Objects.requireNonNull(assignment);
     }
 
-    public Profile getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Profile user) {
+    public void setUser(User user) {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
         this.user = Objects.requireNonNull(user);
@@ -140,8 +141,16 @@ public class Act {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Act)) return false;
-        return Objects.equals(id, ((Act) o).getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Act act = (Act) o;
+
+        if (id != act.id) return false;
+        if (draft != act.draft) return false;
+        if (!description.equals(act.description)) return false;
+        if (!createdAt.equals(act.createdAt)) return false;
+        return type == act.type;
     }
 
     @Override

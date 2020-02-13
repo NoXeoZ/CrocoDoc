@@ -18,7 +18,7 @@ public class DMPResource {
 
     @GetMapping("/dmps/{key}")
     public Iterable<DMP> getAllDMP(@PathVariable String key) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getAllDMP();
         }else{
@@ -28,7 +28,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/create/{key}")
     public DMP createDMP(@PathVariable String key, @RequestBody DMP dmp) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.createDMP(dmp);
         }else{
@@ -38,7 +38,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/{key}/{id}")
     public Optional<DMP> getOneDMP(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getDMP(id);
         }else{
@@ -48,7 +48,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/update/{key}")
     public DMP updateDMP(@PathVariable String key,@RequestBody DMP dmp) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.updateDMP(dmp);
         } else {
@@ -58,7 +58,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalizations/{key}/{id}")
     public Iterable<Hospitalization> getAllHospitalizationForDMP(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getAllHospitalizationForDMP(id);
         }else{
@@ -68,7 +68,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/create/{key}")
     public Hospitalization createAssignment(@PathVariable String key, @RequestBody Hospitalization h) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.createHospitalization(h);
         }else{
@@ -78,7 +78,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/{key}/{id}")
     public Optional<Hospitalization> getOneHospitalization(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getHospitalization(id);
         }else{
@@ -88,7 +88,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/update/{key}")
     public Hospitalization updateHospitaization(@PathVariable String key,@RequestBody Hospitalization h) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.updateHospitalization(h);
         } else {
@@ -98,7 +98,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/assignments/{key}/{id}")
     public Iterable<Assignment> getAllAssignmentsForHospitalization(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getAllAssignmentsForHospitalization(id);
         }else{
@@ -108,7 +108,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/assignment/create/{key}")
     public Assignment createAssignment(@PathVariable String key, @RequestBody Assignment a) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.createAssignment(a);
         }else{
@@ -118,7 +118,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/assignment/{key}/{id}")
     public Optional<Assignment> getOneAssignment(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getAssignment(id);
         }else{
@@ -128,7 +128,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/assignment/update/{key}")
     public Assignment updateAssignment(@PathVariable String key,@RequestBody Assignment a) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.updateAssignment(a);
         } else {
@@ -139,7 +139,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/assignment/acts/{key}/{id}")
     public Iterable<Act> getAllActsForAssignment(@PathVariable String key, @PathVariable long id) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.getAllActsForAssignment(id);
         } else {
@@ -149,7 +149,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/assignment/act/create/{key}")
     public Act createAct(@PathVariable String key, @RequestBody Act a) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.createAct(a);
         } else {
@@ -159,7 +159,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/assignment/act/{key}/{id}")
     public Optional<Act> getOneAct(@PathVariable String key, @PathVariable long id) {
-        Profile p= Authentification.getProfile(key);
+        User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getAct(id);
         }else{
@@ -169,7 +169,7 @@ public class DMPResource {
 
     @PostMapping("/dmp/hospitalization/assignment/act/update/{key}")
     public Act updateAct(@PathVariable String key,@RequestBody Act a) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.updateAct(a);
         } else {
@@ -179,7 +179,7 @@ public class DMPResource {
 
     @GetMapping("/dmp/hospitalization/assignment/act/{key}/{id}/{at}")
     public Iterable<Act> getSpecificActForAssignment(@PathVariable String key, @PathVariable long id, @PathVariable ActType at) {
-        Profile p = Authentification.getProfile(key);
+        User p = Authentification.getUser(key);
         if (p != null) {
             return dmpService.getSpecificActForAssignment(id, at);
         } else {

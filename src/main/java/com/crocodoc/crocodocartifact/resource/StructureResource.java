@@ -1,6 +1,6 @@
 package com.crocodoc.crocodocartifact.resource;
 
-import com.crocodoc.crocodocartifact.model.Profile;
+import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.service.StructureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class StructureResource {
 
     @GetMapping("/structures/{key}")
     public List<Structure> getAll(@PathVariable String key) {
-        Profile p=Authentification.getProfile(key);
+        User p=Authentification.getUser(key);
         if(p!=null) {
             return structureService.getAll();
         }else{
@@ -30,7 +30,7 @@ public class StructureResource {
 
     @PostMapping("/structures/{key}")
     public ResponseEntity<Structure> post(@PathVariable String key, @Valid @RequestBody Structure structure) {
-        Profile p=Authentification.getProfile(key);
+        User p=Authentification.getUser(key);
         if(p!=null) {
             return new ResponseEntity<>(structureService.create(structure), HttpStatus.CREATED);
         }else{
@@ -40,7 +40,7 @@ public class StructureResource {
 
     @GetMapping("structures/{key}/{id}")
     public Optional<Structure> getOne(@PathVariable String key, @PathVariable Long id) {
-        Profile p=Authentification.getProfile(key);
+        User p=Authentification.getUser(key);
         if(p!=null) {
             return structureService.getOne(id);
         }else{
@@ -50,7 +50,7 @@ public class StructureResource {
 
     @DeleteMapping("structures/{key}/{id}")
     public void delete(@PathVariable String key, @PathVariable Long id) {
-        Profile p=Authentification.getProfile(key);
+        User p=Authentification.getUser(key);
         if(p!=null) {
             structureService.delete(id);
         }else{
@@ -60,7 +60,7 @@ public class StructureResource {
 
     @PostMapping("structures/{key}/{id}")
     public Structure put(@PathVariable String key, @PathVariable Long id, @Valid  @RequestBody Structure structure) {
-        Profile p=Authentification.getProfile(key);
+        User p=Authentification.getUser(key);
         if(p!=null) {
             return structureService.update(structure);
         }else{

@@ -2,7 +2,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Structure} from "../model/structure";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Authetification} from "../model/authetification";
+import {Authentification} from "../model/authentification";
 
 type EntityResponseType = HttpResponse<Structure>;
 @Injectable({
@@ -11,7 +11,7 @@ type EntityResponseType = HttpResponse<Structure>;
 export class AuthentificationService {
   constructor(private httpClient:HttpClient) { }
 
-  logIn(authentication:Authetification) : Observable<Array<string>> {
+  logIn(authentication:Authentification) : Observable<Array<string>> {
     return this.httpClient.get<Array<string>>('/connect'+'/'+authentication.login+'/'+authentication.password);
   }
 }

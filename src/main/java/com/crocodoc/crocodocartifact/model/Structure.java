@@ -22,8 +22,12 @@ public class Structure {
     private StructureType type;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_parent", nullable = false)
+    @JoinColumn(name = "id_parent")
     private Structure parent;
+
+    @OneToOne
+    @JoinColumn(name="id_user_responsible")
+    private User chief;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(
@@ -76,6 +80,14 @@ public class Structure {
         if(this.equals(Objects.requireNonNull(parent)))
             throw new IllegalArgumentException("Structure parent can't be the structure itself");
         this.parent = parent;
+    }
+
+    public User getChief() {
+        return chief;
+    }
+
+    public void setChief(User chief) {
+        this.chief = chief;
     }
 
     public List<Speciality> getSpecialities() {

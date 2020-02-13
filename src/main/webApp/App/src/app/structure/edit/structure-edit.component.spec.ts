@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StructureEditComponent } from './structure-edit.component';
 
-describe('EditComponent', () => {
+describe('DmpAdminEditComponent', () => {
   let component: StructureEditComponent;
   let fixture: ComponentFixture<StructureEditComponent>;
 

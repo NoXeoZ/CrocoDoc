@@ -3,11 +3,11 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 140px;
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  background: darkgreen;
 }
 
 .mat-toolbar.mat-primary {
@@ -17,4 +17,9 @@
 }
 mat-toolbar {
   background-color: darkgreen;
+}
+img{
+  position: absolute;
+  width:90%;
+  height:5%;
 }
