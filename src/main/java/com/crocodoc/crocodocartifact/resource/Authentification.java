@@ -1,6 +1,6 @@
 package com.crocodoc.crocodocartifact.resource;
-/*
-import com.crocodoc.crocodocartifact.model.Profile;
+
+import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.service.AuthentificationService;
 import com.crocodoc.crocodocartifact.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,24 +8,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-/*
-TODO : voir l'import -> j'ai package inconnu
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;*/
-/*import java.util.*;
+import javax.mail.internet.MimeMessage;
+import java.util.*;
 
 @RestController
 public class Authentification {
     @Autowired
     private AuthentificationService authentificationService;
 
-    private static Map<String,Profile> connexions=new HashMap<String,Profile>();
+    private static Map<String,User> connexions=new HashMap<String,User>();
 
-    public static Profile getProfile(String key) {
+    public static User getUser(String key) {
         if(connexions.containsKey(key)) {
             return connexions.get(key);
         }
@@ -36,11 +34,11 @@ public class Authentification {
     public List<String> connect(@PathVariable String login, @PathVariable String password){
         try{
             UUID uuid = UUID.randomUUID();
-            connexions.put(uuid.toString(),authentificationService.getProfile(login, password).get());
+            connexions.put(uuid.toString(),authentificationService.getUser(login, password).get());
             List<String> infos=new ArrayList<String>();
             infos.add(uuid.toString());
-            infos.add(getProfile(uuid.toString()).getFirstName());
-            infos.add(getProfile(uuid.toString()).getLastName());
+            infos.add(getUser(uuid.toString()).getFirstname());
+            infos.add(getUser(uuid.toString()).getLastname());
             return infos;
         }catch(Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"wrong login and password");
@@ -56,9 +54,9 @@ public class Authentification {
     }
 
    // @PostMapping("/forgetpw/{mail}")
-   /* public boolean forgotPassword(@PathVariable String mail){
+    public boolean forgotPassword(@PathVariable String mail){
         try{
-            if(authentificationService.getProfileFromMail(mail).isPresent()){
+            if(authentificationService.getUserFromMail(mail).isPresent()){
                 try {
                     String host = "localhost";
                     Properties properties = System.getProperties();
@@ -83,5 +81,5 @@ public class Authentification {
         }catch(NotFoundException e){
             return false;
         }
-    }*/
-//}
+    }
+}

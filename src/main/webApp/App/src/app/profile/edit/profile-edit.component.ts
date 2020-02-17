@@ -26,15 +26,6 @@ export class ProfileEditComponent implements OnInit {
     this.createForm();
   }
 
-  id : number;
-  lastName:string;
-  firstName : string;
-  birthDate : string;
-  address : string;
-  phoneNumber : string;
-  mail : string;
-  specialities: Array<string>;
-
   createForm() {
     this.formGroup = this.formBuilder.group({
       'lastName': [null, Validators.required],
@@ -42,8 +33,6 @@ export class ProfileEditComponent implements OnInit {
       'birthDate': [null, Validators.required],
       'address': [null, Validators.required],
       'phoneNumber': [null, Validators.required],
-      'mail': [null, Validators.required],
-      'specialities':[this.formBuilder.array([ this.createItem() ]),Validators.required],
     });
   }
   onCreateProfile(){
@@ -57,13 +46,5 @@ export class ProfileEditComponent implements OnInit {
   }
   reset(){
     this.formGroup.reset();
-  }
-
-  createItem(): FormGroup {
-    return this.formBuilder.group({
-      specialities1: '',
-      specialities2: '',
-      specialities3: '',
-    });
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Profile} from "../model/profile";
-type EntityResponseType = HttpResponse<Profile>; // pareil
+type EntityResponseType = HttpResponse<Profile>;
 
 @Injectable({
   providedIn: 'root'

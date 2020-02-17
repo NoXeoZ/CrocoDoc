@@ -1,8 +1,8 @@
 package com.crocodoc.crocodocartifact.resource;
-/*
 
-import com.crocodoc.crocodocartifact.model.Profile;
-import com.crocodoc.crocodocartifact.service.ProfileService;
+
+import com.crocodoc.crocodocartifact.model.User;
+import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,25 +11,25 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @RestController
-public class ProfileController {
+public class UserResource {
     @Autowired
-    private ProfileService profileService;
+    private UserService profileService;
 
     @GetMapping("/profile")
-    public Iterable<Profile> getAll() {
+    public Iterable<User> getAll() {
         return profileService.getAll();
     }
 
     @PostMapping("/profile")
-    public Profile post(@RequestBody Profile profile) {
+    public User post(@RequestBody User profile) {
         return profileService.create(profile);
     }
 
     @GetMapping("/profile/{key}")
-    public Optional<Profile> getOne(@PathVariable String key) {
-        Profile p=Authentification.getProfile(key);
+    public Optional<User> getOne(@PathVariable String key) {
+        User p= Authentification.getUser(key);
         if(p!=null) {
-            return profileService.getProfileInfos(p.getId());
+            return profileService.getUser(p.getId());
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
@@ -39,40 +39,39 @@ public class ProfileController {
 
     @DeleteMapping("/profile/{id}")
     public void delete(@PathVariable Long id) {
-        profileService.deleteProfile(id);
+        profileService.deleteUser(id);
     }
 
     @PostMapping("/profile/{key}")
-    public Profile update(@PathVariable String key,@RequestBody Profile profile) {
-        Profile p=Authentification.getProfile(key);
-        if(p!=null) {
-            return profileService.updateProfile(p, profile);
+    public User update(@PathVariable String key,@RequestBody User profile) {
+        User p=Authentification.getUser(key);
+        if(p!=null && p.getId()==profile.getId()) {
+            return profileService.updateUser(profile);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
     @PostMapping("/profile/{key}/{id}")
-    public Profile updateProfileForAdmin(@PathVariable String key,@RequestBody Profile profile, @PathVariable Long id) {
-        Profile p=Authentification.getProfile(key);
+    public User updateUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+        User p=Authentification.getUser(key);
 
-        if(p!=null && p.isChief()) {
-            return profileService.updateProfileForAdmin(id, profile);
+        if(p!=null) {
+            return profileService.updateUserForAdmin(id, profile);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
     @GetMapping("/profile/{key}/{id}")
-    public Optional<Profile> getProfileForAdmin(@PathVariable String key,@RequestBody Profile profile, @PathVariable Long id) {
-        Profile p=Authentification.getProfile(key);
+    public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+        User p=Authentification.getUser(key);
 
-        if(p!=null && p.isChief()) {
-            return profileService.getProfileInfos(id);
+        if(p!=null) {
+            return profileService.getUser(id);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
 }
-*/

@@ -29,12 +29,8 @@ public class AssignmentService {
         assignmentRepository.deleteById(id);
     }
 
-    /*
-    TODO : a refaire -> setId() n'existe pas et ne doit pas exister
-
     public Assignment update(Long id, Assignment assignment) {
         assignmentRepository.findById(id).orElseThrow(NotFoundException::new);
-        assignment.setId(id);
         return assignmentRepository.save(assignment);
-    }*/
+    }
 }
