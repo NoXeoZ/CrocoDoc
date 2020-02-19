@@ -30,4 +30,8 @@ export class StructureComponent implements OnInit {
     this.structureService.getStructures(this.key).subscribe(
       data => this.listStructures = data
     );}
+
+  add() {
+    console.log("addddd");
+  }
 }

@@ -24,10 +24,12 @@ export class StructureEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("edit");
     this.createForm();
   }
 
   createForm() {
+    console.log("formmm")
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
       'description': [null, Validators.required],
