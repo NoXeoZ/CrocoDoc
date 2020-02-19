@@ -25,7 +25,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'structures',
+    path: 'structures/:key',
     component: StructureComponent
   },
   {
@@ -69,7 +69,7 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'assignement',
+    path: 'assignement/:key',
     component: AssignementComponent
   },
   {

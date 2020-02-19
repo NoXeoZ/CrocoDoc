@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StructureService} from "./structure.service";
 import {Structure} from "../model/structure";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-structure',
@@ -8,23 +9,25 @@ import {Structure} from "../model/structure";
   styleUrls: ['./structure.component.css']
 })
 export class StructureComponent implements OnInit {
-  constructor(private structureService:StructureService) { }
+  constructor(private structureService:StructureService,private route:ActivatedRoute) { }
   listStructures:any;
+  key:string
   @Output()
   updateStructure = new EventEmitter<Structure>();
   ngOnInit() {
+    this.key = this.route.snapshot.params['key'];
     this.onGetStructures()
   }
   onGetStructures(){
     this.structureService
-      .getStructures()
+      .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data;},
+        data=>{this.listStructures=data,console.log(data)},
         error => {console.log(error);
         })
   }
   refresh($event: any) {
-    this.structureService.getStructures().subscribe(
+    this.structureService.getStructures(this.key).subscribe(
       data => this.listStructures = data
     );}
 }

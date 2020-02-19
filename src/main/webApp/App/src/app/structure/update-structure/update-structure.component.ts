@@ -20,7 +20,11 @@ export class UpdateStructureComponent implements OnInit {
     this.structureService.getStructure(this.id).subscribe(data => {
         this.formGroup = new FormGroup({
           name: new FormControl(data.name),
-          role: new FormControl(data.role),
+          description: new FormControl(data.description),
+          type: new FormControl(data.type),
+          parent: new FormControl(data.parent),
+          chief: new FormControl(data.chief),
+         // specialities: new FormControl(data.specialities),
         });
       });
   }

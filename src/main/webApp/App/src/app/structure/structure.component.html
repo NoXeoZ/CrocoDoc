@@ -6,7 +6,11 @@
   <table border="true" >
     <tr >
       <th class="mat-cell">Name</th>
-      <th class="mat-cell">Role</th>
+      <th class="mat-cell">Description</th>
+      <th class="mat-cell">Type</th>
+      <th class="mat-cell">Parent</th>
+      <th class="mat-cell">Speciality</th>
+      <th class="mat-cell">chief</th>
     </tr>
     <tbody *ngIf="listStructures">
     <tr *ngFor="let s of listStructures;" [structure]="s" (deleteStructure)="refresh($event)">

@@ -9,8 +9,9 @@ type EntityResponseType = HttpResponse<Structure>;
 export class StructureService {
 
   constructor(private httpClient:HttpClient) { }
-  getStructures() : Observable<Array<Structure>> {
-    return this.httpClient.get<Array<Structure>>('/structures');
+
+  getStructures(key: string) : Observable<Array<Structure>> {
+    return this.httpClient.get<Array<Structure>>('/structures/'+key);
   }
   getStructure(id: number) : Observable<Structure> {
     return this.httpClient.get<Structure>('/structures/' + id);

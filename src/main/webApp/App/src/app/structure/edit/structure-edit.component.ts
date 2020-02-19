@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Structure} from "../../model/structure";
+import {Structure, StructureType} from "../../model/structure";
 import {StructureService} from "../structure.service";
 
 @Component({
@@ -12,6 +12,7 @@ import {StructureService} from "../structure.service";
 export class StructureEditComponent implements OnInit {
 
   formGroup: FormGroup;
+  type=[ StructureType.FUNCTIONAL_UNIT,StructureType.HOSPITAL,StructureType.POLE,StructureType.SERVICE,StructureType.HOSPITAL_UNIT];
 
   @Output()
   createStructure= new EventEmitter<Structure>();
@@ -29,7 +30,11 @@ export class StructureEditComponent implements OnInit {
   createForm() {
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
-      'role': [null, Validators.required],
+      'description': [null, Validators.required],
+      'type': [null, Validators.required],
+      /*'parent': [null, Validators.required],
+      'chief': [null, Validators.required],
+      'specialities': [null, Validators.required],*/
     });
   }
   onCreateStructure(){
