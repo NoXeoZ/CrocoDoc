@@ -56,6 +56,8 @@ public class User {
         this.structure = Objects.requireNonNull(structure);
     }
 
+    User(){}
+
     public long getId() {
         return id;
     }
