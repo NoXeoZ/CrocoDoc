@@ -23,8 +23,8 @@ public class UserResource {
         return profileService.getAll();
     }
 
-    @PostMapping("/profile/{key}")
-    public User post(@PathVariable String key, @RequestBody User profile) {
+    @PostMapping("/profile")
+    public User post(@RequestBody User profile) {
         return profileService.create(profile);
     }
 
