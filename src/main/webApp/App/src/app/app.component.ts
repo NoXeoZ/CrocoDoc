@@ -45,6 +45,11 @@ export class AppComponent {
   }
 
   disconnect($event: boolean) {
-      this.isConnected=false;
+    this.isAdmin=false;
+    this.isLasStaff=false;
+    this.isDOCTOR=false;
+    this.isNurse=false;
+    this.isSecreary=false;
+    this.isConnected=false;
   }
 }

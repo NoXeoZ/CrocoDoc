@@ -42,10 +42,12 @@ export class DmpComponent implements OnInit {
 
 
   desconnect() {
+    console.log("dicon");
     this.dmpService
       .logOut(this.loginlist[0])
       .subscribe(
-        data=>{this.disconnectEvent.emit(data)
+        data=>{this.disconnectEvent.emit(data);
+        console.log("emiiiit event");
         },
         error=> {
           console.log(error);
