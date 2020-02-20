@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Structure, StructureType} from "../../model/structure";
 import {StructureService} from "../structure.service";
 
@@ -16,20 +16,21 @@ export class StructureEditComponent implements OnInit {
 
   @Output()
   createStructure= new EventEmitter<Structure>();
+  private key: string;
 
   constructor(private formBuilder: FormBuilder,
               private strctureService:StructureService,
               protected router: Router,
+              private route:ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
-    console.log("edit");
+    this.key = this.route.snapshot.params['key'];
     this.createForm();
   }
 
   createForm() {
-    console.log("formmm")
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
       'description': [null, Validators.required],
@@ -41,13 +42,14 @@ export class StructureEditComponent implements OnInit {
   }
   onCreateStructure(){
     this.strctureService
-      .createStructure(this.formGroup.value)
+      .createStructure(this.formGroup.value,this.key)
       .subscribe(
         data=>{this.createStructure.emit(this.formGroup.value);
-          this.router.navigate(['/structures'])},
+          this.router.navigate(['/structures/' + this.key]).then(r  =>console.log("create Ok"))},
         error=>console.log(error)
       );
   }
+
   reset(){
     this.formGroup.reset();
   }

@@ -45,10 +45,6 @@ export class AppComponent {
   }
 
   disconnect($event: boolean) {
-    if($event==true){
       this.isConnected=false;
-    }else {
-      this.isConnected=false;
-    }
   }
 }

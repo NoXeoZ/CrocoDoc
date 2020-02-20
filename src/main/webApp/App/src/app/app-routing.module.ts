@@ -29,11 +29,11 @@ const routes: Routes = [
     component: StructureComponent
   },
   {
-    path: 'structures/edit',
+    path: 'structures/:key/edit',
     component: StructureEditComponent
   },
   {
-    path: 'structures/update/:id',
+    path: 'structures/:key/update/:id',
     component: UpdateStructureComponent
   },
   {
