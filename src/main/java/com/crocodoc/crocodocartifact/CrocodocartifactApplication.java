@@ -30,6 +30,7 @@ public class CrocodocartifactApplication implements CommandLineRunner {
 		Structure s = structureService.create(new Structure("Big Brother", StructureType.HOSPITAL));
 		userService.create(new User("admin", "admin", new Date(), "address", "+666", "admin", "pw", "rib", UserType.ADMIN, s));
 		userService.create(new User("kenza", "yahi", new Date(), "address", "+666", "kenza", "pw", "rib", UserType.DOCTOR, s));
-        dmpService.createDMP(new DMP("thomas","levee",new Date(),"Drancy","1245434","23344444","levethomas"));
+		userService.create(new User("daniel", "daniel", new Date(), "address", "+666", "daniel", "pw", "rib", UserType.SECRETARY, s));
+		dmpService.createDMP(new DMP("thomas","levee",new Date(),"Drancy","1245434","23344444","levethomas"));
 	}
 }

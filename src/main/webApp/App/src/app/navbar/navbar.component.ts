@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router} from "@angular/router";
+import {TypeProfil} from "../model/profil";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,13 @@ import {Router} from "@angular/router";
 export class NavbarComponent {
 
   @Input()
-  Key:string
+  Key:string;
+  @Input()
+  typeUser:any;
+
+
+  isAdmin=false;
+  isSecretary=false
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -20,9 +27,19 @@ export class NavbarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private router:Router) {}
-
+  constructor(private breakpointObserver: BreakpointObserver,private router:Router) {
+  }
+  ngOnInit() {
+    console.log(this.typeUser);
+    if(this.typeUser==TypeProfil.ADMIN){
+      this.isAdmin=true;
+      console.log(this.typeUser);
+    }else if(this.typeUser==TypeProfil.SECRETARY){
+      this.isSecretary=true;
+      console.log(this.typeUser);
+    }
+  }
   getDmp() {
-    this.router.navigate(["/dmpAdmin/"+this.Key]);
+    this.router.navigate(["/dmpSecretary/"+this.Key]);
   }
 }

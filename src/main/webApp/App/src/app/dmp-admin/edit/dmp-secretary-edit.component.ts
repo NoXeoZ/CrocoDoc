@@ -2,14 +2,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Dmp} from '../../model/dmp';
-import {DmpAdminService} from '../dmp-admin.service';
+import {DmpSecretaryService} from '../dmp-secretary.service';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './dmp-admin-edit.component.html',
-  styleUrls: ['./dmp-admin-edit.component.css']
+  templateUrl: './dmp-secretary-edit.component.html',
+  styleUrls: ['./dmp-secretary-edit.component.css']
 })
-export class DmpAdminEditComponent implements OnInit {
+export class DmpSecretaryEditComponent implements OnInit {
 
   formGroup: FormGroup;
 
@@ -18,7 +18,7 @@ export class DmpAdminEditComponent implements OnInit {
   private key: string;
 
   constructor(private formBuilder: FormBuilder,
-              private dmpAdminService:DmpAdminService,
+              private dmpAdminService:DmpSecretaryService,
               protected router: Router,
               private route:ActivatedRoute,
   ) {
@@ -45,7 +45,7 @@ export class DmpAdminEditComponent implements OnInit {
       .createDmp(this.formGroup.value,this.key)
       .subscribe(
         data=>{this.createDmp.emit(this.formGroup.value);
-          this.router.navigate(['/dmpAdmin/'+this.key])},
+          this.router.navigate(['/dmpSecretary/'+this.key])},
         error=>console.log(error)
       );
   }

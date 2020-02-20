@@ -1,15 +1,15 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DmpAdminService} from './dmp-admin.service';
+import {DmpSecretaryService} from './dmp-secretary.service';
 import {Dmp} from '../model/dmp';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dmp-admin',
-  templateUrl: './dmp-admin.component.html',
-  styleUrls: ['./dmp-admin.component.css']
+  templateUrl: './dmp-secretary.component.html',
+  styleUrls: ['./dmp-secretary.component.css']
 })
-export class DmpAdminComponent implements OnInit {
-  constructor(private dmpAdminService:DmpAdminService,private route:ActivatedRoute) { }
+export class DmpSecretaryComponent implements OnInit {
+  constructor(private dmpAdminService:DmpSecretaryService, private route:ActivatedRoute) { }
   listDmps:any;
   key:string
   @Output()
