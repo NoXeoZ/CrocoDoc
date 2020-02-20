@@ -25,15 +25,15 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'structures',
+    path: 'structures/:key',
     component: StructureComponent
   },
   {
-    path: 'structures/edit',
+    path: 'structures/:key/edit',
     component: StructureEditComponent
   },
   {
-    path: 'structures/update/:id',
+    path: 'structures/:key/update/:id',
     component: UpdateStructureComponent
   },
   {
@@ -69,7 +69,7 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'assignement',
+    path: 'assignement/:key',
     component: AssignementComponent
   },
   {

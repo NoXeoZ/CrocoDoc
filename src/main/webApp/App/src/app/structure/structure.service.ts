@@ -9,19 +9,20 @@ type EntityResponseType = HttpResponse<Structure>;
 export class StructureService {
 
   constructor(private httpClient:HttpClient) { }
-  getStructures() : Observable<Array<Structure>> {
-    return this.httpClient.get<Array<Structure>>('/structures');
+
+  getStructures(key: string) : Observable<Array<Structure>> {
+    return this.httpClient.get<Array<Structure>>('/structures/'+key);
   }
-  getStructure(id: number) : Observable<Structure> {
-    return this.httpClient.get<Structure>('/structures/' + id);
+  getStructure(id: number,key:string) : Observable<Structure> {
+    return this.httpClient.get<Structure>('/structures/'+key+'/' + id);
   }
-  deleteStructure(id: number): Observable<EntityResponseType> {
-    return this.httpClient.delete<Structure>('/structures/' + id, { observe: 'response' });
+  deleteStructure(id: number,key:string): Observable<EntityResponseType> {
+    return this.httpClient.delete<Structure>('/structures/'+key+'/' + id, { observe: 'response' });
   }
-  createStructure(structure:Structure): Observable<EntityResponseType> {
-    return this.httpClient.post<Structure>('/structures', structure, { observe: 'response' });
+  createStructure(structure:Structure,key:string): Observable<EntityResponseType> {
+    return this.httpClient.post<Structure>('/structures/'+key, structure, { observe: 'response' });
   }
-  updateStructure(structure: Structure): Observable<EntityResponseType> {
-    return this.httpClient.post<Structure>('/structures' + '/' + structure.id, structure, { observe: 'response' });
+  updateStructure(structure: Structure,key:string): Observable<EntityResponseType> {
+    return this.httpClient.post<Structure>('/structures/' +key+ '/' + structure.id, structure, { observe: 'response' });
   }
 }
