@@ -4,10 +4,12 @@ import com.crocodoc.crocodocartifact.model.Speciality;
 import com.crocodoc.crocodocartifact.repository.SpecialityRepository;
 import com.crocodoc.crocodocartifact.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SpecialityService {
     @Autowired
     private SpecialityRepository specialityRepository;
