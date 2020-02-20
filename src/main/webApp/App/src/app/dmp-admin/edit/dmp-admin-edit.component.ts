@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Dmp} from '../../model/dmp';
 import {DmpAdminService} from '../dmp-admin.service';
 
@@ -15,14 +15,17 @@ export class DmpAdminEditComponent implements OnInit {
 
   @Output()
   createDmp= new EventEmitter<Dmp>();
+  private key: string;
 
   constructor(private formBuilder: FormBuilder,
               private dmpAdminService:DmpAdminService,
               protected router: Router,
+              private route:ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
+    this.key = this.route.snapshot.params['key'];
     this.createForm();
   }
 
@@ -39,10 +42,10 @@ export class DmpAdminEditComponent implements OnInit {
   }
   onCreateDmp(){
     this.dmpAdminService
-      .createDmp(this.formGroup.value)
+      .createDmp(this.formGroup.value,this.key)
       .subscribe(
         data=>{this.createDmp.emit(this.formGroup.value);
-          this.router.navigate(['/dmpAdmin'])},
+          this.router.navigate(['/dmpAdmin/'+this.key])},
         error=>console.log(error)
       );
   }

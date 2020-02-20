@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AuthentificationComponent} from "./authentification/authentification.component";
 import {HomeComponent} from "./home/home.component";
 import {StructureComponent} from "./structure/structure.component";
-import {NavbarComponent} from "./navbar/navbar.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
@@ -53,15 +52,15 @@ const routes: Routes = [
     component: DmpComponent
   },
   {
-    path: 'dmp/edit',
+    path: 'dmp/edit/:key',
     component: StructureEditComponent
   },
   {
-    path: 'dmpAdmin',
+    path: 'dmpAdmin/:key',
     component: DmpAdminComponent
   },
   {
-    path: 'dmpAdmin/edit',
+    path: 'dmpAdmin/edit/:key',
     component: DmpAdminEditComponent
   },
   {
