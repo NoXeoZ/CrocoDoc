@@ -7,16 +7,16 @@
       <img  src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/home">Home</a>
-      <a mat-list-item routerLink="/">Hospitalisation</a>
-      <a mat-list-item routerLink="/profiles">Profiles</a>
-      <a mat-list-item routerLink="/structures">Structure</a>
-      <a mat-list-item routerLink="/speciality">Speciality</a>
-      <a mat-list-item routerLink="/profil">Profil</a>
-      <a mat-list-item routerLink="/assignement">Assignement</a>
-      <a mat-list-item routerLink="/dmpAdmin">Dmp</a>
 
+      <div *ngIf="isAdmin">  <a mat-list-item routerLink="/home">Home</a> </div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/structures/{{Key}}">Structure</a></div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/speciality">Speciality</a></div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/profil">Profil</a></div>
 
+       <div *ngIf="isSecretary"><a mat-list-item routerLink="/home">Home</a></div>
+       <div *ngIf="isSecretary"><a mat-list-item routerLink="/">Hospitalisation</a></div>
+       <div *ngIf="isSecretary"><a mat-list-item routerLink="/assignement">Assignement</a></div>
+       <div *ngIf="isSecretary"> <a mat-list-item (click)="getDmp()">Dmp</a></div>
 
     </mat-nav-list>
   </mat-sidenav>

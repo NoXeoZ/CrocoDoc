@@ -2,6 +2,7 @@ package com.crocodoc.crocodocartifact.resource;
 
 
 import com.crocodoc.crocodocartifact.model.User;
+import com.crocodoc.crocodocartifact.service.StructureService;
 import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class UserResource {
     @Autowired
     private UserService profileService;
+    @Autowired
+    private StructureService structureService;
 
     @GetMapping("/profile")
     public Iterable<User> getAll() {

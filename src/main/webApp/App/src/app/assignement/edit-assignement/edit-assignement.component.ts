@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Assignement} from '../../model/assignement';
 import {AssignementService} from '../assignement.service';
 import {StructureService} from '../../structure/structure.service';
@@ -17,15 +17,19 @@ export class EditAssignementComponent implements OnInit {
   @Output()
   createAssignement= new EventEmitter<Assignement>();
   services: any;
+  private key: string;
 
   constructor(private formBuilder: FormBuilder,
               private assignementService:AssignementService,
               private structureService:StructureService,
+              private route:ActivatedRoute,
               protected router: Router,
+
   ) {
   }
 
   ngOnInit() {
+    this.key = this.route.snapshot.params['key'];
     this.createForm();
     this. onGetService();
   }
@@ -54,7 +58,7 @@ export class EditAssignementComponent implements OnInit {
   }
   onGetService(){
     this.structureService
-      .getStructures()
+      .getStructures(this.key)
       .subscribe(
         data=>{this.services=data;console.log(data)},
         error => {console.log(error);

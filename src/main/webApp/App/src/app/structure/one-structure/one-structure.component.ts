@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Structure} from "../../model/structure";
 import {StructureService} from "../structure.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'tr [structure]',
@@ -13,13 +14,15 @@ export class OneStructureComponent implements OnInit {
 
   @Output()
   deleteStructure = new EventEmitter<Structure>();
-  constructor(private structureService: StructureService) { }
+  private key: string;
+  constructor(private structureService: StructureService,private route :ActivatedRoute) { }
 
   ngOnInit() {
+    this.key = this.route.snapshot.params['key'];
   }
   onDeleteStructure(id: any){
     this.structureService
-      .deleteStructure(this.structure.id)
+      .deleteStructure(this.structure.id,this.key)
       .subscribe(
         data=> this.deleteStructure.emit(this.structure),
         error => {console.log(error);

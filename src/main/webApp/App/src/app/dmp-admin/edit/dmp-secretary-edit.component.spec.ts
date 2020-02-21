@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DmpAdminComponent } from './dmp-admin.component';
+import { DmpSecretaryEditComponent } from './dmp-secretary-edit.component';
 
-describe('DmpAdminComponent', () => {
-  let component: DmpAdminComponent;
-  let fixture: ComponentFixture<DmpAdminComponent>;
+describe('DmpAdminEditComponent', () => {
+  let component: DmpSecretaryEditComponent;
+  let fixture: ComponentFixture<DmpSecretaryEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DmpAdminComponent ]
+      declarations: [ DmpSecretaryEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DmpAdminComponent);
+    fixture = TestBed.createComponent(DmpSecretaryEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

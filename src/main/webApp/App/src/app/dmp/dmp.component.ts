@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map, shareReplay} from "rxjs/operators";
 import {DmpService} from "./dmp.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-dmp',
@@ -28,7 +29,8 @@ export class DmpComponent implements OnInit {
     );
   fullname='';
   constructor(private breakpointObserver: BreakpointObserver,
-              private dmpService:DmpService) {}
+              private dmpService:DmpService,
+              private router:Router) {}
 
   ngOnInit(): void {
     this.isSejour=true;
@@ -40,13 +42,15 @@ export class DmpComponent implements OnInit {
 
 
   desconnect() {
+    console.log("dicon");
     this.dmpService
       .logOut(this.loginlist[0])
       .subscribe(
-        data=>{this.disconnectEvent.emit(data) ;
+        data=>{this.disconnectEvent.emit(data);
+        console.log("emiiiit event");
         },
         error=> {
-          console.log("disconnecte");
+          console.log(error);
         }
       );
   }
