@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {User, TypeUser} from "../../model/user";
 import {UserService} from "../user.service";
-import {Structure} from "../../model/structure"
 
 @Component({
   selector: 'app-update-user',
@@ -17,6 +16,7 @@ export class UpdateUserComponent implements OnInit {
 
   @Output()
   updateUser=new EventEmitter<User>();
+
   private key: string;
   constructor(private userService : UserService, private route: ActivatedRoute) { }
   ngOnInit() {
@@ -41,8 +41,16 @@ export class UpdateUserComponent implements OnInit {
   onUpdateUser() {
     let user: User =  this.formGroup.value;
     user.id = this.id;
-    this.userService.updateUser(user,this.key).subscribe(
-      data => this.updateUser.emit(user),
-      error => console.log(error)
-    );}
+    /*if(user.type == TypeUser.ADMIN){
+      this.userService.updateUserForAdmin(user,this.key).subscribe(
+            data => this.updateUser.emit(user),
+            error => console.log(error)
+          );}
+    }else{*/
+      this.userService.updateUser(user,this.key).subscribe(
+        data => this.updateUser.emit(user),
+        error => console.log(error)
+      );
+      //}
+    }
 }

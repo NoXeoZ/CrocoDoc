@@ -1,34 +1,46 @@
 package com.crocodoc.crocodocartifact.resource;
 
 
+import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.service.StructureService;
 import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
 public class UserResource {
     @Autowired
     private UserService userService;
-    @Autowired
-    private StructureService structureService;
-
-    @GetMapping("/user")
-    public Iterable<User> getAll() {
-        return userService.getAll();
-    }
-
-    @PostMapping("/user")
-    public User post(@RequestBody User user) {
-        return userService.create(user);
-    }
 
     @GetMapping("/user/{key}")
+    public Iterable<User> getAll(@PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return userService.getAll();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+
+    }
+
+    @PostMapping("/user/{key}")
+    public ResponseEntity<User> post(@PathVariable String key, @Valid @RequestBody User user) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("/user/{key}/{id}")
     public Optional<User> getOne(@PathVariable String key) {
         User p= Authentification.getUser(key);
         if(p!=null) {
@@ -40,12 +52,12 @@ public class UserResource {
 
 
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/user/{key}/{id}")
     public void delete(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 
-    @PostMapping("/user/{key}")
+    @PostMapping("/user/{key}/{id}")
     public User update(@PathVariable String key,@RequestBody User user) {
         User p=Authentification.getUser(key);
         if(p!=null && p.getId()==user.getId()) {
@@ -55,7 +67,7 @@ public class UserResource {
         }
     }
 
-    @PostMapping("/user/{key}/{id}")
+    @PostMapping("/users/{key}/{id}")
     public User updateUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 
@@ -66,7 +78,7 @@ public class UserResource {
         }
     }
 
-    @GetMapping("/user/{key}/{id}")
+    @GetMapping("/users/{key}/{id}")
     public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 

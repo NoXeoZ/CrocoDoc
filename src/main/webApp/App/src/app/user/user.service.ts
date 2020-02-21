@@ -12,18 +12,24 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   getUsers(key: string) : Observable<Array<User>> {
-    return this.httpClient.get<Array<User>>('/users/'+key);
+    return this.httpClient.get<Array<User>>('/user/'+key);
   }
   getUser(id: number,key:string) : Observable<User> {
-    return this.httpClient.get<User>('/users/'+key+'/' + id);
+    return this.httpClient.get<User>('/user/'+key+'/' + id);
   }
   deleteUser(id: number,key:string): Observable<EntityResponseType> {
-    return this.httpClient.delete<User>('/users/'+key+'/' + id, { observe: 'response' });
+    return this.httpClient.delete<User>('/user/'+key+'/' + id, { observe: 'response' });
   }
   createUser(user:User,key:string): Observable<EntityResponseType> {
-    return this.httpClient.post<User>('/users/'+key, user, { observe: 'response' });
+    return this.httpClient.post<User>('/user/'+key, user, { observe: 'response' });
   }
   updateUser(user: User,key:string): Observable<EntityResponseType> {
+    return this.httpClient.post<User>('/user/' +key+ '/' + user.id, user, { observe: 'response' });
+  }
+  updateUserForAdmin(user: User,key:string): Observable<EntityResponseType> {
+    return this.httpClient.post<User>('/users/' +key+ '/' + user.id, user, { observe: 'response' });
+  }
+  getUserForAdmin(user: User,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<User>('/users/' +key+ '/' + user.id, user, { observe: 'response' });
   }
 }
