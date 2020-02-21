@@ -23,11 +23,10 @@ import {StructureEditComponent} from './structure/edit/structure-edit.component'
 import {OneStructureComponent} from './structure/one-structure/one-structure.component';
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
-import { DmpComponent } from './dmp/dmp.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ProfileEditComponent } from './profile/edit/profile-edit.component';
-import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
-import { OneProfileComponent } from './profile/one-profile/one-profile.component';
+import { UserComponent } from './user/user.component';
+import { UserEditComponent } from './user/edit/user-edit.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { OneUserComponent } from './user/one-user/one-user.component';
 import {DmpComponent} from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
 import {AssignementComponent} from './assignement/assignement.component';
@@ -52,10 +51,10 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
-    ProfileComponent,
-    ProfileEditComponent,
-    UpdateProfileComponent,
-    OneProfileComponent,
+    UserComponent,
+    UserEditComponent,
+    UpdateUserComponent,
+    OneUserComponent,
     AssignementComponent,
     EditAssignementComponent,
     OneAssignementComponent,

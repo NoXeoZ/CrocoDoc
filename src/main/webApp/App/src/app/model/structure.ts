@@ -1,4 +1,4 @@
-import {Profil} from "./profil";
+import {User} from "./user";
 import {Speciality} from "./speciality";
 
 export enum StructureType{
@@ -14,6 +14,6 @@ export interface Structure{
   description : string;
   type:StructureType,
   parent:Structure,
-  chief:Profil,
+  chief:User,
   specialities:Array<Speciality>
 }

@@ -1,15 +1,15 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Structure} from "../../model/structure";
-import {StructureService} from "../structure.service";
+import {User} from "../../model/user";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './profile-edit.component.html',
-  styleUrls: ['./profile-edit.component.css']
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.css']
 })
-export class ProfileEditComponent implements OnInit {
+export class UserEditComponent implements OnInit {
 
   constructor() { }
 

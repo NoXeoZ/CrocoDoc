@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router} from "@angular/router";
-import {TypeProfil} from "../model/profil";
+import {TypeUser} from "../model/user";
 
 @Component({
   selector: 'app-navbar',
@@ -31,10 +31,10 @@ export class NavbarComponent {
   }
   ngOnInit() {
     console.log(this.typeUser);
-    if(this.typeUser==TypeProfil.ADMIN){
+    if(this.typeUser==TypeUser.ADMIN){
       this.isAdmin=true;
       console.log(this.typeUser);
-    }else if(this.typeUser==TypeProfil.SECRETARY){
+    }else if(this.typeUser==TypeUser.SECRETARY){
       this.isSecretary=true;
       console.log(this.typeUser);
     }

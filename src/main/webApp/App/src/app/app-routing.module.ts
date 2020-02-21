@@ -6,8 +6,8 @@ import {StructureComponent} from "./structure/structure.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {ProfileEditComponent} from "./profile/edit/profile-edit.component";
+import {UserComponent} from "./user/user.component";
+import {UserEditComponent} from "./user/edit/user-edit.component";
 import {AssignementComponent} from './assignement/assignement.component';
 import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
@@ -70,14 +70,14 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent
+    path: 'user',
+    component: UserComponent
   },
   {
-    path: 'profile/edit',
-    component: ProfileEditComponent
-  }
+    path: 'user/edit',
+    component: UserEditComponent
   },
+
   {
     path: 'assignement/:key',
     component: AssignementComponent

@@ -11,35 +11,35 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository profileRepository;
+    private UserRepository userRepository;
 
     public Iterable<User>getAll(){
-        return profileRepository.findAll();
+        return userRepository.findAll();
     }
 
-    public User create(User profile){
-        return profileRepository.save(profile);
+    public User create(User user){
+        return userRepository.save(user);
     }
 
     public void deleteUser(Long idUser){
-        profileRepository.deleteById(idUser);
+        userRepository.deleteById(idUser);
     }
 
     public User updateUser(User p){
-        profileRepository.findById(Long.valueOf(p.getId())).orElseThrow(NotFoundException::new);
+        userRepository.findById(Long.valueOf(p.getId())).orElseThrow(NotFoundException::new);
         //AUTOSET UNMODIFIABLE FIELDS
-        //profile.setId(p.getId());
-        return profileRepository.save(p);
+        //user.setId(p.getId());
+        return userRepository.save(p);
     }
 
     public Optional<User> getUser(Long idUser){
-        return Optional.ofNullable(profileRepository.findById(idUser).orElseThrow(NotFoundException::new));
+        return Optional.ofNullable(userRepository.findById(idUser).orElseThrow(NotFoundException::new));
     }
 
-    public User updateUserForAdmin(Long p,User profile){
-        profileRepository.findById(Long.valueOf(p)).orElseThrow(NotFoundException::new);
+    public User updateUserForAdmin(Long p,User user){
+        userRepository.findById(Long.valueOf(p)).orElseThrow(NotFoundException::new);
         //AUTOSET UNMODIFIABLE FIELDS
-        //profile.setId(p);
-        return profileRepository.save(profile);
+        //user.setId(p);
+        return userRepository.save(user);
     }
 }

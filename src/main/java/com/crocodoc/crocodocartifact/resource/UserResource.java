@@ -14,25 +14,25 @@ import java.util.Optional;
 @RestController
 public class UserResource {
     @Autowired
-    private UserService profileService;
+    private UserService userService;
     @Autowired
     private StructureService structureService;
 
-    @GetMapping("/profile")
+    @GetMapping("/user")
     public Iterable<User> getAll() {
-        return profileService.getAll();
+        return userService.getAll();
     }
 
-    @PostMapping("/profile")
-    public User post(@RequestBody User profile) {
-        return profileService.create(profile);
+    @PostMapping("/user")
+    public User post(@RequestBody User user) {
+        return userService.create(user);
     }
 
-    @GetMapping("/profile/{key}")
+    @GetMapping("/user/{key}")
     public Optional<User> getOne(@PathVariable String key) {
         User p= Authentification.getUser(key);
         if(p!=null) {
-            return profileService.getUser(p.getId());
+            return userService.getUser(p.getId());
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
@@ -40,38 +40,38 @@ public class UserResource {
 
 
 
-    @DeleteMapping("/profile/{id}")
+    @DeleteMapping("/user/{id}")
     public void delete(@PathVariable Long id) {
-        profileService.deleteUser(id);
+        userService.deleteUser(id);
     }
 
-    @PostMapping("/profile/{key}")
-    public User update(@PathVariable String key,@RequestBody User profile) {
+    @PostMapping("/user/{key}")
+    public User update(@PathVariable String key,@RequestBody User user) {
         User p=Authentification.getUser(key);
-        if(p!=null && p.getId()==profile.getId()) {
-            return profileService.updateUser(profile);
+        if(p!=null && p.getId()==user.getId()) {
+            return userService.updateUser(user);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
-    @PostMapping("/profile/{key}/{id}")
-    public User updateUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+    @PostMapping("/user/{key}/{id}")
+    public User updateUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 
         if(p!=null) {
-            return profileService.updateUserForAdmin(id, profile);
+            return userService.updateUserForAdmin(id, user);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
-    @GetMapping("/profile/{key}/{id}")
-    public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+    @GetMapping("/user/{key}/{id}")
+    public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 
         if(p!=null) {
-            return profileService.getUser(id);
+            return userService.getUser(id);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
