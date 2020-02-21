@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+}
+td{
+  width: 10%
+}
+.card{
+  display: flex;
+  text-align: center;
+}
+
+.test{
+  background-color: red;
+}
+mat-toolbar {
+  background-color: darkgreen;
+}
+mat-toolbar .title{
+  color: white;
+}
+mat-toolbar .icon{
+  background-color: green;
+  color: black;
+}
+
+.example-card {
+  max-width: 400px;
+  width: 75%;
+  margin: 10px auto;
+}

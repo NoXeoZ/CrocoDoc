@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <span class="title">Update Profile {{id}}</span>
+</mat-toolbar>
+<div class="mainDiv">
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup" (ngSubmit)="onUpdateProfile()" class="form" >
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Address" formControlName="Address">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput  placeholder="Phone" formControlName="Phone">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Mail" formControlName="Mail">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput  placeholder="Specialities" formControlName="Speciailities">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" (click)="onUpdateProfile()"
+              [disabled]="!formGroup.valid" routerLink="/profiles">Submit
+      </button>
+    </form>
+  </div>
+</mat-card>
+</div>
+
+

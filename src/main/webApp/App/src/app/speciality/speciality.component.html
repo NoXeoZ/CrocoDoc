@@ -9,7 +9,7 @@
       <th class="mat-cell">Description</th>
     </tr>
     <tbody *ngIf="listSpecialities">
-    <tr *ngFor="let s of listSpecialities;" [structure]="s" (deleteSeciality)="refresh($event)">
+    <tr *ngFor="let s of listSpecialities;" [structure]="s" (deleteSpeciality)="refresh($event)">
     </tr>
     </tbody>
   </table>

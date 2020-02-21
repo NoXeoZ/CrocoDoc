@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/profiles/edit"><mat-icon> add</mat-icon></a>
+  <span class="title">Profile</span>
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">First Name</th>
+      <th class="mat-cell">Last Name</th>
+      <th class="mat-cell">Birth Date</th>
+      <th class="mat-cell">Address</th>
+      <th class="mat-cell">Phone</th>
+      <th class="mat-cell">Email</th>
+      <th class="mat-cell">Specialities</th>
+    </tr>
+    <tbody *ngIf="listProfiles">
+    <tr *ngFor="let s of listProfiles;" [profile]="s" >
+    </tr>
+    </tbody>
+  </table>
+</mat-card>
+<div class="test">
+  <mat-list>
+    <mat-list-item> Pepper </mat-list-item>
+    <mat-list-item> Salt </mat-list-item>
+    <mat-list-item> Paprika </mat-list-item>
+  </mat-list>
+</div>

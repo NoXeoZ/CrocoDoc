@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Structure} from "../model/structure";
-type EntityResponseType = HttpResponse<Structure>;
+import {Structure} from "../model/structure"; // retire ça pour voir ce que tu dois changer
+type EntityResponseType = HttpResponse<Structure>; // pareil
+
 @Injectable({
   providedIn: 'root'
 })
