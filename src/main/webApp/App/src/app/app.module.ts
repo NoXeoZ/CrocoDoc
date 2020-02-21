@@ -35,6 +35,11 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {ProfileComponent} from "./profile/profile.component";
+import {OneProfileComponent} from "./profile/one-profile/one-profile.component";
+import {OneProfileLargeComponent} from "./profile/one-profile-large/one-profile-large.component";
+import {UpdateProfileComponent} from "./profile/update-profile/update-profile.component";
+import {ProfileEditComponent} from "./profile/edit/profile-edit.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +62,11 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
     EditSpecialityComponent,
     OneSpecialityComponent,
     UpdateSpecialityComponent,
+    ProfileComponent,
+    OneProfileComponent,
+    OneProfileLargeComponent,
+    UpdateProfileComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
