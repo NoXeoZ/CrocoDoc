@@ -1,41 +1,51 @@
 package com.crocodoc.crocodocartifact.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Objects;
+import java.util.*;
 
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
+@Table(name = "structures")
 public class Structure {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue
     private long id;
-    @NotEmpty
+    @Column(name = "name", nullable = false)
     private String name;
-    private int role;
+    @Column(name = "description")
+    private String description;
 
-    public Structure(long id, String name, int role) {
-        this.id = id;
-        this.name = name;
-        this.role = role;
-    }
-    public Structure(String name, int role) {
-        this.name = name;
-        this.role = role;
-    }
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "id_type", nullable = false)
+    private StructureType type;
 
-    public Structure() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_parent")
+    private Structure parent;
+
+    @OneToOne
+    @JoinColumn(name="id_user_responsible")
+    private User chief;
+
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name="structures_specialities",
+            joinColumns=@JoinColumn(name="structure_id", referencedColumnName="ID"),
+            inverseJoinColumns=@JoinColumn(name="speciality_ID", referencedColumnName="ID"))
+    private Set<Speciality> specialities = new HashSet<>();
+
+    /** JPA */
+    Structure() {}
+
+    public Structure(String name, StructureType type) {
+        this.name = Objects.requireNonNull(name);
+        this.type = Objects.requireNonNull(type);
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,15 +53,53 @@ public class Structure {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = Objects.requireNonNull(name);
     }
 
-    public int getRole() {
-        return role;
+    public StructureType getType() {
+        return type;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setType(StructureType type) {
+        this.type = Objects.requireNonNull(type);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Structure getParent() {
+        return parent;
+    }
+
+    public void setParent(Structure parent) {
+        if(this.equals(Objects.requireNonNull(parent)))
+            throw new IllegalArgumentException("Structure parent can't be the structure itself");
+        this.parent = parent;
+    }
+
+    public User getChief() {
+        return chief;
+    }
+
+    public void setChief(User chief) {
+        this.chief = chief;
+    }
+
+    public List<Speciality> getSpecialities() {
+        return new ArrayList<>(specialities);
+    }
+
+    public void addSpeciality(Speciality speciality) {
+        specialities.add(Objects.requireNonNull(speciality));
+    }
+
+    public void removeSpeciality(Speciality speciality) {
+        specialities.remove(Objects.requireNonNull(speciality));
     }
 
     @Override
@@ -60,21 +108,12 @@ public class Structure {
         if (!(o instanceof Structure)) return false;
         Structure structure = (Structure) o;
         return getId() == structure.getId() &&
-                getRole() == structure.getRole() &&
+                getType() == structure.getType() &&
                 getName().equals(structure.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getRole());
-    }
-
-    @Override
-    public String toString() {
-        return "structure{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", role=" + role +
-                '}';
+        return Objects.hash(id, name, type);
     }
 }

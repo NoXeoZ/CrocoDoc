@@ -1,14 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AuthentificationComponent} from "./authentification/authentification.component";
 import {HomeComponent} from "./home/home.component";
 import {StructureComponent} from "./structure/structure.component";
-import {NavbarComponent} from "./navbar/navbar.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileEditComponent} from "./profile/edit/profile-edit.component";
+import {AssignementComponent} from './assignement/assignement.component';
+import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
+import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
+import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
+import {SpecialityComponent} from './speciality/speciality.component';
+import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
+import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 
 const routes: Routes = [
   {
@@ -20,24 +26,44 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'structures',
+    path: 'structures/:key',
     component: StructureComponent
   },
   {
-    path: 'structures/edit',
+    path: 'structures/:key/edit',
     component: StructureEditComponent
   },
   {
-    path: 'structures/update/:id',
+    path: 'structures/:key/update/:id',
     component: UpdateStructureComponent
+  },
+  {
+    path: 'speciality',
+    component: SpecialityComponent
+  },
+  {
+    path: 'speciality/edit',
+    component: EditSpecialityComponent
+  },
+  {
+    path: 'speciality/update/:id',
+    component: UpdateSpecialityComponent
   },
   {
     path: 'dmp',
     component: DmpComponent
   },
   {
-    path: 'dmp/edit',
+    path: 'dmp/edit/:key',
     component: StructureEditComponent
+  },
+  {
+    path: 'dmpSecretary/:key',
+    component: DmpSecretaryComponent
+  },
+  {
+    path: 'dmpSecretary/edit/:key',
+    component: DmpSecretaryEditComponent
   },
   {
     path: 'dmp/update/:id',
@@ -51,6 +77,15 @@ const routes: Routes = [
     path: 'profile/edit',
     component: ProfileEditComponent
   }
+  },
+  {
+    path: 'assignement/:key',
+    component: AssignementComponent
+  },
+  {
+    path: 'assignement/edit',
+    component: EditAssignementComponent
+  },
 
 ];
 

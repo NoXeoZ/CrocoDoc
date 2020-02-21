@@ -3,6 +3,7 @@
 }
 .mat-card-cvr{
   width: 100%;
+
   align-items: center;
 }
 .color{
@@ -38,3 +39,13 @@ a:hover{
 }
 
 
+
+div.bodyPage{
+  background-color: darkgreen;
+  position: absolute;;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right:0;
+
+}

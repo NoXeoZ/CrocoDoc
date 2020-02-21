@@ -1,33 +1,72 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home">D</a>
-      <a mat-list-item routerLink="/">M</a>
-      <a mat-list-item routerLink="/structures">P</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <a class="icon" routerLink="/profile"><mat-icon matPrefix>account_circle</mat-icon></a>
-      <a routerLink="/profile">
-      <input formControlName="user"  class="field" type="text" matInput readonly="true" value="Cyril Harranger">
+<mat-toolbar>
+  <mat-toolbar-row>
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>
+        <a routerLink="/profil">
+      <img width="75%" src="assets/img/doctor.png" alt="Doctor" />
+        </a>
+    </span>
+  <span>
+        <a routerLink="/profil">
+         <input type="text" readonly="true" value="{{fullname}}" >
       </a>
-      <a mat-mini-flat-button id="icon"  class="icon" routerLink="/login"><mat-icon matPrefix>power_settings_new</mat-icon></a>
+   </span>
+  <span>
+        <a (click)="desconnect()">
+      <img width="75%" src="assets/img/logout.png" alt="logout" />
+        </a>
+  </span>
+  <span>
+        <input type="text" >
       <a class="icon" href=""><mat-icon>search</mat-icon></a>
-      <a mat-list-item class="icon" routerLink="/home"><mat-icon>help</mat-icon></a>
-      <span>12:14 01/02/2020</span>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+ </span>
+  <span>
+        <a mat-list-item class="icon" routerLink="/home">
+        <mat-icon>help</mat-icon></a>
+ </span>
+  <span class="span">12:14 01/02/2020</span>
+  </mat-toolbar-row>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                 [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                 [opened]="(isHandset$ | async) === false">
+      <mat-nav-list>
+        <div *ngIf="isDmp"><span>D</span></div>
+        <div *ngIf="isDmp"><span>M</span></div>
+        <div *ngIf="isDmp"><span>P</span></div>
+
+        <div *ngIf="isSejour"><span>S</span></div>
+        <div *ngIf="isSejour"><span>E</span></div>
+        <div *ngIf="isSejour"><span>J</span></div>
+        <div *ngIf="isSejour"><span>O</span></div>
+        <div *ngIf="isSejour"><span>U</span></div>
+        <div *ngIf="isSejour"><span>R</span></div>
+
+        <div *ngIf="isStructure"><span>S</span></div>
+        <div *ngIf="isStructure"><span>T</span></div>
+        <div *ngIf="isStructure"><span>R</span></div>
+        <div *ngIf="isStructure"><span>U</span></div>
+        <div *ngIf="isStructure"><span>C</span></div>
+        <div *ngIf="isStructure"><span>T</span></div>
+        <div *ngIf="isStructure"><span>U</span></div>
+        <div *ngIf="isStructure"><span>R</span></div>
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</mat-toolbar>
+
