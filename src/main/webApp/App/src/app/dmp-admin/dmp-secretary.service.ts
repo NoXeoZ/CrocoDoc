@@ -7,16 +7,16 @@ type EntityResponseType = HttpResponse<Dmp>;
 @Injectable({
   providedIn: 'root'
 })
-export class DmpAdminService {
+export class DmpSecretaryService {
 
   constructor(private httpClient:HttpClient) { }
-  getDmps() : Observable<Array<Dmp>> {
-    return this.httpClient.get<Array<Dmp>>('/dmps');
+  getDmps(key:string) : Observable<Array<Dmp>> {
+    return this.httpClient.get<Array<Dmp>>('/dmps/'+key);
   }
   getDmp(id: number) : Observable<Dmp> {
     return this.httpClient.get<Dmp>('/dmps/' + id);
   }
-  createDmp(dmp:Dmp): Observable<EntityResponseType> {
-    return this.httpClient.post<Dmp>('/dmps', dmp, { observe: 'response' });
+  createDmp(dmp:Dmp,key:string): Observable<EntityResponseType> {
+    return this.httpClient.post<Dmp>('/dmp/create/'+key, dmp, { observe: 'response' });
   }
 }

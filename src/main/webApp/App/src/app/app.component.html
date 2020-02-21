@@ -1,13 +1,13 @@
 
 
-<div *ngIf="isDOCTOR">
+<div *ngIf=" isConnected && isDOCTOR ">
   <app-dmp [loginlist]="loginlist" (disconnectEvent)="disconnect($event)"></app-dmp>
 </div>
 <div *ngIf="!isConnected">
     <app-authentification (loginEvent)="getAthentification($event)"></app-authentification>
 </div>
 
-<div *ngIf="isAdmin">
-  <app-navbar [Key]="connectKey"></app-navbar>
+<div *ngIf=" isConnected && (isAdmin ||isSecretary)">
+    <app-navbar [Key]="connectKey" [typeUser]="typeUser"></app-navbar>
 </div>
 

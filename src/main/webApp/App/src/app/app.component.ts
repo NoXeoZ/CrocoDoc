@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {Authentification} from "./model/authentification";
+import {Component} from '@angular/core';
 import {TypeProfil} from "./model/profil";
 
 @Component({
@@ -14,7 +13,7 @@ export class AppComponent {
   isLasStaff=false;
   isDOCTOR=false;
   isNurse=false;
-  isSecreary=false;
+  isSecretary=false;
   loginlist:Array<string>;
   connectKey='';
   typeUser='';
@@ -40,11 +39,16 @@ export class AppComponent {
     } else if(typeUser==TypeProfil.LAB_STAFF){
       this.isLasStaff=true;
     }else if(typeUser==TypeProfil.SECRETARY){
-      this.isSecreary=true;
+      this.isSecretary=true;
     }
   }
 
   disconnect($event: boolean) {
-      this.isConnected=false;
+    this.isAdmin=false;
+    this.isLasStaff=false;
+    this.isDOCTOR=false;
+    this.isNurse=false;
+    this.isSecretary=false;
+    this.isConnected=false;
   }
 }
