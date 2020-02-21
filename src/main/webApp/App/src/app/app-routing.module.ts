@@ -8,6 +8,7 @@ import {UpdateStructureComponent} from "./structure/update-structure/update-stru
 import {DmpComponent} from "./dmp/dmp.component";
 import {UserComponent} from "./user/user.component";
 import {UserEditComponent} from "./user/edit/user-edit.component";
+import {UpdateUserComponent} from "./user/update-user/update-user.component";
 import {AssignementComponent} from './assignement/assignement.component';
 import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
@@ -70,12 +71,16 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'user',
+    path: 'user/:key',
     component: UserComponent
   },
   {
-    path: 'user/edit',
+    path: 'user/:key/edit',
     component: UserEditComponent
+  },
+  {
+      path: 'user/:key/edit/:id',
+      component: UpdateUserComponent
   },
 
   {

@@ -16,9 +16,11 @@ export class UserComponent implements OnInit {
   updateUser = new EventEmitter<User>();
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
+    console.log("KEYYYYS "+this.key)
     this.onGetUsers()
   }
   onGetUsers(){
+
     this.userService
       .getUsers(this.key)
       .subscribe(

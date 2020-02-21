@@ -16,6 +16,7 @@ export class StructureComponent implements OnInit {
   updateStructure = new EventEmitter<Structure>();
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
+    console.log("KEYYYYS 2"+this.key)
     this.onGetStructures()
   }
   onGetStructures(){
