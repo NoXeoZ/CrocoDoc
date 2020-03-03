@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,7 +21,7 @@ public class UserResource {
     private UserService userService;
 
     @GetMapping("/user/{key}")
-    public Iterable<User> getAll(@PathVariable String key) {
+    public List<User> getAll(@PathVariable String key) {
         User p=Authentification.getUser(key);
         if(p!=null) {
             return userService.getAll();
