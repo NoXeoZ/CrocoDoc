@@ -1,8 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Structure, StructureType} from "../../model/structure";
 import {StructureService} from "../structure.service";
+
 
 @Component({
   selector: 'app-update-structure',
@@ -35,4 +36,7 @@ export class UpdateStructureComponent implements OnInit {
       data => this.updateStructure.emit(structure),
       error => console.log(error)
     );}
+
+
+
 }

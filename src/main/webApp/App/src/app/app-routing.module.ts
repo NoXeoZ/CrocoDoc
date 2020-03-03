@@ -79,8 +79,20 @@ const routes: Routes = [
     component: UserEditComponent
   },
   {
-      path: 'user/:key/edit/:id',
+      path: 'user/:key/update/:id',
       component: UpdateUserComponent
+  },
+  {
+    path: 'users/:key',
+    component: UserComponent
+  },
+  {
+    path: 'users/:key/edit',
+    component: UserEditComponent
+  },
+  {
+    path: 'users/:key/update/:id',
+    component: UpdateUserComponent
   },
 
   {

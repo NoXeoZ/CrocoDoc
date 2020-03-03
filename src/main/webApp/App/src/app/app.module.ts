@@ -39,6 +39,8 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -66,27 +68,29 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
     OneSpecialityComponent,
     UpdateSpecialityComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatListModule,
-    LayoutModule,
-    MatSnackBarModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatListModule,
+        LayoutModule,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
