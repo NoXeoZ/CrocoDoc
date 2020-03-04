@@ -8,12 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.mail.Message;
+/*import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;*/
 import java.util.*;
 
 @RestController
@@ -55,7 +55,7 @@ public class Authentification {
     }
 
    // @PostMapping("/forgetpw/{mail}")
-    public boolean forgotPassword(@PathVariable String mail){
+    /*public boolean forgotPassword(@PathVariable String mail){
         try{
             if(authentificationService.getUserFromMail(mail).isPresent()){
                 try {
@@ -82,5 +82,5 @@ public class Authentification {
         }catch(NotFoundException e){
             return false;
         }
-    }
+    }*/
 }
