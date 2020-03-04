@@ -66,7 +66,7 @@ public class Hospitalization implements Serializable {
     }
 
     public LocalDateTime getEndDate() {
-        return endDate.toLocalDateTime();
+        return (endDate != null) ? endDate.toLocalDateTime() : null;
     }
 
     public void setEndDate(LocalDateTime endDate) {

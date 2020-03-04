@@ -70,7 +70,7 @@ public class Act {
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt.toLocalDateTime();
+        return (createdAt != null) ? createdAt.toLocalDateTime() : null;
     }
 
     public ActType getType() {
