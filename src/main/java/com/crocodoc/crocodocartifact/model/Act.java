@@ -1,8 +1,12 @@
 package com.crocodoc.crocodocartifact.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Objects;
@@ -16,8 +20,10 @@ public class Act {
     private long id;
     @Column(name = "description", nullable = false)
     private String description;
-    @Column(name = "createdAt", nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "creation_date", nullable = false)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    private Timestamp createdAt;
     @Column(name = "draft", nullable = false)
     private boolean draft = true;
 
@@ -64,7 +70,7 @@ public class Act {
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt;
+        return (createdAt != null) ? createdAt.toLocalDateTime() : null;
     }
 
     public ActType getType() {
@@ -85,7 +91,7 @@ public class Act {
         if(!draft)
             throw new IllegalStateException("The act has already been validate.");
         draft = false;
-        createdAt = LocalDateTime.now();
+        createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public void addImage(String title, byte[] image) {

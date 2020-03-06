@@ -1,9 +1,13 @@
 package com.crocodoc.crocodocartifact.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,9 +23,14 @@ public class Assignment {
     @GeneratedValue
     private long id;
     @Column(name = "start_date", nullable = false)
-    private LocalDateTime startDate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    private Timestamp startDate;
+
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    private Timestamp endDate;
 
     @ManyToOne
     @JoinColumn(name = "id_service", nullable = false)
@@ -42,14 +51,14 @@ public class Assignment {
     public Assignment(Structure service, Hospitalization hospitalization) {
         this.service = Objects.requireNonNull(service);
         this.hospitalization = Objects.requireNonNull(hospitalization);
-        startDate = LocalDateTime.now();
+        startDate = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public Assignment(Structure service, Hospitalization hospitalization, LocalDateTime startDate, LocalDateTime endDate) {
         this.service = Objects.requireNonNull(service);
         this.hospitalization = Objects.requireNonNull(hospitalization);
-        this.startDate = Objects.requireNonNull(startDate);
-        this.endDate = Objects.requireNonNull(endDate);
+        this.startDate = Timestamp.valueOf(Objects.requireNonNull(startDate));
+        this.endDate = Timestamp.valueOf(Objects.requireNonNull(endDate));
     }
 
     public Long getId() {
@@ -57,23 +66,23 @@ public class Assignment {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate;
+        return startDate.toLocalDateTime();
     }
 
     public void setStartDate(LocalDateTime startDate) {
-        this.startDate = Objects.requireNonNull(startDate);
+        this.startDate = Timestamp.valueOf(Objects.requireNonNull(startDate));
     }
 
     public LocalDateTime getEndDate() {
-        return endDate;
+        return (endDate != null ) ? endDate.toLocalDateTime() : null;
     }
 
     public void setEndDate(LocalDateTime endDate) {
-        this.endDate = Objects.requireNonNull(endDate);
+        this.endDate = Timestamp.valueOf(Objects.requireNonNull(endDate));
     }
 
     public void finish() {
-        endDate = LocalDateTime.now();
+        endDate = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public Structure getService() {
