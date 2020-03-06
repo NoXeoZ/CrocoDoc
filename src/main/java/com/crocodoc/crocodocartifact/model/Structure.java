@@ -1,10 +1,7 @@
 package com.crocodoc.crocodocartifact.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.*;
-
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "structures")
@@ -77,8 +74,8 @@ public class Structure {
     }
 
     public void setParent(Structure parent) {
-        if(this.equals(Objects.requireNonNull(parent)))
-            throw new IllegalArgumentException("Structure parent can't be the structure itself");
+        /*if(this.equals(Objects.requireNonNull(parent)))
+            throw new IllegalArgumentException("Structure parent can't be the structure itself");*/
         this.parent = parent;
     }
 
