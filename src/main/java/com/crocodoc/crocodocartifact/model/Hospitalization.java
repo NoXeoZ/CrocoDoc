@@ -1,14 +1,11 @@
 package com.crocodoc.crocodocartifact.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,24 +17,19 @@ public class Hospitalization implements Serializable {
     @Id
     @GeneratedValue
     private long id;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
-    @Column(name = "start_date", nullable = false)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp startDate;
-
-    @Column(name = "end_date", nullable = false)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp endDate;
-
-    @ManyToOne
-    @JoinColumn(name = "id_hospital", nullable = false)
+    @JsonBackReference(value="valeur-hopital")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties(value = {"hospitalization"},allowSetters = true)
     private Structure hospital;
 
-    @ManyToOne
-    @JoinColumn(name = "id_dmp", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value="valeur-dmp")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties(value = {"hospitalization"},allowSetters = true)
     private DMP dmp;
 
     @OneToMany(mappedBy = "hospitalization", fetch = FetchType.EAGER)
@@ -50,7 +42,7 @@ public class Hospitalization implements Serializable {
     public Hospitalization(Structure hospital, DMP dmp) {
         this.hospital = Objects.requireNonNull(hospital);
         this.dmp = Objects.requireNonNull(dmp);
-        startDate = Timestamp.valueOf(LocalDateTime.now());
+        startDate = LocalDateTime.now();
     }
 
     public long getId() {
@@ -58,23 +50,23 @@ public class Hospitalization implements Serializable {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate.toLocalDateTime();
+        return startDate;
     }
 
     public void setStartDate(LocalDateTime startDate) {
-        this.startDate =  Timestamp.valueOf(Objects.requireNonNull(startDate));
+        this.startDate = Objects.requireNonNull(startDate);
     }
 
     public LocalDateTime getEndDate() {
-        return (endDate != null) ? endDate.toLocalDateTime() : null;
+        return endDate;
     }
 
     public void setEndDate(LocalDateTime endDate) {
-        this.endDate =  Timestamp.valueOf(Objects.requireNonNull(endDate));
+        this.endDate = Objects.requireNonNull(endDate);
     }
 
     public void finish() {
-        endDate =  Timestamp.valueOf(LocalDateTime.now());
+        endDate = LocalDateTime.now();
     }
 
     public Structure getHospital() {
@@ -83,6 +75,14 @@ public class Hospitalization implements Serializable {
 
     public DMP getDMP() {
         return dmp;
+    }
+
+    public void setHospital(Structure hospital) {
+        this.hospital = hospital;
+    }
+
+    public void setDmp(DMP dmp) {
+        this.dmp = dmp;
     }
 
     public List<Assignment> getAssignments() {

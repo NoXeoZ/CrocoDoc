@@ -1,6 +1,7 @@
 import {Hospitalization} from './Hospitalization';
 
 export interface Dmp{
+  id:number;
   firstname :string;
   lastname : string;
   birth :Date;

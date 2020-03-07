@@ -4,6 +4,7 @@ import {Assignement} from './assignement';
 
 
 export interface Hospitalization{
+  id:number;
   startDate :Date;
   endDate : Date;
   hospital :Structure,

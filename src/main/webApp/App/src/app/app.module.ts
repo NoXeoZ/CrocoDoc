@@ -35,7 +35,6 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
-import {UpdateDmpComponent} from "./dmp-admin/update-dmp/update-dmp.component";
 import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
 import {UpdateHospitalizationComponent} from "./hospitalization/update-structure/update-hospitalization.component";
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
@@ -62,7 +61,6 @@ import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization
     EditSpecialityComponent,
     OneSpecialityComponent,
     UpdateSpecialityComponent,
-    UpdateDmpComponent,
     HospitalizationComponent,
     UpdateHospitalizationComponent,
     HospitalizationEditComponent,

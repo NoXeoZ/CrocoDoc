@@ -2,17 +2,21 @@ package com.crocodoc.crocodocartifact.resource;
 
 import com.crocodoc.crocodocartifact.model.*;
 import com.crocodoc.crocodocartifact.service.DMPService;
+import com.crocodoc.crocodocartifact.service.StructureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class DMPResource {
     @Autowired
     private DMPService dmpService;
+    @Autowired
+    private StructureService structureService;
 
     @GetMapping("/dmps/{key}")
     public Iterable<DMP> getAllDMP(@PathVariable String key) {
@@ -64,9 +68,17 @@ public class DMPResource {
         }
     }
 
-    @PostMapping("/dmp/hospitalization/create/{key}")
-    public Hospitalization createAssignment(@PathVariable String key, @RequestBody Hospitalization h) {
+    @PostMapping("/dmp/hospitalization/create/{key}/{idDmp}/{idStructure}")
+    public Hospitalization createAssignment(@PathVariable String key, @RequestBody Hospitalization h, @PathVariable long idDmp, @PathVariable long idStructure) {
         User p= Authentification.getUser(key);
+        Optional<DMP>dmp=dmpService.getDMP(idDmp);
+        Optional<Structure>structure=structureService.getOne(idStructure);
+        h.setDmp(dmp.get());
+        h.setHospital(structure.get());
+        System.out.println("h=>"+h);
+        System.out.println("dmp=>"+dmp);
+        System.out.println("structure=>"+h);
+
         if(p!=null) {
             return dmpService.createHospitalization(h);
         }else{
@@ -74,8 +86,17 @@ public class DMPResource {
         }
     }
 
+    @GetMapping("/dmp/hospitalization/{key}")
+    public List<Hospitalization> getAllHospitalization(@PathVariable String key) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+            return dmpService.getAllHospitalization();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
     @GetMapping("/dmp/hospitalization/{key}/{id}")
-    public Optional<Hospitalization> getOneHospitalization(@PathVariable String key, @PathVariable long id) {
+    public Optional<Hospitalization> getHospitalization(@PathVariable String key, @PathVariable long id) {
         User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.getHospitalization(id);

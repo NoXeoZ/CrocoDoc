@@ -71,6 +71,9 @@ public class DMPService {
     public Optional<Hospitalization> getHospitalization(Long idHospitalization){
         return Optional.ofNullable(hospitalizationRepository.findById(idHospitalization).orElseThrow(NotFoundException::new));
     }
+    public List<Hospitalization> getAllHospitalization(){
+        return hospitalizationRepository.findAll();
+    }
 
 
     public Iterable<Assignment>getAllAssignmentsForHospitalization(long h){
