@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span class="title">Upadate Hospitalization {{id}}</span>
+</mat-toolbar>
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup" class="form" *ngIf="formGroup">
+      <mat-form-field class="form-element">
+        <mat-label>Choose Dmp</mat-label>
+        <mat-select formControlName="dmp">
+          <mat-option *ngFor="let dmp of dmps" [value]="dmp">
+            {{dmp.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Choose Structure</mat-label>
+        <mat-select formControlName="hospital">
+          <mat-option *ngFor="let structure of listStructures" [value]="structure">
+            {{structure.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="date" placeholder="Start Date" formControlName="startDate">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput type="date" placeholder="endDate" formControlName="endDate">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" (click)="onUpdateHospitalization()"
+              [disabled]="!formGroup.valid" routerLink="/structures/{{key}}">Submit
+      </button>
+    </form>
+  </div>
+</mat-card>
