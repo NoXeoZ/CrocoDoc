@@ -95,6 +95,18 @@ public class Hospitalization implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Hospitalization{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", hospital=" + hospital +
+                ", dmp=" + dmp +
+                ", assignments=" + assignments +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

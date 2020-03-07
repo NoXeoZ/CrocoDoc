@@ -7,7 +7,7 @@ export interface Hospitalization{
   id:number;
   startDate :Date;
   endDate : Date;
-  hospital :Structure,
-  dmp:Dmp,
-  assignments:Array<Assignement>
+  hospital :Structure;
+  dmp:Dmp;
+  assignments:Array<Assignement>;
 }

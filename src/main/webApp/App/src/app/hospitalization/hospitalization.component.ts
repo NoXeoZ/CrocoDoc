@@ -25,8 +25,21 @@ export class HospitalizationComponent implements OnInit {
       .subscribe(
         data=>{this.listHospitalization=data;
           for (let h of this.listHospitalization){
-            console.log("hospid"+h.id);
-            console.log("dmp"+h.dmp);
+            this.hospitalizationService.getDmpOfHospitalization(this.key, h.id).subscribe(
+              data => {
+                console.log(data);
+                h.dmp = data;
+                this.hospitalizationService.getHospitalOfHospitalization(this.key, h.id).subscribe(
+                  data => {
+                    h.hospital = data;
+                    console.log(h);
+
+                  }
+                )
+              }
+            )
+            /*console.log("hospid"+h.id);
+            console.log("dmp"+h.dmp);*/
           }},
         error => {console.log(error);
         })

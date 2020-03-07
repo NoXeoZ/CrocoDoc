@@ -90,11 +90,36 @@ public class DMPResource {
     public List<Hospitalization> getAllHospitalization(@PathVariable String key) {
         User p= Authentification.getUser(key);
         if(p!=null) {
+            List<Hospitalization> lst =  dmpService.getAllHospitalization();
+            for(int i = 0; i < lst.size(); i++){
+                System.out.println(lst.get(i));
+            }
             return dmpService.getAllHospitalization();
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
+
+    @GetMapping("/dmp/hospitalizationDMP/{key}/{idHospitalization}")
+    public DMP getDmpOfHospitalization(@PathVariable String key, @PathVariable long idHospitalization) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+            return dmpService.getHospitalization(idHospitalization).get().getDMP();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("/dmp/hospitalizationStruct/{key}/{idHospitalization}")
+    public Structure getStructOfHospitalization(@PathVariable String key, @PathVariable long idHospitalization) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+            return dmpService.getHospitalization(idHospitalization).get().getHospital();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
     @GetMapping("/dmp/hospitalization/{key}/{id}")
     public Optional<Hospitalization> getHospitalization(@PathVariable String key, @PathVariable long id) {
         User p= Authentification.getUser(key);

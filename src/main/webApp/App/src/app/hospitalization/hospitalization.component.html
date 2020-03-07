@@ -10,9 +10,10 @@
       <th class="mat-cell">startDate</th>
       <th class="mat-cell">endDate</th>
     </tr>
-  </table>
+
   <tbody *ngIf="listHospitalization">
   <tr *ngFor="let h of listHospitalization;" [hospitalization]="h" >
   </tr>
   </tbody>
+  </table>
 </mat-card>

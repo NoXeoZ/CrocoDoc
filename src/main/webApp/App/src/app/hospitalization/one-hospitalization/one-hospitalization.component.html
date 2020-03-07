@@ -1,7 +1,10 @@
-<td>{{hospitalization.dmp}}</td>
-<td>{{hospitalization.hospital}}</td>
-<td>{{hospitalization.startDate}}</td>
-<td>{{hospitalization.endDate}}</td>
+<td>{{hospitalization.dmp.lastname}} {{hospitalization.dmp.firstname}}</td>
+<td>{{hospitalization.hospital.name}}</td>
+<td *ngIf="hospitalization.startDate">{{hospitalization.startDate}}</td>
+<td *ngIf="!hospitalization.startDate">Nullllllll</td>
+
+<td *ngIf="hospitalization.endDate">{{hospitalization.endDate}}</td>
+<td *ngIf="!hospitalization.endDate">Nullllllll</td>
 
 <td>
   <a mat-mini-fab class="icon" routerLink="update/{{hospitalization.id}}"><mat-icon> create</mat-icon>
