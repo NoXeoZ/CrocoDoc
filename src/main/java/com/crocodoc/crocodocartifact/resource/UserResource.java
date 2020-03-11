@@ -1,38 +1,51 @@
 package com.crocodoc.crocodocartifact.resource;
 
 
+import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.service.StructureService;
 import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class UserResource {
     @Autowired
-    private UserService profileService;
-    @Autowired
-    private StructureService structureService;
+    private UserService userService;
 
-    @GetMapping("/profile")
-    public Iterable<User> getAll() {
-        return profileService.getAll();
+    @GetMapping("/user/{key}")
+    public List<User> getAll(@PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return userService.getAll();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+
     }
 
-    @PostMapping("/profile")
-    public User post(@RequestBody User profile) {
-        return profileService.create(profile);
+    @PostMapping("/user/{key}")
+    public ResponseEntity<User> post(@PathVariable String key, @Valid @RequestBody User user) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
     }
 
-    @GetMapping("/profile/{key}")
+    @GetMapping("/user/{key}/{id}")
     public Optional<User> getOne(@PathVariable String key) {
         User p= Authentification.getUser(key);
         if(p!=null) {
-            return profileService.getUser(p.getId());
+            return userService.getUser(p.getId());
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
@@ -40,38 +53,38 @@ public class UserResource {
 
 
 
-    @DeleteMapping("/profile/{id}")
+    @DeleteMapping("/user/{key}/{id}")
     public void delete(@PathVariable Long id) {
-        profileService.deleteUser(id);
+        userService.deleteUser(id);
     }
 
-    @PostMapping("/profile/{key}")
-    public User update(@PathVariable String key,@RequestBody User profile) {
+    @PostMapping("/user/{key}/{id}")
+    public User update(@PathVariable String key,@RequestBody User user) {
         User p=Authentification.getUser(key);
-        if(p!=null && p.getId()==profile.getId()) {
-            return profileService.updateUser(profile);
+        if(p!=null && p.getId()==user.getId()) {
+            return userService.updateUser(user);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
-    @PostMapping("/profile/{key}/{id}")
-    public User updateUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+    @PostMapping("/users/{key}/{id}")
+    public User updateUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 
         if(p!=null) {
-            return profileService.updateUserForAdmin(id, profile);
+            return userService.updateUserForAdmin(id, user);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 
-    @GetMapping("/profile/{key}/{id}")
-    public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User profile, @PathVariable Long id) {
+    @GetMapping("/users/{key}/{id}")
+    public Optional<User> getUserForAdmin(@PathVariable String key,@RequestBody User user, @PathVariable Long id) {
         User p=Authentification.getUser(key);
 
         if(p!=null) {
-            return profileService.getUser(id);
+            return userService.getUser(id);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }

@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <a mat-fab class="icon" routerLink="/users/{{key}}/edit" (click)="add()"><mat-icon> add</mat-icon></a>
+  <span class="title">Users</span>
+</mat-toolbar>
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">#</th>
+      <th class="mat-cell">Type</th>
+      <th class="mat-cell">Firstname</th>
+      <th class="mat-cell">LastName</th>
+      <th class="mat-cell">birthDate</th>
+      <th class="mat-cell">address</th>
+      <th class="mat-cell">phoneNumber</th>
+      <th class="mat-cell">email</th>
+      <th class="mat-cell">RIB</th>
+    </tr>
+    <tbody *ngIf="listUsers">
+    <tr *ngFor="let s of listUsers;" [user]="s" (deleteUser)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

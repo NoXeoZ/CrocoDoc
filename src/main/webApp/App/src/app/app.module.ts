@@ -23,6 +23,10 @@ import {StructureEditComponent} from './structure/edit/structure-edit.component'
 import {OneStructureComponent} from './structure/one-structure/one-structure.component';
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
+import { UserComponent } from './user/user.component';
+import { UserEditComponent } from './user/edit/user-edit.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { OneUserComponent } from './user/one-user/one-user.component';
 import {DmpComponent} from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
 import {AssignementComponent} from './assignement/assignement.component';
@@ -35,6 +39,8 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,10 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
+    UserComponent,
+    UserEditComponent,
+    UpdateUserComponent,
+    OneUserComponent,
     AssignementComponent,
     EditAssignementComponent,
     OneAssignementComponent,
@@ -58,27 +68,29 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
     OneSpecialityComponent,
     UpdateSpecialityComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatListModule,
-    LayoutModule,
-    MatSnackBarModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatListModule,
+        LayoutModule,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

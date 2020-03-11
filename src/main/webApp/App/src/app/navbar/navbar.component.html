@@ -11,7 +11,7 @@
       <div *ngIf="isAdmin">  <a mat-list-item routerLink="/home">Home</a> </div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/structures/{{Key}}">Structure</a></div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/speciality">Speciality</a></div>
-      <div *ngIf="isAdmin"><a mat-list-item routerLink="/profil">Profil</a></div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/user/{{Key}}">User</a></div>
 
        <div *ngIf="isSecretary"><a mat-list-item routerLink="/home">Home</a></div>
        <div *ngIf="isSecretary"><a mat-list-item routerLink="/">Hospitalisation</a></div>
