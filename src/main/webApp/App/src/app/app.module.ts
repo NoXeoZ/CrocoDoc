@@ -41,6 +41,8 @@ import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 
     ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
