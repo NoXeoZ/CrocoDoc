@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Create Assignement</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formGroup" *ngIf="formGroup" class="form">
+
+    <mat-form-field class="form-element">
+      <input  matInput type="date" placeholder="Start Date" formControlName="startDate">
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput type="date" placeholder="End Date" formControlName="endDate">
+    </mat-form-field>
+
+  <mat-form-field class="form-element">
+    <mat-select  placeholder="Choose Service" formControlName="structure">
+        <mat-option *ngFor="let structure of data" [value]="structure.id">
+          {{structure.name}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="doAction()" cdkFocusInitial>Ok</button>
+  </form>
+</div>

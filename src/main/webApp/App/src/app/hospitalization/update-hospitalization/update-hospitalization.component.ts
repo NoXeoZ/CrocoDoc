@@ -7,6 +7,9 @@ import {Dmp} from "../../model/dmp";
 import {DmpSecretaryService} from "../../dmp-admin/dmp-secretary.service";
 import {StructureService} from "../../structure/structure.service";
 import {Structure} from "../../model/structure";
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {DialogOverviewAssignementComponent} from '../dialog-overview-assignement/dialog-overview-assignement.component';
+import {Assignement} from '../../model/assignement';
 
 @Component({
   selector: 'app-update-hospitalization',
@@ -21,9 +24,15 @@ export class UpdateHospitalizationComponent implements OnInit {
   updateHospitalization=new EventEmitter<Hospitalization>();
   private key: string;
   private listStructures: Array<Structure>;
+  private assignement: Assignement;
+  @Output()
+  createAssignement=new EventEmitter<boolean>();
+  private listAssignement: Array<Assignement>;
+
   constructor(private hospitalizationService : HospitalizationService,
               private dmpAdminService:DmpSecretaryService,
               private route: ActivatedRoute,
+              private dialog: MatDialog,
               private structureService:StructureService) { }
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -62,4 +71,38 @@ export class UpdateHospitalizationComponent implements OnInit {
         error => {console.log(error);
         })
   }
+
+  createHospitalization(id:any) :void {
+    const  dialogConfig  =  new  MatDialogConfig ( ) ;
+    dialogConfig . disableClose  =  true ;
+    dialogConfig . id  =  "composant modal" ;
+    dialogConfig .height  =  "350 px" ;
+    dialogConfig . width  =  "600px" ;
+    const dialogRef = this.dialog.open(DialogOverviewAssignementComponent,{
+      width:"350",height:"600",
+      data:this.listStructures,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.assignement = result.data;
+      console.log("data reçu"+this.assignement);
+      this.hospitalizationService
+        .createAssignement(id, this.assignement)
+        .subscribe(
+          data=>{this.createAssignement.emit(true);
+            this.onGetStructures();
+            this.refreshList();
+          },
+          error => {console.log("errrrrrror"+error)}
+        );
+    });
+  }
+  private refreshList() {
+    this.hospitalizationService.getHospitalization(this.id,this.key).subscribe(data => {
+        this.listAssignement=data.assignments;
+
+      }
+    );
+  }
+
 }

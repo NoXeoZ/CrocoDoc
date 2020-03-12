@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Hospitalization} from "../model/Hospitalization";
 import {Dmp} from "../model/dmp";
 import {Structure} from "../model/structure";
+import {Assignement} from '../model/assignement';
 
 type EntityResponseType = HttpResponse<Hospitalization>;
 @Injectable({
@@ -34,4 +35,9 @@ export class HospitalizationService {
   updateHospitalization(hospitalization: Hospitalization, key:string): Observable<EntityResponseType> {
     return this.httpClient.post<Hospitalization>('/dmp/hospitalization/update/' +key, hospitalization, { observe: 'response' });
   }
+
+  createAssignement(idHospitalisation: number, assignement: Assignement) : Observable<EntityResponseType>{
+    return this.httpClient.post<EntityResponseType>('/dmp/hospitalization/createAssignement/'+ idHospitalisation,assignement);
+  }
+
 }

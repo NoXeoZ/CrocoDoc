@@ -24,7 +24,7 @@ import {OneStructureComponent} from './structure/one-structure/one-structure.com
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DmpComponent} from './dmp/dmp.component';
-import {MatSnackBarModule} from "@angular/material";
+import {MatDialogModule, MatSnackBarModule} from "@angular/material";
 import {AssignementComponent} from './assignement/assignement.component';
 import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {OneAssignementComponent} from './assignement/one-assignement/one-assignement.component';
@@ -36,11 +36,15 @@ import {EditSpecialityComponent} from './speciality/edit-speciality/edit-special
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
-import {UpdateHospitalizationComponent} from "./hospitalization/update-structure/update-hospitalization.component";
+import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
 import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization/one-hospitaliszation.component";
+import {DialogOverviewAssignementComponent} from './hospitalization/dialog-overview-assignement/dialog-overview-assignement.component';
+import {AssignementHospitalizationComponent} from './hospitalization/update-hospitalization/one-assignement/assignement-of-Hospitalization.component';
 
 @NgModule({
+  exports: [DialogOverviewAssignementComponent],
+  entryComponents: [DialogOverviewAssignementComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,
@@ -64,7 +68,9 @@ import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization
     HospitalizationComponent,
     UpdateHospitalizationComponent,
     HospitalizationEditComponent,
-    OneHospitalizationComponent
+    OneHospitalizationComponent,
+    DialogOverviewAssignementComponent,
+    AssignementHospitalizationComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +89,7 @@ import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization
     MatInputModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
     LayoutModule,
     MatSnackBarModule,
 

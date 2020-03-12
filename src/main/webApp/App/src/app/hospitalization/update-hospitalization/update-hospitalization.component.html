@@ -30,6 +30,23 @@
         <input matInput type="date" placeholder="endDate" formControlName="endDate">
       </mat-form-field>
 
+
+      <br>
+      <button mat-raised-button color="primary" (click)="createHospitalization(id)">Create Hospitalization</button>
+
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">Service</th>
+          <th class="mat-cell">Start Date</th>
+          <th class="mat-cell">End Date</th>
+        </tr>
+        <tbody *ngIf="listAssignement">
+
+        <tr *ngFor="let assignement of listAssignement;" [assignementHospitalization]="assignement">
+        </tr>
+        </tbody>
+      </table>
+
       <button mat-raised-button type="submit" (click)="onUpdateHospitalization()"
               [disabled]="!formGroup.valid" routerLink="/structures/{{key}}">Submit
       </button>

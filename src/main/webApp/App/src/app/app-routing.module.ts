@@ -15,7 +15,7 @@ import {EditSpecialityComponent} from './speciality/edit-speciality/edit-special
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
 import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
-import {UpdateHospitalizationComponent} from "./hospitalization/update-structure/update-hospitalization.component";
+import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
 
 const routes: Routes = [
   {
