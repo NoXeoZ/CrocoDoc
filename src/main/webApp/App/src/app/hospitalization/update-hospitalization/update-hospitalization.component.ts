@@ -85,15 +85,15 @@ export class UpdateHospitalizationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.assignement = result.data;
-      console.log("data reçu"+this.assignement);
+      console.log("data reçu  service=>  "+this.assignement.service);
       this.hospitalizationService
-        .createAssignement(id, this.assignement)
+        .createAssignement(this.key, this.assignement)
         .subscribe(
           data=>{this.createAssignement.emit(true);
             this.onGetStructures();
             this.refreshList();
           },
-          error => {console.log("errrrrrror"+error)}
+          error => {console.log("errrrrrror",error)}
         );
     });
   }

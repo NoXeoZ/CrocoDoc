@@ -36,8 +36,8 @@ export class HospitalizationService {
     return this.httpClient.post<Hospitalization>('/dmp/hospitalization/update/' +key, hospitalization, { observe: 'response' });
   }
 
-  createAssignement(idHospitalisation: number, assignement: Assignement) : Observable<EntityResponseType>{
-    return this.httpClient.post<EntityResponseType>('/dmp/hospitalization/createAssignement/'+ idHospitalisation,assignement);
+  createAssignement(key: string, assignement: Assignement) : Observable<EntityResponseType>{
+    return this.httpClient.post<EntityResponseType>('/dmp/hospitalization/assignment/create/'+ key,assignement);
   }
 
 }
