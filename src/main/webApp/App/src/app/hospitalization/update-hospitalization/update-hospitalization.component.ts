@@ -20,6 +20,7 @@ export class UpdateHospitalizationComponent implements OnInit {
   id:number;
   dmps:Array<Dmp>;
   formGroup: FormGroup;
+  hosp:Hospitalization;
   @Output()
   updateHospitalization=new EventEmitter<Hospitalization>();
   private key: string;
@@ -38,11 +39,13 @@ export class UpdateHospitalizationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.key = this.route.snapshot.params['key'];
     this.hospitalizationService.getHospitalization(this.id,this.key).subscribe(data => {
+        this.hosp=data;
+        console.log("data"+this.hosp.hospital);
         this.formGroup = new FormGroup({
           dmp: new FormControl(data.dmp),
           hospital: new FormControl(data.hospital),
-          startDate: new FormControl(data.startDate),
-          endDate: new FormControl(data.endDate),
+          startDate: new FormControl(new Date(data.startDate).toISOString().substring(0,10)),
+          endDate: new FormControl(new Date(data.endDate).toISOString().substring(0,10)),
         });
       });
     this.onGetDmps();
@@ -67,7 +70,7 @@ export class UpdateHospitalizationComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data,console.log(data)},
+        data=>{this.listStructures=data,console.log("structure"+data)},
         error => {console.log(error);
         })
   }

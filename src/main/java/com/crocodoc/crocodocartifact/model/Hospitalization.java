@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,9 +19,9 @@ public class Hospitalization implements Serializable {
     @GeneratedValue
     private long id;
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private Date startDate;
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private Date endDate;
 
     @JsonBackReference(value="valeur-hopital")
     @ManyToOne(cascade = {CascadeType.MERGE})
@@ -42,31 +43,31 @@ public class Hospitalization implements Serializable {
     public Hospitalization(Structure hospital, DMP dmp) {
         this.hospital = Objects.requireNonNull(hospital);
         this.dmp = Objects.requireNonNull(dmp);
-        startDate = LocalDateTime.now();
+        startDate = new Date();
     }
 
     public long getId() {
         return id;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = Objects.requireNonNull(startDate);
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = Objects.requireNonNull(endDate);
     }
 
     public void finish() {
-        endDate = LocalDateTime.now();
+        endDate = new Date();
     }
 
     public Structure getHospital() {
@@ -115,7 +116,7 @@ public class Hospitalization implements Serializable {
 
         if (id != that.id) return false;
         if (!startDate.equals(that.startDate)) return false;
-        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
+   //     if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
         if (!hospital.equals(that.hospital)) return false;
         return dmp.equals(that.dmp);
     }

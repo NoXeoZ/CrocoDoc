@@ -43,6 +43,10 @@ export class HospitalizationEditComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'dmp': [null, Validators.required],
       'hospital': [null, Validators.required],
+      'startDate': [null, Validators.required],
+      'endDate': [null, Validators.required],
+      'heureDebut': [null, Validators.required],
+      'heureFin': [null, Validators.required],
     });
   }
   onCreateHospitalization(){
@@ -51,7 +55,19 @@ export class HospitalizationEditComponent implements OnInit {
     let idHopital=hospitalization.hospital.id;
     hospitalization.dmp=null;
     hospitalization.hospital=null;
-    console.log("iddmp   ="+iDdmp);
+
+    let start = new Date(hospitalization.startDate);
+    let tab = this.formGroup.get('heureDebut').value.split(":");
+    start.setHours(tab[0]);
+    start.setMinutes(tab[1]);
+    hospitalization.startDate = start;
+
+    let end = new Date(hospitalization.endDate);
+    tab = this.formGroup.get('heureFin').value.split(":");
+    end.setHours(tab[0]);
+    end.setMinutes(tab[1]);
+    hospitalization.endDate = end;
+
     this.hospitalizationService
       .createHospitalization(hospitalization,this.key,iDdmp,idHopital)
       .subscribe(

@@ -8,7 +8,7 @@
         <mat-label>Choose Dmp</mat-label>
         <mat-select formControlName="dmp">
           <mat-option *ngFor="let dmp of dmps" [value]="dmp">
-            {{dmp.toString()}}
+            {{dmp.firstname}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -17,7 +17,7 @@
         <mat-label>Choose Structure</mat-label>
         <mat-select formControlName="hospital">
           <mat-option *ngFor="let structure of listStructures" [value]="structure">
-            {{structure.toString()}}
+            {{structure.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -48,7 +48,7 @@
       </table>
 
       <button mat-raised-button type="submit" (click)="onUpdateHospitalization()"
-              [disabled]="!formGroup.valid" routerLink="/structures/{{key}}">Submit
+              [disabled]="!formGroup.valid" routerLink="/hospitalization/{{key}}">Submit
       </button>
     </form>
   </div>

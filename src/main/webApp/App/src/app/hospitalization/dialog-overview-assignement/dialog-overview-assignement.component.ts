@@ -30,7 +30,7 @@ export class DialogOverviewAssignementComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'startDate': [null, Validators.required],
       'endDate': [null, Validators.required],
-      'structure': [null, Validators.required],
+      'service': [null, Validators.required],
       'heureDebut': [null, Validators.required],
       'heureFin': [null, Validators.required],
 

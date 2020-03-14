@@ -20,7 +20,7 @@
     </mat-form-field>
 
   <mat-form-field class="form-element">
-    <mat-select  placeholder="Choose Service" formControlName="structure">
+    <mat-select  placeholder="Choose Service" formControlName="service">
         <mat-option *ngFor="let structure of data" [value]="structure">
           {{structure.name}}
         </mat-option>
