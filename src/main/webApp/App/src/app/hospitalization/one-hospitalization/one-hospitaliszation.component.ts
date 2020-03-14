@@ -52,4 +52,17 @@ export class OneHospitalizationComponent implements OnInit {
   return false;
 }
 
+  formatDate(nombre : number, chiffre : number) {
+    var temp = '' + nombre;
+    while ((temp.length < chiffre) && (temp = '0' + temp)) {}
+    return temp;
+  }
+
+  printDate(d: Date) {
+
+    let d2 = new Date(d);
+    return "" + this.formatDate(d2.getDate(), 2) + "/" + this.formatDate(d2.getMonth()+1, 2) + "/" + this.formatDate(d2.getFullYear(), 4)+ '-> ' + this.formatDate(d2.getHours(), 2) + 'h' + this.formatDate(d2.getMinutes(), 2);
+
+  }
+
 }

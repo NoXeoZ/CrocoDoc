@@ -75,10 +75,6 @@ public class DMPResource {
         Optional<Structure>structure=structureService.getOne(idStructure);
         h.setDmp(dmp.get());
         h.setHospital(structure.get());
-        System.out.println("h=>"+h);
-        System.out.println("dmp=>"+dmp);
-        System.out.println("structure=>"+h);
-
         if(p!=null) {
             return dmpService.createHospitalization(h);
         }else{

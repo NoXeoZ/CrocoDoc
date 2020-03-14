@@ -1,9 +1,9 @@
 <td *ngIf="hospitalization.dmp">{{hospitalization.dmp.lastname}} {{hospitalization.dmp.firstname}}</td>
 <td *ngIf="hospitalization.hospital">{{hospitalization.hospital.name}}</td>
-<td *ngIf="hospitalization.startDate">{{hospitalization.startDate |date:'medium'}}</td>
+<td *ngIf="hospitalization.startDate">{{printDate(hospitalization.startDate)}}</td>
 <td *ngIf="!hospitalization.startDate">Nullllllll</td>
 
-<td *ngIf="hospitalization.endDate">{{hospitalization.endDate|date:'medium'}}</td>
+<td *ngIf="hospitalization.endDate">{{printDate(hospitalization.endDate)}}</td>
 <td *ngIf="!hospitalization.endDate">Nullllllll</td>
 <td *ngIf="hospitalization.assignments">{{hospitalization.assignments.length}}</td>
 <td *ngIf="hospitalization.assignments">{{displayAssignements()}}</td>

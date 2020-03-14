@@ -95,7 +95,7 @@ export class UpdateHospitalizationComponent implements OnInit {
     hospitalization.endDate = end;
 
     this.hospitalizationService.updateHospitalization(hospitalization,this.key).subscribe(
-      data => this.updateHospitalization.emit(hospitalization),
+      data => {this.updateHospitalization.emit(hospitalization);},
       error => console.log(error)
     );}
   onGetStructures(){
