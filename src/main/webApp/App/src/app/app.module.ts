@@ -25,9 +25,6 @@ import {UpdateStructureComponent} from './structure/update-structure/update-stru
 import {HttpClientModule} from "@angular/common/http";
 import {DmpComponent} from './dmp/dmp.component';
 import {MatDialogModule, MatSnackBarModule} from "@angular/material";
-import {AssignementComponent} from './assignement/assignement.component';
-import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
-import {OneAssignementComponent} from './assignement/one-assignement/one-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {OneDmpComponent} from './dmp-admin/one-dmp/one-dmp.component';
@@ -55,9 +52,6 @@ import {AssignementHospitalizationComponent} from './hospitalization/update-hosp
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
-    AssignementComponent,
-    EditAssignementComponent,
-    OneAssignementComponent,
     DmpSecretaryComponent,
     DmpSecretaryEditComponent,
     OneDmpComponent,

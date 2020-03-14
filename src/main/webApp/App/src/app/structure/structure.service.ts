@@ -16,9 +16,6 @@ export class StructureService {
   getStructure(id: number,key:string) : Observable<Structure> {
     return this.httpClient.get<Structure>('/structures/'+key+'/' + id);
   }
-  deleteStructure(id: number,key:string): Observable<EntityResponseType> {
-    return this.httpClient.delete<Structure>('/structures/'+key+'/' + id, { observe: 'response' });
-  }
   createStructure(structure:Structure,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<Structure>('/structures/'+key, structure, { observe: 'response' });
   }

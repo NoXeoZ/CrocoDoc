@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <a mat-fab class="icon" routerLink="/speciality/edit"><mat-icon> add</mat-icon></a>
+  <a mat-fab class="icon" routerLink="/speciality/{{key}}/edit"><mat-icon> add</mat-icon></a>
   <span class="title">Speciality</span>
 </mat-toolbar>
 <mat-card class="card">
@@ -9,8 +9,7 @@
       <th class="mat-cell">Description</th>
     </tr>
     <tbody *ngIf="listSpecialities">
-    <tr *ngFor="let s of listSpecialities;" [structure]="s" (deleteSeciality)="refresh($event)">
-    </tr>
+    <tr *ngFor="let s of listSpecialities;" [structure]="s" ></tr>
     </tbody>
   </table>
 </mat-card>

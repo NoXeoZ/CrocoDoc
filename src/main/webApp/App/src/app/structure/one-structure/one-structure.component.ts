@@ -20,11 +20,4 @@ export class OneStructureComponent implements OnInit {
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
   }
-  onDeleteStructure(id: any){
-    this.structureService
-      .deleteStructure(this.structure.id,this.key)
-      .subscribe(
-        data=> this.deleteStructure.emit(this.structure),
-        error => {console.log(error);
-        })}
 }
