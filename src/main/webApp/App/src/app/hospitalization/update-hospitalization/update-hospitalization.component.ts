@@ -39,15 +39,15 @@ export class UpdateHospitalizationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.key = this.route.snapshot.params['key'];
     this.hospitalizationService.getHospitalization(this.id,this.key).subscribe(data => {
-        this.hosp=data;
-        console.log("data"+this.hosp.hospital);
-        this.formGroup = new FormGroup({
-          dmp: new FormControl(data.dmp),
-          hospital: new FormControl(data.hospital),
-          startDate: new FormControl(new Date(data.startDate).toISOString().substring(0,10)),
-          endDate: new FormControl(new Date(data.endDate).toISOString().substring(0,10)),
-        });
+      this.hosp=data;
+      console.log("data"+this.hosp.hospital);
+      this.formGroup = new FormGroup({
+        dmp: new FormControl(data.dmp),
+        hospital: new FormControl(data.hospital),
+        startDate: new FormControl(new Date(data.startDate).toISOString().substring(0,10)),
+        endDate: new FormControl(new Date(data.endDate).toISOString().substring(0,10)),
       });
+    });
     this.onGetDmps();
     this.onGetStructures();
   }
@@ -88,13 +88,17 @@ export class UpdateHospitalizationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.assignement = result.data;
+      this.assignement.hospitalization = this.hosp;
       console.log("data reçu  service=>  "+this.assignement.service);
       this.hospitalizationService
         .createAssignement(this.key, this.assignement)
         .subscribe(
-          data=>{this.createAssignement.emit(true);
+          data=>{
+            console.log("works");
+            this.createAssignement.emit(true);
             this.onGetStructures();
             this.refreshList();
+            console.log(data);
           },
           error => {console.log("errrrrrror",error)}
         );

@@ -55,7 +55,7 @@ public class Hospitalization implements Serializable {
     }
 
     public void setStartDate(Date startDate) {
-        this.startDate = Objects.requireNonNull(startDate);
+        this.startDate = (startDate);
     }
 
     public Date getEndDate() {
@@ -63,7 +63,7 @@ public class Hospitalization implements Serializable {
     }
 
     public void setEndDate(Date endDate) {
-        this.endDate = Objects.requireNonNull(endDate);
+        this.endDate = (endDate);
     }
 
     public void finish() {
@@ -91,7 +91,7 @@ public class Hospitalization implements Serializable {
     }
 
     public void addAssignment(Assignment assignment) {
-        this.assignments.add(Objects.requireNonNull(assignment));
+        this.assignments.add((assignment));
         assignment.setHospitalization(this);
     }
 
@@ -116,7 +116,7 @@ public class Hospitalization implements Serializable {
 
         if (id != that.id) return false;
         if (!startDate.equals(that.startDate)) return false;
-   //     if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
+        //     if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
         if (!hospital.equals(that.hospital)) return false;
         return dmp.equals(that.dmp);
     }

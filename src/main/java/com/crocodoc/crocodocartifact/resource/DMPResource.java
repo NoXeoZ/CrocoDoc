@@ -153,6 +153,8 @@ public class DMPResource {
     @PostMapping("/dmp/hospitalization/assignment/create/{key}")
     public Assignment createAssignment(@PathVariable String key, @RequestBody Assignment a) {
         User p= Authentification.getUser(key);
+        System.out.println("here");
+        System.out.println(a);
         if(p!=null) {
             return dmpService.createAssignment(a);
         }else{

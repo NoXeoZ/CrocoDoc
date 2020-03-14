@@ -15,13 +15,13 @@ public class Structure {
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "id_type", nullable = false)
+    @Column(name = "id_type")
     private StructureType type;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -68,7 +68,7 @@ public class Structure {
     }
 
     public void setName(String name) {
-        this.name = Objects.requireNonNull(name);
+        this.name = (name);
     }
 
     public StructureType getType() {
@@ -76,7 +76,7 @@ public class Structure {
     }
 
     public void setType(StructureType type) {
-        this.type = Objects.requireNonNull(type);
+        this.type = (type);
     }
 
     public String getDescription() {
@@ -92,7 +92,7 @@ public class Structure {
     }
 
     public void setParent(Structure parent) {
-        if(this.equals(Objects.requireNonNull(parent)))
+        if(this.equals((parent)))
             throw new IllegalArgumentException("Structure parent can't be the structure itself");
         this.parent = parent;
     }
