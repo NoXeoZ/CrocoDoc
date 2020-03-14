@@ -107,11 +107,11 @@ public class DMP {
         this.email = Objects.requireNonNull(email);
     }
 
-    public List<Hospitalization> getHospitalization() {
+    public List<Hospitalization> getHospitalizations() {
         return new ArrayList<>(hospitalizations);
     }
 
-    public void addHospitalization(Hospitalization o) {
+    public void addHospitalizations(Hospitalization o) {
         hospitalizations.add(Objects.requireNonNull(o));
     }
 

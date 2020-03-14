@@ -154,28 +154,28 @@ class DMPTest {
     }
 
     @Test
-    void getAndAddHospitalization() {
+    void getAndAddHospitalizations() {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
-        assertEquals(0, dmp.getHospitalization().size());
+        assertEquals(0, dmp.getHospitalizations().size());
 
         Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         Hospitalization hospitalization = new Hospitalization(test, dmp);
 
-        dmp.addHospitalization(hospitalization);
-        assertEquals(1, dmp.getHospitalization().size());
-        assertEquals(dmp.getFirstname(), dmp.getHospitalization().get(0).getDMP().getFirstname());
-        assertEquals(dmp.getLastname(), dmp.getHospitalization().get(0).getDMP().getLastname());
-        assertEquals(dmp.getBirth(), dmp.getHospitalization().get(0).getDMP().getBirth());
+        dmp.addHospitalizations(hospitalization);
+        assertEquals(1, dmp.getHospitalizations().size());
+        assertEquals(dmp.getFirstname(), dmp.getHospitalizations().get(0).getDMP().getFirstname());
+        assertEquals(dmp.getLastname(), dmp.getHospitalizations().get(0).getDMP().getLastname());
+        assertEquals(dmp.getBirth(), dmp.getHospitalizations().get(0).getDMP().getBirth());
 
         Hospitalization hospitalization2 = new Hospitalization(test, dmp);
-        dmp.addHospitalization(hospitalization2);
+        dmp.addHospitalizations(hospitalization2);
         dmp.setFirstname("COUCOU^zad");
-        assertEquals(2, dmp.getHospitalization().size());
-        assertEquals(dmp.getFirstname(), dmp.getHospitalization().get(0).getDMP().getFirstname());
-        assertEquals(dmp.getLastname(), dmp.getHospitalization().get(0).getDMP().getLastname());
-        assertEquals(dmp.getBirth(), dmp.getHospitalization().get(0).getDMP().getBirth());
-        assertEquals(dmp.getFirstname(), dmp.getHospitalization().get(1).getDMP().getFirstname());
-        assertEquals(dmp.getLastname(), dmp.getHospitalization().get(1).getDMP().getLastname());
-        assertEquals(dmp.getBirth(), dmp.getHospitalization().get(1).getDMP().getBirth());
+        assertEquals(2, dmp.getHospitalizations().size());
+        assertEquals(dmp.getFirstname(), dmp.getHospitalizations().get(0).getDMP().getFirstname());
+        assertEquals(dmp.getLastname(), dmp.getHospitalizations().get(0).getDMP().getLastname());
+        assertEquals(dmp.getBirth(), dmp.getHospitalizations().get(0).getDMP().getBirth());
+        assertEquals(dmp.getFirstname(), dmp.getHospitalizations().get(1).getDMP().getFirstname());
+        assertEquals(dmp.getLastname(), dmp.getHospitalizations().get(1).getDMP().getLastname());
+        assertEquals(dmp.getBirth(), dmp.getHospitalizations().get(1).getDMP().getBirth());
     }
 }

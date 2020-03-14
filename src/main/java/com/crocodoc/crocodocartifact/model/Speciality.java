@@ -16,7 +16,7 @@ public class Speciality {
 
     Speciality() {}
 
-    Speciality(String name, String description) {
+    public Speciality(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = Objects.requireNonNull(description);
     }

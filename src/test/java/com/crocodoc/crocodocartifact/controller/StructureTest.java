@@ -38,9 +38,9 @@ public class StructureTest {
     @Test
     public void getAll() {
         List<Structure> P=new ArrayList<Structure>();
-        P.add(new Structure("blabla",StructureType.HOSPITAL));
-        P.add(new Structure("blabla",StructureType.HOSPITAL));
-        P.add(new Structure("blabla",StructureType.HOSPITAL));
+        P.add(new Structure("test1",StructureType.HOSPITAL));
+        P.add(new Structure("test2",StructureType.HOSPITAL));
+        P.add(new Structure("test3",StructureType.HOSPITAL));
         Structure p= P.get(0);
         Mockito.when(structureResource.getAll("test")).thenReturn(P);
         List<Structure> structures = this.restTemplate.getForObject("http://localhost:" + port + "/structures/test",
@@ -50,7 +50,7 @@ public class StructureTest {
 
     @Test
     public void getOne() {
-        Structure P=new Structure("gneugneu",StructureType.HOSPITAL);
+        Structure P=new Structure("test",StructureType.HOSPITAL);
         Mockito.when(structureResource.getOne("test",1L)).thenReturn(P);
         Structure p2=this.restTemplate.getForObject("http://localhost:" + port + "/structures/test/1", Structure.class);
         assertEquals(P.getName(),p2.getName());
@@ -60,33 +60,11 @@ public class StructureTest {
 
     @Test
     public void put() {
-        Structure P=new Structure("gneugneu",StructureType.HOSPITAL);
+        Structure P=new Structure("test",StructureType.HOSPITAL);
         Mockito.when(structureResource.put("test", 1L, P)).thenReturn(P);
         Structure p2=this.restTemplate.postForObject("http://localhost:" + port + "/structures/test/1", P, Structure.class);
         assertEquals(P.getName(),p2.getName());
         assertEquals(P.getType(),p2.getType());
         assertEquals(P.getId(),p2.getId());
     }
-
-    /*@Test
-    public void deleteStructure() {
-        Structure P=new Structure("gneugneu",StructureType.HOSPITAL);
-        Mockito.when(structureRepository.findById(1L)).thenReturn(Optional.of(P));
-        Mockito.doNothing().when(structureRepository).delete(P);
-        Structure p2=this.restTemplate.exchange("http://localhost:" + port + "/structures/1", HttpMethod.DELETE, null, Structure.class).getBody();
-        assertEquals(P.getNom(),p2.getNom());
-        assertEquals(P.getPrenom(),p2.getPrenom());
-        assertEquals(1,p2.getId());
-    }*/
-
-    /*@Test
-    public void updateStructure() {
-        Structure P=new Structure("gneugneu",StructureType.HOSPITAL);
-        Mockito.when(structureRepository.findById(1L)).thenReturn(P);
-        Mockito.when(structureRepository.save(P)).thenReturn(P);
-        Structure p2=this.restTemplate.getForObject("http://localhost:" + port + "/structures/1", Structure.class);
-        assertEquals(P.getNom(),p2.getNom());
-        assertEquals(P.getPrenom(),p2.getPrenom());
-        assertEquals(1,p2.getId());
-    }*/
 }

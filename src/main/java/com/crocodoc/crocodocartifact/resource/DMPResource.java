@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -65,7 +67,8 @@ public class DMPResource {
     }
 
     @PostMapping("/dmp/hospitalization/create/{key}")
-    public Hospitalization createAssignment(@PathVariable String key, @RequestBody Hospitalization h) {
+    public Hospitalization createHospitalization(@PathVariable String key, @RequestBody Hospitalization h) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         User p= Authentification.getUser(key);
         if(p!=null) {
             return dmpService.createHospitalization(h);
@@ -182,6 +185,20 @@ public class DMPResource {
             return dmpService.getSpecificActForAssignment(id, at);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "  key  " + key + " not found");
+        }
+    }
+
+
+    @GetMapping("/dmp/search/{key}/{name}")
+    public List<DMP> searchDMP(@PathVariable String key, @PathVariable String name) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+             Iterable<DMP>dmps = dmpService.getAllDMP();
+             List<DMP>dmpList=new ArrayList<DMP>();
+             dmps.forEach(u->{if(u.getFirstname().equals(name) || u.getLastname().equals(name) || u.getBirthCity().equals(name) || u.getSocialSecurityNumber().equals(name))dmpList.add(u);});
+             return dmpList;
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
 }
