@@ -52,7 +52,9 @@ export class UpdateHospitalizationComponent implements OnInit {
                 dmp: new FormControl(this.hosp.dmp),
                 hospital: new FormControl(this.hosp.hospital),
                 startDate: new FormControl(new Date(data.startDate).toISOString().substring(0,10)),
+                heureDebut : new FormControl(this.createHour(new Date(data.startDate))),
                 endDate: new FormControl(new Date(data.endDate).toISOString().substring(0,10)),
+                heureFin : new FormControl(this.createHour(new Date(data.endDate))),
               });
               this.updateForm();
             }
@@ -80,6 +82,18 @@ export class UpdateHospitalizationComponent implements OnInit {
   onUpdateHospitalization() {
     let hospitalization: Hospitalization =  this.formGroup.value;
     hospitalization.id = this.id;
+    let start = new Date(hospitalization.startDate);
+    let tab = this.formGroup.get('heureDebut').value.split(":");
+    start.setHours(tab[0]);
+    start.setMinutes(tab[1]);
+    hospitalization.startDate = start;
+
+    let end = new Date(hospitalization.endDate);
+    tab = this.formGroup.get('heureFin').value.split(":");
+    end.setHours(tab[0]);
+    end.setMinutes(tab[1]);
+    hospitalization.endDate = end;
+
     this.hospitalizationService.updateHospitalization(hospitalization,this.key).subscribe(
       data => this.updateHospitalization.emit(hospitalization),
       error => console.log(error)
@@ -162,5 +176,15 @@ export class UpdateHospitalizationComponent implements OnInit {
       if(this.listStructures[i].id == hospital.id)
         return i;
     return 0;
+  }
+
+  formatDate(nombre : number, chiffre : number) {
+    var temp = '' + nombre;
+    while ((temp.length < chiffre) && (temp = '0' + temp)) {}
+    return temp;
+  }
+
+  private createHour(date: Date) {
+    return this.formatDate(new Date(date).getHours(), 2)+":"+ this.formatDate(new Date(date).getMinutes(), 2);
   }
 }
