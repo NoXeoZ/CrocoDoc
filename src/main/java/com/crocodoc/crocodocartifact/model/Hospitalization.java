@@ -24,12 +24,12 @@ public class Hospitalization implements Serializable {
     private Date endDate;
 
     @JsonBackReference(value="valeur-hopital")
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne
     @JsonIgnoreProperties(value = {"hospitalization"},allowSetters = true)
     private Structure hospital;
 
     @JsonBackReference(value="valeur-dmp")
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne
     @JsonIgnoreProperties(value = {"hospitalization"},allowSetters = true)
     private DMP dmp;
 
@@ -124,5 +124,9 @@ public class Hospitalization implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, startDate, hospital, dmp);
+    }
+
+    public void setAssignments(List<Assignment> lst) {
+        this.assignments = lst;
     }
 }
