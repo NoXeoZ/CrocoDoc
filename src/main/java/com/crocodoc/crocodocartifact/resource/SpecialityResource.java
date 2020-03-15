@@ -5,7 +5,6 @@ import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.service.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,10 +28,10 @@ public class SpecialityResource {
     }
 
     @PostMapping("/specialities/{key}")
-    public ResponseEntity<Speciality> post(@PathVariable String key, @Valid @RequestBody Speciality speciality) {
+    public Speciality post(@PathVariable String key, @Valid @RequestBody Speciality speciality) {
         User p=Authentification.getUser(key);
         if(p!=null) {
-            return new ResponseEntity<>(specialityService.create(speciality), HttpStatus.CREATED);
+            return specialityService.create(speciality);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }

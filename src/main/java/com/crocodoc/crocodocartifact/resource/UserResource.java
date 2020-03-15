@@ -18,7 +18,49 @@ public class UserResource {
     @Autowired
     private StructureService structureService;
 
-    @GetMapping("/profile")
+    @GetMapping("/user/{key}")
+    public Iterable<User> getAll(@PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return profileService.getAll();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @PostMapping("/user/{key}")
+    public User post(@RequestBody User profile, @PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return profileService.create(profile);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("/user/{id}/{key}")
+    public Optional<User> getOne(@PathVariable long id, @PathVariable String key) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+            return profileService.getUser(id);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+
+
+    @DeleteMapping("/user/{id}/{key}")
+    public void delete(@PathVariable Long id, @PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            profileService.deleteUser(id);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    /*@GetMapping("/profile")
     public Iterable<User> getAll() {
         return profileService.getAll();
     }
@@ -36,7 +78,7 @@ public class UserResource {
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
-    }
+    }*/
 
 
 

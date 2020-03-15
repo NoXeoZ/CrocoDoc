@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.*;
-
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "structures")
@@ -92,7 +89,7 @@ public class Structure {
     }
 
     public void setParent(Structure parent) {
-        if(this.equals(Objects.requireNonNull(parent)))
+        if(this.equals(parent))
             throw new IllegalArgumentException("Structure parent can't be the structure itself");
         this.parent = parent;
     }
