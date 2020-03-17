@@ -154,21 +154,21 @@ class DMPTest {
     }
 
     @Test
-    void getAndAddHospitalizations() {
+    void getAndAddHospitalization() {
         DMP dmp = new DMP("Cyril", "TesT", new Date(System.currentTimeMillis()), "Paris", "5414548415154", "0645154232", "email@gmail.com");
         assertEquals(0, dmp.getHospitalizations().size());
 
         Structure test = new Structure("Hopitalzer", StructureType.HOSPITAL);
         Hospitalization hospitalization = new Hospitalization(test, dmp);
 
-        dmp.addHospitalizations(hospitalization);
+        dmp.addHospitalization(hospitalization);
         assertEquals(1, dmp.getHospitalizations().size());
         assertEquals(dmp.getFirstname(), dmp.getHospitalizations().get(0).getDMP().getFirstname());
         assertEquals(dmp.getLastname(), dmp.getHospitalizations().get(0).getDMP().getLastname());
         assertEquals(dmp.getBirth(), dmp.getHospitalizations().get(0).getDMP().getBirth());
 
         Hospitalization hospitalization2 = new Hospitalization(test, dmp);
-        dmp.addHospitalizations(hospitalization2);
+        dmp.addHospitalization(hospitalization2);
         dmp.setFirstname("COUCOU^zad");
         assertEquals(2, dmp.getHospitalizations().size());
         assertEquals(dmp.getFirstname(), dmp.getHospitalizations().get(0).getDMP().getFirstname());

@@ -8,6 +8,6 @@
 </div>
 
 <div *ngIf=" isConnected && (isAdmin ||isSecretary)">
-    <app-navbar [Key]="connectKey" [typeUser]="typeUser"></app-navbar>
+    <app-navbar [loginlistNav]="loginlist" [Key]="connectKey" [typeUser]="typeUser " (disconnect)="disconnect($event)"></app-navbar>
 </div>
 

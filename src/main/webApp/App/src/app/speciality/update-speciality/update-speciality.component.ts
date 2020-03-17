@@ -13,12 +13,14 @@ export class UpdateSpecialityComponent implements OnInit {
 
   id:number;
   formGroup: FormGroup;
+  key:string;
   @Output()
   updateSpeciality=new EventEmitter<Speciality>();
   constructor(private specialityService : SpecialityService, private route: ActivatedRoute) { }
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.specialityService.getSpeciality(this.id).subscribe(data => {
+    this.key = this.route.snapshot.params['key'];
+    this.specialityService.getSpeciality(this.key,this.id).subscribe(data => {
       this.formGroup = new FormGroup({
         name: new FormControl(data.name),
         description: new FormControl(data.description),
@@ -28,7 +30,7 @@ export class UpdateSpecialityComponent implements OnInit {
   onUpdateSpeciality() {
     let speciality: Speciality =  this.formGroup.value;
     speciality.id = this.id;
-    this.specialityService.updateSpeciality(speciality).subscribe(
+    this.specialityService.updateSpeciality(this.key,speciality).subscribe(
       data => this.updateSpeciality.emit(speciality),
       error => console.log(error)
     );}

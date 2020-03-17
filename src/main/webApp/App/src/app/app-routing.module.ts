@@ -6,13 +6,14 @@ import {StructureComponent} from "./structure/structure.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
-import {AssignementComponent} from './assignement/assignement.component';
-import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
+import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
+import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
 
 const routes: Routes = [
   {
@@ -36,15 +37,27 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'speciality',
+    path: 'hospitalization/:key',
+    component: HospitalizationComponent
+  },
+  {
+    path: 'hospitalization/:key/edit',
+    component: HospitalizationEditComponent
+  },
+  {
+    path: 'hospitalization/:key/update/:id',
+    component: UpdateHospitalizationComponent
+  },
+  {
+    path: 'speciality/:key',
     component: SpecialityComponent
   },
   {
-    path: 'speciality/edit',
+    path: 'speciality/:key/edit',
     component: EditSpecialityComponent
   },
   {
-    path: 'speciality/update/:id',
+    path: 'speciality/:key/update/:id',
     component: UpdateSpecialityComponent
   },
   {
@@ -66,14 +79,6 @@ const routes: Routes = [
   {
     path: 'dmp/update/:id',
     component: UpdateStructureComponent
-  },
-  {
-    path: 'assignement/:key',
-    component: AssignementComponent
-  },
-  {
-    path: 'assignement/edit',
-    component: EditAssignementComponent
   },
 
 ];

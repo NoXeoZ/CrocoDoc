@@ -1,7 +1,13 @@
 package com.crocodoc.crocodocartifact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.*;
+
+import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "structures")
@@ -9,13 +15,13 @@ public class Structure {
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "id_type", nullable = false)
+    @Column(name = "id_type")
     private StructureType type;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,6 +39,10 @@ public class Structure {
             inverseJoinColumns=@JoinColumn(name="speciality_ID", referencedColumnName="ID"))
     private Set<Speciality> specialities = new HashSet<>();
 
+    @JsonManagedReference(value="valeur-hopital")
+    @JsonIgnoreProperties(value = {"structure"},allowSetters = true)
+    @OneToMany(mappedBy = "hospital",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Hospitalization> hospitalizations = new ArrayList<>();
     /** JPA */
     Structure() {}
 
@@ -49,8 +59,16 @@ public class Structure {
         return name;
     }
 
+    public List<Hospitalization> getHospitalizations() {
+        return hospitalizations;
+    }
+
+    public void setHospitalizations(List<Hospitalization> hospitalizations) {
+        this.hospitalizations = hospitalizations;
+    }
+
     public void setName(String name) {
-        this.name = Objects.requireNonNull(name);
+        this.name = (name);
     }
 
     public StructureType getType() {
@@ -58,7 +76,7 @@ public class Structure {
     }
 
     public void setType(StructureType type) {
-        this.type = Objects.requireNonNull(type);
+        this.type = (type);
     }
 
     public String getDescription() {
@@ -74,8 +92,8 @@ public class Structure {
     }
 
     public void setParent(Structure parent) {
-        /*if(this.equals(Objects.requireNonNull(parent)))
-            throw new IllegalArgumentException("Structure parent can't be the structure itself");*/
+        if(this.equals((parent)))
+            throw new IllegalArgumentException("Structure parent can't be the structure itself");
         this.parent = parent;
     }
 

@@ -22,15 +22,15 @@ public class Assignment {
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "start_date", nullable = false)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp startDate;
+    @Column(name = "start_date")
+    /*@JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")*/
+    private Date startDate;
 
     @Column(name = "end_date")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp endDate;
+    /*@JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")*/
+    private Date endDate;
 
     @ManyToOne
     @JoinColumn(name = "id_service", nullable = false)
@@ -65,24 +65,24 @@ public class Assignment {
         return id;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate.toLocalDateTime();
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = Timestamp.valueOf(Objects.requireNonNull(startDate));
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
-        return (endDate != null ) ? endDate.toLocalDateTime() : null;
+    public Date getEndDate() {
+        return (endDate != null ) ? endDate : null;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = Timestamp.valueOf(Objects.requireNonNull(endDate));
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public void finish() {
-        endDate = Timestamp.valueOf(LocalDateTime.now());
+        endDate = new Date();
     }
 
     public Structure getService() {

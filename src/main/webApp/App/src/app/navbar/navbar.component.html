@@ -4,18 +4,17 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <img  src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+      <img class="logoAphp" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
     </mat-toolbar>
     <mat-nav-list>
 
       <div *ngIf="isAdmin">  <a mat-list-item routerLink="/home">Home</a> </div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/structures/{{Key}}">Structure</a></div>
-      <div *ngIf="isAdmin"><a mat-list-item routerLink="/speciality">Speciality</a></div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/speciality/{{Key}}">Speciality</a></div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/profil">Profil</a></div>
 
        <div *ngIf="isSecretary"><a mat-list-item routerLink="/home">Home</a></div>
-       <div *ngIf="isSecretary"><a mat-list-item routerLink="/">Hospitalisation</a></div>
-       <div *ngIf="isSecretary"><a mat-list-item routerLink="/assignement">Assignement</a></div>
+      <div *ngIf="isSecretary"><a mat-list-item routerLink="/hospitalization/{{Key}}">Hospitalisation</a></div>
        <div *ngIf="isSecretary"> <a mat-list-item (click)="getDmp()">Dmp</a></div>
 
     </mat-nav-list>
@@ -30,7 +29,13 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <span>
+        <a (click)="desconnect()">
+      <img width="50%" src="assets/img/logout.png" alt="logout" />
+        </a>
+     </span>
     </mat-toolbar>
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

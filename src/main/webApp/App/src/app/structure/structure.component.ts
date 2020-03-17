@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 export class StructureComponent implements OnInit {
   constructor(private structureService:StructureService,private route:ActivatedRoute) { }
   listStructures:any;
-  key:string
+  key:string;
   @Output()
   updateStructure = new EventEmitter<Structure>();
   ngOnInit() {
@@ -25,13 +25,5 @@ export class StructureComponent implements OnInit {
         data=>{this.listStructures=data,console.log(data)},
         error => {console.log(error);
         })
-  }
-  refresh($event: any) {
-    this.structureService.getStructures(this.key).subscribe(
-      data => this.listStructures = data
-    );}
-
-  add() {
-    console.log("addddd");
   }
 }

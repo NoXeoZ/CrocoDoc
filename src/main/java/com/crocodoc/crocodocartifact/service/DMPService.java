@@ -64,12 +64,18 @@ public class DMPService {
 
     //CHECK AUTHORIZATIONS
     public Hospitalization updateHospitalization(Hospitalization h){
-        hospitalizationRepository.findById(Long.valueOf(h.getId())).orElseThrow(NotFoundException::new);
+
+        Hospitalization h2 = hospitalizationRepository.findById(Long.valueOf(h.getId())).orElseThrow(NotFoundException::new);
+        List<Assignment> lst = h2.getAssignments();
+        h.setAssignments(lst);
         return hospitalizationRepository.save(h);
     }
 
     public Optional<Hospitalization> getHospitalization(Long idHospitalization){
         return Optional.ofNullable(hospitalizationRepository.findById(idHospitalization).orElseThrow(NotFoundException::new));
+    }
+    public List<Hospitalization> getAllHospitalization(){
+        return hospitalizationRepository.findAll();
     }
 
 

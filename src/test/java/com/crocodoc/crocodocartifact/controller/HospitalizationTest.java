@@ -58,7 +58,7 @@ public class HospitalizationTest {
         DMP dmp=new DMP("test","test",new Date(),"test","test","test","test");
         Structure s=new Structure("test", StructureType.HOSPITAL);
         Hospitalization P=new Hospitalization(s,dmp);
-        Mockito.when(hospitalizationResource.getOneHospitalization("test",1L)).thenReturn(java.util.Optional.of(P));
+        Mockito.when(hospitalizationResource.getHospitalization("test",1L)).thenReturn(java.util.Optional.of(P));
         Hospitalization p2=this.restTemplate.getForObject("http://localhost:" + port + "/dmp/hospitalization/test/1", Hospitalization.class);
         System.out.println(P.getHospital().getName());
         System.out.println(p2.getHospital().getName());
