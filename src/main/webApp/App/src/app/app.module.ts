@@ -38,6 +38,8 @@ import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalizati
 import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization/one-hospitaliszation.component";
 import {DialogOverviewAssignementComponent} from './hospitalization/dialog-overview-assignement/dialog-overview-assignement.component';
 import {AssignementHospitalizationComponent} from './hospitalization/update-hospitalization/one-assignement/assignement-of-Hospitalization.component';
+import {OneDmpSearchComponent} from "./dmp/one-dmp/one-dmp-search.component";
+import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
 
 @NgModule({
   exports: [DialogOverviewAssignementComponent],
@@ -64,7 +66,9 @@ import {AssignementHospitalizationComponent} from './hospitalization/update-hosp
     HospitalizationEditComponent,
     OneHospitalizationComponent,
     DialogOverviewAssignementComponent,
-    AssignementHospitalizationComponent
+    AssignementHospitalizationComponent,
+    OneDmpSearchComponent,
+    SejourComponent
   ],
   imports: [
     BrowserModule,

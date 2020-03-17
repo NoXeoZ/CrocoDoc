@@ -238,7 +238,10 @@ public class DMPResource {
         if(p!=null) {
              Iterable<DMP>dmps = dmpService.getAllDMP();
              List<DMP>dmpList=new ArrayList<DMP>();
-             dmps.forEach(u->{if(u.getFirstname().equals(name) || u.getLastname().equals(name) || u.getBirthCity().equals(name) || u.getSocialSecurityNumber().equals(name))dmpList.add(u);});
+             dmps.forEach(u->{if(u.getFirstname().toLowerCase().contains(name.toLowerCase()) ||
+                                 u.getLastname().toLowerCase().contains(name.toLowerCase()) ||
+                                 u.getBirthCity().toLowerCase().contains(name.toLowerCase()) ||
+                                 u.getSocialSecurityNumber().toLowerCase().contains(name.toLowerCase()))dmpList.add(u);});
              return dmpList;
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");

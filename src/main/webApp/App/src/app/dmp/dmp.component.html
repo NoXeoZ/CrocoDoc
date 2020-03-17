@@ -24,8 +24,12 @@
         </a>
   </span>
   <span>
-        <input type="text" >
-      <a class="icon" href=""><mat-icon>search</mat-icon></a>
+    <form [formGroup]="formGroup"  *ngIf="formGroup">
+
+      <input type="text" formControlName="search">
+      <button type="submit" (click)="searchDmp()"><mat-icon>search</mat-icon></button>
+
+    </form>
  </span>
   <span>
         <a mat-list-item class="icon" routerLink="/home">
@@ -59,12 +63,39 @@
         <div *ngIf="isStructure"><span>T</span></div>
         <div *ngIf="isStructure"><span>U</span></div>
         <div *ngIf="isStructure"><span>R</span></div>
-
-
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+      <!--afficher list dmp trouver par la recherche-->
+      <table *ngIf="isDmp" border="true" >
+        <tr >
+          <th class="mat-cell">firstname</th>
+          <th class="mat-cell">lastname</th>
+          <th class="mat-cell">birthCity</th>
+          <th class="mat-cell">socialSecurityNumber</th>
+          <th class="mat-cell">Number of Hospitalization</th>
+        </tr>
+        <tbody *ngIf="dmpsSearch">
+       <tr *ngFor="let dmp of dmpsSearch;" [dmpSearch]="dmp" (dmpchoose)="getSejour($event)"></tr>
+        </tbody>
+      </table>
 
+      <!--afficher list des hospitalisation relier au dmp choisi-->
+      <table border="true" *ngIf="isSejour">
+        <tr >
+          <th class="mat-cell">Dmp</th>
+          <th class="mat-cell">hospital</th>
+          <th class="mat-cell">startDate</th>
+          <th class="mat-cell">endDate</th>
+          <th class="mat-cell">Nombre d'affectations</th>
+          <th class="mat-cell">Les différents services</th>
+        </tr>
+
+        <tbody *ngIf="listHospitalization">
+        <tr *ngFor="let h of listHospitalization;" [sejour]="h" >
+        </tr>
+        </tbody>
+      </table>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
