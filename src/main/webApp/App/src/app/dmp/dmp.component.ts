@@ -14,7 +14,7 @@ export class DmpComponent implements OnInit {
   @Input()
   private loginlist:Array<string>;
   @Output()
-  private disconnectEvent=new EventEmitter<boolean>()
+  private disconnectEvent=new EventEmitter<boolean>();
 
   firstname='';
   lastname='';
