@@ -31,6 +31,16 @@ public class CrocodocartifactApplication implements CommandLineRunner {
 		userService.create(new User("admin", "admin", new Date(), "address", "+666", "admin", "pw", "rib", UserType.ADMIN, s));
 		userService.create(new User("kenza", "yahi", new Date(), "address", "+666", "kenza", "pw", "rib", UserType.DOCTOR, s));
 		userService.create(new User("daniel", "daniel", new Date(), "address", "+666", "daniel", "pw", "rib", UserType.SECRETARY, s));
-		dmpService.createDMP(new DMP("thomas","levee",new Date(),"Drancy","1245434","23344444","levethomas"));
+		DMP dmp=dmpService.createDMP(new DMP("thomas","levee",new Date(),"Drancy","1245434","23344444","levethomas"));
+		//Hospitalization h=dmpService.createHospitalization(new Hospitalization(s, dmp));
+
+
+		/*System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH "+ h.getDMP().getSocialSecurityNumber());
+		dmp.addHospitalizations(h);
+		System.out.println(dmp.getHospitalizations().size());
+		for (DMP dmp1 : dmpService.getAllDMP()) {
+			System.out.println(dmp1.getHospitalizations().size());
+		}
+		//dmpService.getAllHospitalization().forEach(u->System.out.println(u.getDMP().getSocialSecurityNumber()));*/
 	}
 }
