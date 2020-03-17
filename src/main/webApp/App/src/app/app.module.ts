@@ -42,6 +42,8 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AngularFontAwesomeModule} from "angular-font-awesome";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -90,7 +92,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
         LayoutModule,
         MatSnackBarModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+      FontAwesomeModule
 
     ],
   providers: [],
