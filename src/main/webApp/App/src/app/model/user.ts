@@ -21,6 +21,5 @@ export interface User{
   password : string;
   RIB : string;
   structure : Structure;
-  specialities : Array<Speciality>;
 }
 
