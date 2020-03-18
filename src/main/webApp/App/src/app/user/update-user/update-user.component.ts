@@ -38,11 +38,7 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.key = this.route.snapshot.params['key'];
-    this.userService.getUser(this.id,this.key)
-      .subscribe(data => {
-        if (data.type == TypeUser.SECRETARY) {
-          console.log("DOPEEE")
-          this.structureService.getStructures(this.key)
+    this.structureService.getStructures(this.key)
             .subscribe(s => {
               this.structures = s as Structure[]
             })
@@ -62,11 +58,6 @@ export class UpdateUserComponent implements OnInit {
               structure: new FormControl(data.structure),
               type: new FormControl(data.type),
             });
-          });
-        }else{
-
-        }
-
 
       })
 
