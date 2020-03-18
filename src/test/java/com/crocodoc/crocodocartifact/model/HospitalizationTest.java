@@ -2,8 +2,7 @@ package com.crocodoc.crocodocartifact.model;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,13 +16,13 @@ class HospitalizationTest {
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         assertNotNull(hospitalization.getStartDate());
 
-        LocalDateTime date = LocalDateTime.now();
+        Date date = new Date();
         assertNotEquals(date, hospitalization.getStartDate());
         hospitalization.setStartDate(date);
         assertEquals(date, hospitalization.getStartDate());
 
         assertThrows(NullPointerException.class, ()->{ hospitalization.setStartDate(null); });
-        assertThrows(NullPointerException.class, ()->{ hospitalization.setStartDate((LocalDateTime) null); });
+        assertThrows(NullPointerException.class, ()->{ hospitalization.setStartDate((Date) null); });
     }
 
     @Test
@@ -33,12 +32,12 @@ class HospitalizationTest {
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         assertNull(hospitalization.getEndDate());
 
-        LocalDateTime date = LocalDateTime.now();
+        Date date = new Date();
         hospitalization.setEndDate(date);
         assertEquals(date, hospitalization.getEndDate());
 
         assertThrows(NullPointerException.class, ()->{ hospitalization.setEndDate(null); });
-        assertThrows(NullPointerException.class, ()->{ hospitalization.setEndDate((LocalDateTime) null); });
+        assertThrows(NullPointerException.class, ()->{ hospitalization.setEndDate((Date) null); });
     }
 
     @Test
@@ -49,11 +48,11 @@ class HospitalizationTest {
         Hospitalization hospitalization = new Hospitalization(test, dmp);
         hospitalization.finish();
 
-        LocalDateTime date = LocalDateTime.now();
+        Date date = new Date();
         assertEquals(date.getYear(), hospitalization.getEndDate().getYear());
         assertEquals(date.getMonth(), hospitalization.getEndDate().getMonth());
-        assertEquals(date.getDayOfMonth(), hospitalization.getEndDate().getDayOfMonth());
-        assertEquals(date.getHour(), hospitalization.getEndDate().getHour());
+        assertEquals(date.getDay(), hospitalization.getEndDate().getDay());
+        assertEquals(date.getHours(), hospitalization.getEndDate().getHours());
     }
 
     @Test

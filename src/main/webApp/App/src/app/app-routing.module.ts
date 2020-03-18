@@ -16,6 +16,9 @@ import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.com
 import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
+import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
+import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
 
 const routes: Routes = [
   {
@@ -39,15 +42,27 @@ const routes: Routes = [
     component: UpdateStructureComponent
   },
   {
-    path: 'speciality',
+    path: 'hospitalization/:key',
+    component: HospitalizationComponent
+  },
+  {
+    path: 'hospitalization/:key/edit',
+    component: HospitalizationEditComponent
+  },
+  {
+    path: 'hospitalization/:key/update/:id',
+    component: UpdateHospitalizationComponent
+  },
+  {
+    path: 'speciality/:key',
     component: SpecialityComponent
   },
   {
-    path: 'speciality/edit',
+    path: 'speciality/:key/edit',
     component: EditSpecialityComponent
   },
   {
-    path: 'speciality/update/:id',
+    path: 'speciality/:key/update/:id',
     component: UpdateSpecialityComponent
   },
   {

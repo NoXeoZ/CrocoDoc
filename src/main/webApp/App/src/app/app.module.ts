@@ -23,10 +23,6 @@ import {StructureEditComponent} from './structure/edit/structure-edit.component'
 import {OneStructureComponent} from './structure/one-structure/one-structure.component';
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
-import { UserComponent } from './user/user.component';
-import { UserEditComponent } from './user/edit/user-edit.component';
-import { UpdateUserComponent } from './user/update-user/update-user.component';
-import { OneUserComponent } from './user/one-user/one-user.component';
 import {DmpComponent} from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
 import {AssignementComponent} from './assignement/assignement.component';
@@ -39,6 +35,12 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {EditSpecialityComponent} from './speciality/edit-speciality/edit-speciality.component';
 import {OneSpecialityComponent} from './speciality/one-speciality/one-speciality.component';
 import {UpdateSpecialityComponent} from './speciality/update-speciality/update-speciality.component';
+import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
+import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
+import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
+import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization/one-hospitaliszation.component";
+import {DialogOverviewAssignementComponent} from './hospitalization/dialog-overview-assignement/dialog-overview-assignement.component';
+import {AssignementHospitalizationComponent} from './hospitalization/update-hospitalization/one-assignement/assignement-of-Hospitalization.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -47,6 +49,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
+  exports: [DialogOverviewAssignementComponent],
+  entryComponents: [DialogOverviewAssignementComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,
@@ -71,8 +75,33 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     EditSpecialityComponent,
     OneSpecialityComponent,
     UpdateSpecialityComponent,
+    HospitalizationComponent,
+    UpdateHospitalizationComponent,
+    HospitalizationEditComponent,
+    OneHospitalizationComponent,
+    DialogOverviewAssignementComponent,
+    AssignementHospitalizationComponent
   ],
-    imports: [
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule,
+    LayoutModule,
+    MatSnackBarModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,

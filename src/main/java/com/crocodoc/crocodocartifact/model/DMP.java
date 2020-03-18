@@ -1,5 +1,6 @@
 package com.crocodoc.crocodocartifact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -29,8 +30,9 @@ public class DMP {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "dmp", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonManagedReference(value="valeur-dmp")
+    @JsonIgnoreProperties(value = {"dmp"},allowSetters = true)
+    @OneToMany(mappedBy = "dmp",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Hospitalization> hospitalizations = new ArrayList<>();
 
 
@@ -107,8 +109,12 @@ public class DMP {
         this.email = Objects.requireNonNull(email);
     }
 
-    public List<Hospitalization> getHospitalization() {
+    public List<Hospitalization> getHospitalizations() {
         return new ArrayList<>(hospitalizations);
+    }
+
+    public void setHospitalizations(List<Hospitalization> hospitalizations) {
+        this.hospitalizations = hospitalizations;
     }
 
     public void addHospitalization(Hospitalization o) {

@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <span class="title">Add new Hospitalization</span>
+</mat-toolbar>
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
+
+      <mat-form-field class="form-element">
+        <mat-label>Choose Dmp</mat-label>
+        <mat-select formControlName="dmp">
+          <mat-option *ngFor="let dmp of dmps" [value]="dmp">
+            {{dmp.lastname}} /{{dmp.firstname}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Choose Structure</mat-label>
+        <mat-select formControlName="hospital">
+          <mat-option *ngFor="let structure of listStructures" [value]="structure">
+            {{structure.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="date" placeholder="Start Date" formControlName="startDate">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="time" placeholder="Heure Debut" formControlName="heureDebut">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput type="date" placeholder="End Date" formControlName="endDate">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="time" placeholder="Heure fin" formControlName="heureFin">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" (click)="onCreateHospitalization()">Submit</button>
+      <p>
+        <button mat-button type="button"  (click)="reset()">Reset</button>
+      </p>
+    </form>
+  </div>
+</mat-card>

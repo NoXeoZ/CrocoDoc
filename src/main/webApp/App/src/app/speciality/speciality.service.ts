@@ -9,19 +9,16 @@ type EntityResponseType = HttpResponse<Speciality>;
 export class SpecialityService {
 
   constructor(private httpClient:HttpClient) { }
-  getSpecialities() : Observable<Array<Speciality>> {
-    return this.httpClient.get<Array<Speciality>>('/speciality');
+  getSpecialities(key:string) : Observable<Array<Speciality>> {
+    return this.httpClient.get<Array<Speciality>>('/specialities/'+key);
   }
-  getSpeciality(id: number) : Observable<Speciality> {
-    return this.httpClient.get<Speciality>('/speciality/' + id);
+  getSpeciality(key:string,id: number) : Observable<Speciality> {
+    return this.httpClient.get<Speciality>('/specialities/'+key+'/' + id);
   }
-  deleteSpeciality(id: number): Observable<EntityResponseType> {
-    return this.httpClient.delete<Speciality>('/speciality/' + id, { observe: 'response' });
+  createSpeciality(key:string,structure:Speciality): Observable<EntityResponseType> {
+    return this.httpClient.post<Speciality>('/specialities/'+key, structure, { observe: 'response' });
   }
-  createSpeciality(structure:Speciality): Observable<EntityResponseType> {
-    return this.httpClient.post<Speciality>('/speciality', structure, { observe: 'response' });
-  }
-  updateSpeciality(structure: Speciality): Observable<EntityResponseType> {
-    return this.httpClient.post<Speciality>('/speciality' + '/' + structure.id, structure, { observe: 'response' });
+  updateSpeciality(key:string,structure: Speciality): Observable<EntityResponseType> {
+    return this.httpClient.post<Speciality>('/specialities/'+key +'/' + structure.id, structure, { observe: 'response' });
   }
 }
