@@ -63,6 +63,15 @@
         <div *ngIf="isStructure"><span>T</span></div>
         <div *ngIf="isStructure"><span>U</span></div>
         <div *ngIf="isStructure"><span>R</span></div>
+
+        <div *ngIf="isAssignement"><a mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
+          <span><mat-icon>broken_image</mat-icon></span></a>
+        </div>
+        <div *ngIf="isAssignement"><span><mat-icon>event_note</mat-icon></span></div>
+        <div *ngIf="isAssignement"><span><mat-icon>emoji_people</mat-icon></span></div>
+        <div *ngIf="isAssignement"><span>
+          <img width="75%" src="assets/img/doctor.png" alt="Doctor" /></span></div>
+
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -107,7 +116,7 @@
         </tr>
         <tbody *ngIf="listAssignement">
 
-        <tr *ngFor="let assignement of listAssignement;" [assignement]="assignement">
+        <tr *ngFor="let assignement of listAssignement;" [assignement]="assignement" (assignementchoose)="getActOfAssignement($event)">
         </tr>
         </tbody>
       </table>

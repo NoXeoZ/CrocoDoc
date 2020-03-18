@@ -3,12 +3,12 @@ package com.crocodoc.crocodocartifact.resource;
 import com.crocodoc.crocodocartifact.model.*;
 import com.crocodoc.crocodocartifact.service.DMPService;
 import com.crocodoc.crocodocartifact.service.StructureService;
+import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +19,8 @@ public class DMPResource {
     private DMPService dmpService;
     @Autowired
     private StructureService structureService;
+    @Autowired
+    private com.crocodoc.crocodocartifact.service.UserService UserService;
 
     @GetMapping("/dmps/{key}")
     public Iterable<DMP> getAllDMP(@PathVariable String key) {
@@ -71,7 +73,7 @@ public class DMPResource {
     }
 
     @PostMapping("/dmp/hospitalization/create/{key}/{idDmp}/{idStructure}")
-    public Hospitalization createAssignment(@PathVariable String key, @RequestBody Hospitalization h, @PathVariable long idDmp, @PathVariable long idStructure) {
+    public Hospitalization createHospitalization(@PathVariable String key, @RequestBody Hospitalization h, @PathVariable long idDmp, @PathVariable long idStructure) {
         User p= Authentification.getUser(key);
         Optional<DMP>dmp=dmpService.getDMP(idDmp);
         Optional<Structure>structure=structureService.getOne(idStructure);
@@ -149,7 +151,7 @@ public class DMPResource {
     }
 
     @PostMapping("/dmp/hospitalization/assignment/create/{key}")
-    public Assignment createAssignment(@PathVariable String key, @RequestBody Assignment a) {
+    public Assignment createHospitalization(@PathVariable String key, @RequestBody Assignment a) {
         User p= Authentification.getUser(key);
         System.out.println("here");
         System.out.println(a);
@@ -191,9 +193,13 @@ public class DMPResource {
         }
     }
 
-    @PostMapping("/dmp/hospitalization/assignment/act/create/{key}")
-    public Act createAct(@PathVariable String key, @RequestBody Act a) {
+    @PostMapping("/dmp/hospitalization/assignment/act/create/{key}/{idAssignement}/{idUser}")
+    public Act createAct(@PathVariable String key, @RequestBody Act a, @PathVariable long idAssignement, @PathVariable long idUser) {
         User p = Authentification.getUser(key);
+        Optional<Assignment> assignment=dmpService.getAssignment(idAssignement);
+        Optional<User> user=UserService.getUser(idUser);
+        a.setUser(user.get());
+        a.setAssignment(assignment.get());
         if (p != null) {
             return dmpService.createAct(a);
         } else {

@@ -25,19 +25,23 @@ export class DmpComponent implements OnInit {
   firstname='';
   key:string;
   lastname='';
+  fullname='';
   isDmp=false;
   isStructure=false;
   isSejour=false;
+  isAssignement=false;
+  idUser:number;
+
   dmpsSearch:Array<Dmp>;
+  assignementId:number;
+  listHospitalization: Array<Hospitalization>;
+  listAssignement:Array<Assignement>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-  fullname='';
-  private listHospitalization: Array<Hospitalization>;
-  private listAssignement:Array<Assignement>;
   constructor(private breakpointObserver: BreakpointObserver,
               private formBuilder: FormBuilder,
               private dmpService:DmpService,
@@ -49,6 +53,9 @@ export class DmpComponent implements OnInit {
     this.key=this.loginlist[0];
     this.firstname=this.loginlist[1];
     this.lastname=this.loginlist[2];
+    this.idUser= +this.loginlist[4];
+    console.log("ussssssssseeer===>",this.loginlist[4]);
+    console.log("userrrrrrrrrrrrid===>",this.idUser);
     this.fullname=this.firstname+"   "+this.lastname;
     this.createForm()
   }
@@ -76,6 +83,8 @@ export class DmpComponent implements OnInit {
   searchDmp() {
     this.isDmp=true;
     this.isSejour=false;
+    this.isStructure=false;
+    this.isAssignement=false;
     let name:string= this.formGroup.get('search').value;
     console.log(name)
     this.dmpService.
@@ -95,7 +104,6 @@ export class DmpComponent implements OnInit {
     this.isSejour=true;
     this.isDmp=false;
     let dmp:Dmp=$event;
-    console.log("get sejour of==>"+dmp);
       this.dmpService
         .getAllHospitalizationForDmp(this.key,dmp.id)
         .subscribe(
@@ -113,10 +121,21 @@ export class DmpComponent implements OnInit {
     }
 
   getAssignement($event: Array<Assignement>) {
-    console.log("get All Assignements");
     this.isStructure=true;
     this.isSejour=false;
     this.isDmp=false;
+    this.isAssignement=false;
     this.listAssignement=$event;
+  }
+
+  getActOfAssignement($event: Assignement) {
+    let assignement:Assignement=$event;
+    this.assignementId=assignement.id;
+    this.isAssignement=true;
+    this.isStructure=false;
+    this.isSejour=false;
+    this.isDmp=false;
+    console.log("idUser=>",this.idUser)
+    console.log("idAssignement=>",this.assignementId)
   }
 }
