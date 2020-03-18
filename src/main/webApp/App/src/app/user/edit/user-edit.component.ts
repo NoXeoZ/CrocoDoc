@@ -17,8 +17,6 @@ export class UserEditComponent implements OnInit {
   formGroup: FormGroup;
   types = [ TypeUser.SECRETARY,TypeUser.NURSE,TypeUser.DOCTOR,TypeUser.LAB_STAFF,TypeUser.ADMIN];
 
-  startDate = new Date(1970, 0, 1);
-
   @Output()
   createUser=new EventEmitter<User>();
   private key: string;

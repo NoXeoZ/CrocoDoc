@@ -15,7 +15,7 @@ export class UserService {
     return this.httpClient.get<Array<User>>('/user/'+key);
   }
   getUser(id: number,key:string) : Observable<User> {
-    return this.httpClient.get<User>('/user/'+key+'/' + id);
+    return this.httpClient.get<User>('/user/'+id+'/' + key);
   }
   deleteUser(id: number,key:string): Observable<EntityResponseType> {
     return this.httpClient.delete<User>('/user/'+key+'/' + id, { observe: 'response' });
@@ -24,7 +24,7 @@ export class UserService {
     return this.httpClient.post<User>('/user/'+key, user, { observe: 'response' });
   }
   updateUser(user: User,key:string): Observable<EntityResponseType> {
-    return this.httpClient.post<User>('/user/' +key+ '/' + user.id, user, { observe: 'response' });
+    return this.httpClient.post<User>('/user/' +user.id+ '/' + key, user, { observe: 'response' });
   }
   /*
   updateUserForAdmin(user: User,key:string): Observable<EntityResponseType> {
