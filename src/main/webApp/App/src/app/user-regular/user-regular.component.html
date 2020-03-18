@@ -1,14 +1,28 @@
-<tbody *ngIf="user">
-<td>{{user.id}}</td>
-<td>{{user.type}}</td>
-<td>{{user.firstname}}</td>
-<td>{{user.lastname}}</td>
-<td>{{user.birthDate}}</td>
-<td>{{user.address}}</td>
-<td>{{user.phoneNumber}}</td>
-<td>{{user.email}}</td>
-<td>{{user.RIB}}</td>
-<a mat-mini-fab class="icon" routerLink="update/{{user.id}}"><mat-icon> update</mat-icon>
-</a>
-</tbody>
 
+
+<table border="true" >
+  <tr >
+    <th class="mat-cell">#</th>
+    <th class="mat-cell">Type</th>
+    <th class="mat-cell">Firstname</th>
+    <th class="mat-cell">LastName</th>
+    <th class="mat-cell">Birth date</th>
+    <th class="mat-cell">Address</th>
+    <th class="mat-cell">Phone number</th>
+    <th class="mat-cell">Email</th>
+    <th class="mat-cell">RIB</th>
+  </tr>
+  <tbody *ngIf="user">
+  <td>{{user.id}}</td>
+  <td>{{user.type}}</td>
+  <td>{{user.firstname}}</td>
+  <td>{{user.lastname}}</td>
+  <td>{{user.birthDate}}</td>
+  <td>{{user.address}}</td>
+  <td>{{user.phoneNumber}}</td>
+  <td>{{user.email}}</td>
+  <td>{{user.RIB}}</td>
+  <a mat-mini-fab class="icon" routerLink="update/{{user.id}}"><mat-icon> update</mat-icon>
+  </a>
+  </tbody>
+</table>
