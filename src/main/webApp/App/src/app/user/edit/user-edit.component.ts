@@ -15,7 +15,7 @@ import {Structure} from "../../model/structure";
 export class UserEditComponent implements OnInit {
   id:number;
   formGroup: FormGroup;
-  type=[ TypeUser.SECRETARY,TypeUser.NURSE,TypeUser.DOCTOR,TypeUser.LAB_STAFF,TypeUser.ADMIN];
+  types = [ TypeUser.SECRETARY,TypeUser.NURSE,TypeUser.DOCTOR,TypeUser.LAB_STAFF,TypeUser.ADMIN];
 
   startDate = new Date(1970, 0, 1);
 
@@ -28,6 +28,9 @@ export class UserEditComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+
+
+
   private structures:Structure[];
 
   constructor(private userService : UserService,
@@ -46,30 +49,16 @@ export class UserEditComponent implements OnInit {
       })
 
     this.createForm()
-
-    /*this.userService.getUser(this.id,this.key).subscribe(data => {
-      this.formGroup = new FormGroup({
-        id: new FormControl(data.id),
-        firstName: new FormControl(data.firstname),
-        lastName: new FormControl(data.lastname),
-        birthDate: new FormControl(data.birthDate),
-        address: new FormControl(data.address),
-        phoneNumber: new FormControl(data.phoneNumber),
-        email: this.email1,
-        //password: new FormControl(data.password),
-        RIB: new FormControl(data.RIB),
-        structure: new FormControl(data.structure),
-        //specialities : new FormControl(data.specialities)
-      });
-    });*/
   }
   createForm() {
     this.formGroup = this.formBuilder.group({
       'firstname': [null, Validators.required],
       'lastname': [null, Validators.required],
-      'birthdate': [null, Validators.required],
+      'birthDate': [null, Validators.required],
       'email': this.email1,
       'rib': [null, Validators.required],
+      'type': [null,Validators.required],
+      'structure': [null,Validators.required],
       //'structure': [null, Validators.required],
     });
   }
@@ -82,6 +71,7 @@ export class UserEditComponent implements OnInit {
     );
   }*/
   onCreateUser(){
+
     this.userService
       .createUser(this.formGroup.value,this.key)
       .subscribe(

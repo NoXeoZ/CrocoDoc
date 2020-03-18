@@ -25,9 +25,6 @@ import {UpdateStructureComponent} from './structure/update-structure/update-stru
 import {HttpClientModule} from "@angular/common/http";
 import {DmpComponent} from './dmp/dmp.component';
 import {MatSnackBarModule} from "@angular/material";
-import {AssignementComponent} from './assignement/assignement.component';
-import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
-import {OneAssignementComponent} from './assignement/one-assignement/one-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {OneDmpComponent} from './dmp-admin/one-dmp/one-dmp.component';
@@ -46,6 +43,11 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AngularFontAwesomeModule} from "angular-font-awesome";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {UserComponent} from "./user/user.component";
+import {UserEditComponent} from "./user/edit/user-edit.component";
+import {UpdateUserComponent} from "./user/update-user/update-user.component";
+import {OneUserComponent} from "./user/one-user/one-user.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -65,9 +67,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     UserEditComponent,
     UpdateUserComponent,
     OneUserComponent,
-    AssignementComponent,
-    EditAssignementComponent,
-    OneAssignementComponent,
     DmpSecretaryComponent,
     DmpSecretaryEditComponent,
     OneDmpComponent,

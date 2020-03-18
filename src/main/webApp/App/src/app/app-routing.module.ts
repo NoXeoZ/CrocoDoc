@@ -9,8 +9,6 @@ import {DmpComponent} from "./dmp/dmp.component";
 import {UserComponent} from "./user/user.component";
 import {UserEditComponent} from "./user/edit/user-edit.component";
 import {UpdateUserComponent} from "./user/update-user/update-user.component";
-import {AssignementComponent} from './assignement/assignement.component';
-import {EditAssignementComponent} from './assignement/edit-assignement/edit-assignement.component';
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -108,15 +106,6 @@ const routes: Routes = [
   {
     path: 'users/:key/update/:id',
     component: UpdateUserComponent
-  },
-
-  {
-    path: 'assignement/:key',
-    component: AssignementComponent
-  },
-  {
-    path: 'assignement/edit',
-    component: EditAssignementComponent
   },
 
 ];

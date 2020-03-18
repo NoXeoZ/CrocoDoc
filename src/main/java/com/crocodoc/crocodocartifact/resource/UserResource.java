@@ -47,9 +47,6 @@ public class UserResource {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
-
-
-
     @DeleteMapping("/user/{id}/{key}")
     public void delete(@PathVariable Long id, @PathVariable String key) {
         User p=Authentification.getUser(key);

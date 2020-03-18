@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router} from "@angular/router";
 import {TypeUser} from "../model/user";
+import {DmpService} from "../dmp/dmp.service";
 
 @Component({
   selector: 'app-navbar',

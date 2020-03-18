@@ -26,10 +26,11 @@ export class UserService {
   updateUser(user: User,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<User>('/user/' +key+ '/' + user.id, user, { observe: 'response' });
   }
+  /*
   updateUserForAdmin(user: User,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<User>('/users/' +key+ '/' + user.id, user, { observe: 'response' });
   }
   getUserForAdmin(user: User,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<User>('/users/' +key+ '/' + user.id, user, { observe: 'response' });
-  }
+  }*/
 }
