@@ -121,6 +121,20 @@
         </tbody>
       </table>
 
+      <!--afficher les acts-->
+      <table *ngIf="isAssignement" border="true" >
+        <tr >
+          <th class="mat-cell">Type</th>
+          <th class="mat-cell">Date</th>
+          <th class="mat-cell">Description</th>
+          <th class="mat-cell">User</th>
+          <th class="mat-cell">Draft</th>
+        </tr>
+        <tbody *ngIf="isAssignement">
+        <tr *ngFor="let act of acts;" [act]="act"></tr>
+        </tbody>
+      </table>
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

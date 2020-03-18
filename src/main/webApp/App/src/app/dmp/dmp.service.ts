@@ -28,4 +28,7 @@ export class DmpService {
   createAct(key: string, act: Act,idAssignement:number,idUser:number) : Observable<Act>{
     return this.httpClient.post<Act>('/dmp/hospitalization/assignment/act/create/'+ key+'/'+idAssignement+'/'+idUser,act);
   }
+  getActs(key:string,assignementId:number) : Observable<Array<Act>> {
+    return this.httpClient.get<Array<Act>>('/dmp/hospitalization/assignment/acts/'+key+'/'+assignementId);
+  }
 }

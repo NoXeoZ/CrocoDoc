@@ -186,6 +186,8 @@ public class DMPResource {
     @GetMapping("/dmp/hospitalization/assignment/acts/{key}/{id}")
     public Iterable<Act> getAllActsForAssignment(@PathVariable String key, @PathVariable long id) {
         User p = Authentification.getUser(key);
+        Iterable<Act> acts= dmpService.getAllActsForAssignment(id);
+        acts.forEach(act -> System.out.println(act));
         if (p != null) {
             return dmpService.getAllActsForAssignment(id);
         } else {
@@ -198,8 +200,10 @@ public class DMPResource {
         User p = Authentification.getUser(key);
         Optional<Assignment> assignment=dmpService.getAssignment(idAssignement);
         Optional<User> user=UserService.getUser(idUser);
+        a.setDraft(false);
         a.setUser(user.get());
         a.setAssignment(assignment.get());
+        a.setDraft(true);
         if (p != null) {
             return dmpService.createAct(a);
         } else {
@@ -242,13 +246,13 @@ public class DMPResource {
     public List<DMP> searchDMP(@PathVariable String key, @PathVariable String name) {
         User p= Authentification.getUser(key);
         if(p!=null) {
-             Iterable<DMP>dmps = dmpService.getAllDMP();
-             List<DMP>dmpList=new ArrayList<DMP>();
-             dmps.forEach(u->{if(u.getFirstname().toLowerCase().contains(name.toLowerCase()) ||
-                                 u.getLastname().toLowerCase().contains(name.toLowerCase()) ||
-                                 u.getBirthCity().toLowerCase().contains(name.toLowerCase()) ||
-                                 u.getSocialSecurityNumber().toLowerCase().contains(name.toLowerCase()))dmpList.add(u);});
-             return dmpList;
+            Iterable<DMP>dmps = dmpService.getAllDMP();
+            List<DMP>dmpList=new ArrayList<DMP>();
+            dmps.forEach(u->{if(u.getFirstname().toLowerCase().contains(name.toLowerCase()) ||
+                    u.getLastname().toLowerCase().contains(name.toLowerCase()) ||
+                    u.getBirthCity().toLowerCase().contains(name.toLowerCase()) ||
+                    u.getSocialSecurityNumber().toLowerCase().contains(name.toLowerCase()))dmpList.add(u);});
+            return dmpList;
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }

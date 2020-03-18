@@ -42,6 +42,7 @@ import {OneDmpSearchComponent} from "./dmp/one-dmp/one-dmp-search.component";
 import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
 import {AssignementComponent} from "./dmp/one-assignement/assignement.component";
 import { EditActComponent } from './dmp/edit-act/edit-act.component';
+import {OneActComponent} from "./dmp/one-act/one-act.component";
 
 @NgModule({
   exports: [DialogOverviewAssignementComponent],
@@ -72,7 +73,8 @@ import { EditActComponent } from './dmp/edit-act/edit-act.component';
     OneDmpSearchComponent,
     SejourComponent,
     AssignementComponent,
-    EditActComponent
+    EditActComponent,
+    OneActComponent
   ],
   imports: [
     BrowserModule,

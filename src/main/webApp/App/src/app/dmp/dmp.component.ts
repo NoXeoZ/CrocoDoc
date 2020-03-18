@@ -9,6 +9,7 @@ import {Dmp} from "../model/dmp";
 import {Hospitalization} from "../model/Hospitalization";
 import {HospitalizationService} from "../hospitalization/hospitalization.service";
 import {Assignement} from "../model/assignement";
+import {Act} from "../model/Act";
 
 @Component({
   selector: 'app-dmp',
@@ -33,6 +34,7 @@ export class DmpComponent implements OnInit {
   idUser:number;
 
   dmpsSearch:Array<Dmp>;
+  acts:Array<Act>;
   assignementId:number;
   listHospitalization: Array<Hospitalization>;
   listAssignement:Array<Assignement>;
@@ -137,5 +139,11 @@ export class DmpComponent implements OnInit {
     this.isDmp=false;
     console.log("idUser=>",this.idUser)
     console.log("idAssignement=>",this.assignementId)
+    this.dmpService.getActs(this.key,this.assignementId).subscribe(
+      data=>{this.acts=data,console.log("act",data)},
+      error => {console.log(error);
+      }
+    )
+
   }
 }
