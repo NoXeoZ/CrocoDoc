@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Structure} from "../model/structure";
+import {Speciality} from "../model/speciality";
 type EntityResponseType = HttpResponse<Structure>;
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,8 @@ export class StructureService {
   }
   updateStructure(structure: Structure,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<Structure>('/structures/' +key+ '/' + structure.id, structure, { observe: 'response' });
+  }
+  getSpecialityFromStructure(id: number,key:string) : Observable<Speciality> {
+    return this.httpClient.get<Speciality>('/structures/getSpeciality/'+key+'/' + id);
   }
 }

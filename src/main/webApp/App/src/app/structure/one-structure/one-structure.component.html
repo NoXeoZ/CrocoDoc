@@ -2,7 +2,7 @@
 <td>{{structure.description}}</td>
 <td>{{structure.type}}</td>
 <td>{{structure.parent}}</td>
-<td>{{structure.specialities}}</td>
+<td *ngIf="structure.speciality">{{structure.speciality.name}}</td>
 <td>{{structure.chief}}</td>
 <td>
   <a mat-mini-fab class="icon" routerLink="update/{{structure.id}}"><mat-icon> create</mat-icon>

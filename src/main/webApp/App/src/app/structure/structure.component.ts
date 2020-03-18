@@ -22,7 +22,7 @@ export class StructureComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data,console.log(data)},
+        data=>{this.listStructures=data,console.log("structure===>>>>",data)},
         error => {console.log(error);
         })
   }

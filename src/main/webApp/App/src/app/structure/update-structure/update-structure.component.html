@@ -21,8 +21,17 @@
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
 
+      <mat-form-field class="form-element">
+        <mat-label>Speciality</mat-label>
+        <mat-select formControlName="speciality">
+          <mat-option *ngFor="let s of listSpecialities" [value]="s">
+            {{s.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <button mat-raised-button type="submit" (click)="onUpdateStructure()"
-              [disabled]="!formGroup.valid" routerLink="/structures/{{key}}">Submit
+              [disabled]="!formGroup.valid" >Submit
       </button>
     </form>
   </div>

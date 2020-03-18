@@ -16,9 +16,9 @@ export class SpecialityComponent implements OnInit {
   updateSpeciality= new EventEmitter<Speciality>();
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
-    this.onGetStructures()
+    this.onGetSpeciality()
   }
-  onGetStructures(){
+  onGetSpeciality(){
     this.specialityService
       .getSpecialities(this.key)
       .subscribe(

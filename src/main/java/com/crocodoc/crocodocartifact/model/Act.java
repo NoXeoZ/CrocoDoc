@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class Act {
     @Column(name = "creation_date", nullable = false)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp createdAt;
+    private Date createdAt;
     @Column(name = "draft", nullable = false)
     private boolean draft = true;
 
@@ -69,8 +70,8 @@ public class Act {
         this.description = Objects.requireNonNull(description);
     }
 
-    public LocalDateTime getCreatedAt() {
-        return (createdAt != null) ? createdAt.toLocalDateTime() : null;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     public ActType getType() {
@@ -91,7 +92,7 @@ public class Act {
         if(!draft)
             throw new IllegalStateException("The act has already been validate.");
         draft = false;
-        createdAt = Timestamp.valueOf(LocalDateTime.now());
+        createdAt = new Date();
     }
 
     public void addImage(String title, byte[] image) {

@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.*;
-
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "structures")
@@ -32,12 +29,8 @@ public class Structure {
     @JoinColumn(name="id_user_responsible")
     private User chief;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinTable(
-            name="structures_specialities",
-            joinColumns=@JoinColumn(name="structure_id", referencedColumnName="ID"),
-            inverseJoinColumns=@JoinColumn(name="speciality_ID", referencedColumnName="ID"))
-    private Set<Speciality> specialities = new HashSet<>();
+    @ManyToOne
+    private Speciality speciality;
 
     @JsonManagedReference(value="valeur-hopital")
     @JsonIgnoreProperties(value = {"structure"},allowSetters = true)
@@ -49,6 +42,11 @@ public class Structure {
     public Structure(String name, StructureType type) {
         this.name = Objects.requireNonNull(name);
         this.type = Objects.requireNonNull(type);
+    }
+    public Structure(String name, StructureType type,Speciality speciality) {
+        this.name = Objects.requireNonNull(name);
+        this.type = Objects.requireNonNull(type);
+        this.speciality=speciality;
     }
 
     public long getId() {
@@ -105,16 +103,12 @@ public class Structure {
         this.chief = chief;
     }
 
-    public List<Speciality> getSpecialities() {
-        return new ArrayList<>(specialities);
+    public Speciality getSpeciality() {
+        return speciality;
     }
 
-    public void addSpeciality(Speciality speciality) {
-        specialities.add(Objects.requireNonNull(speciality));
-    }
-
-    public void removeSpeciality(Speciality speciality) {
-        specialities.remove(Objects.requireNonNull(speciality));
+    public void setSpeciality(Speciality speciality) {
+        this.speciality=speciality;
     }
 
     @Override
