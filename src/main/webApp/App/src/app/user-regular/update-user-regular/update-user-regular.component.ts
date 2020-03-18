@@ -43,6 +43,7 @@ export class UpdateUserRegularComponent implements OnInit {
       })
 
     this.userService.getUser(this.id, this.key).subscribe(data => {
+      console.log(data.birthDate)
       let email1 = new FormControl(data.email, [
         Validators.required,
         Validators.email,
@@ -51,20 +52,16 @@ export class UpdateUserRegularComponent implements OnInit {
         id: new FormControl(data.id),
         firstname: new FormControl(data.firstname),
         lastname: new FormControl(data.lastname),
-        birthDate: new FormControl(data.birthDate),
-        address: new FormControl('', [Validators.required]),
-        phonenumber: new FormControl('', [Validators.required]),
-        email: new FormControl(data.email,[Validators.required]),
-        rib: new FormControl(data.RIB),
+        birthDate: new FormControl(new Date(data.birthDate).toISOString().substring(0,10)),
+        address: new FormControl(data.address),
+        email: new FormControl(data.email),
+        phoneNumber: new FormControl(data.phoneNumber),
+        rib: new FormControl(data.rib),
         password: new FormControl(data.password),
         structure: new FormControl(data.structure),
         type: new FormControl(data.type),
       });
-
-
     })
-
-
   }
   onUpdateUser() {
     let user: User =  this.formGroup.value;

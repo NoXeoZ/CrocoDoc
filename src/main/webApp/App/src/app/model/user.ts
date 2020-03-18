@@ -19,7 +19,7 @@ export interface User{
   phoneNumber : string;
   email : string;
   password : string;
-  RIB : string;
+  rib : string;
   structure : Structure;
 }
 

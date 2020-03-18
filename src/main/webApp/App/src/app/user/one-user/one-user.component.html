@@ -1,16 +1,17 @@
-  <td>{{user.id}}</td>
-  <td>{{user.type}}</td>
-  <td>{{user.firstname}}</td>
-  <td>{{user.lastname}}</td>
-  <td>{{user.birthDate}}</td>
-  <td>{{user.address}}</td>
-  <td>{{user.phoneNumber}}</td>
-  <td>{{user.email}}</td>
-  <td>{{user.RIB}}</td>
+<td>{{user.id}}</td>
+<td>{{user.type}}</td>
+<td>{{user.firstname}}</td>
+<td>{{user.lastname}}</td>
+<td>{{user.birthDate}}</td>
+<td>{{user.address}}</td>
+<td>{{user.phoneNumber}}</td>
+<td>{{user.email}}</td>
+<td>{{user.rib}}</td>
 <td>
   <a mat-mini-fab class="icon" (click)="onDeleteUser(user.id)" ><mat-icon> delete</mat-icon>
   </a>
   <a mat-mini-fab class="icon" routerLink="update/{{user.id}}"><mat-icon> create</mat-icon>
   </a>
 </td>
+
 

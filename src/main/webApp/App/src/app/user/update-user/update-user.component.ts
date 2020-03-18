@@ -36,31 +36,33 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(protected router: Router,private userService : UserService, private route: ActivatedRoute,private structureService : StructureService) { }
   ngOnInit() {
+
     this.id = this.route.snapshot.params['id'];
     this.key = this.route.snapshot.params['key'];
     this.structureService.getStructures(this.key)
             .subscribe(s => {
               this.structures = s as Structure[]
+              this.userService.getUser(this.id, this.key).subscribe(data => {
+                  let email1 = new FormControl(data.email, [
+                    Validators.required,
+                    Validators.email,
+                  ]);
+                  console.log(data.birthDate)
+                  this.formGroup = new FormGroup({
+                    id: new FormControl(data.id),
+                    firstname: new FormControl(data.firstname),
+                    lastname: new FormControl(data.lastname),
+                    birthDate: new FormControl(new Date(data.birthDate).toISOString().substring(0,10)),
+                    address: new FormControl(data.address),
+                    email: new FormControl(data.email),
+                    phoneNumber: new FormControl(data.phoneNumber),
+                    rib: new FormControl(data.rib),
+                    password: new FormControl(data.password),
+                    structure: new FormControl(data.structure),
+                    type: new FormControl(data.type),
+                  });
+                })
             })
-
-          this.userService.getUser(this.id, this.key).subscribe(data => {
-            let email1 = new FormControl(data.email, [
-              Validators.required,
-              Validators.email,
-            ]);
-            this.formGroup = new FormGroup({
-              id: new FormControl(data.id),
-              firstname: new FormControl(data.firstname),
-              lastname: new FormControl(data.lastname),
-              birthDate: new FormControl(new Date(data.birthDate)),
-              email: email1,
-              rib: new FormControl(data.RIB),
-              structure: new FormControl(data.structure),
-              type: new FormControl(data.type),
-            });
-
-
-      })
 
 
   }
