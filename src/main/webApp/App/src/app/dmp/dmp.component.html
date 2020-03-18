@@ -1,29 +1,29 @@
 <mat-toolbar>
   <mat-toolbar-row>
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <span>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      *ngIf="isHandset$ | async">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>
         <a routerLink="/profil">
       <img width="75%" src="assets/img/doctor.png" alt="Doctor" />
         </a>
     </span>
-  <span>
+    <span>
         <a routerLink="/profil">
          <input type="text" readonly="true" value="{{fullname}}" >
       </a>
    </span>
-  <span>
+    <span>
         <a (click)="desconnect()">
       <img width="75%" src="assets/img/logout.png" alt="logout" />
         </a>
   </span>
-  <span>
+    <span>
     <form [formGroup]="formGroup"  *ngIf="formGroup">
 
       <input type="text" formControlName="search">
@@ -31,11 +31,11 @@
 
     </form>
  </span>
-  <span>
+    <span>
         <a mat-list-item class="icon" routerLink="/home">
         <mat-icon>help</mat-icon></a>
  </span>
-  <span class="span">12:14 01/02/2020</span>
+    <span class="span">12:14 01/02/2020</span>
   </mat-toolbar-row>
 
   <mat-sidenav-container class="sidenav-container">
@@ -64,7 +64,7 @@
         <div *ngIf="isStructure"><span>U</span></div>
         <div *ngIf="isStructure"><span>R</span></div>
 
-        <div *ngIf="isAssignement"><a mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
+        <div *ngIf="isAssignement"><a (click)="hideAssign()" mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
           <span><mat-icon>broken_image</mat-icon></span></a>
         </div>
         <div *ngIf="isAssignement"><span><mat-icon>event_note</mat-icon></span></div>
@@ -76,7 +76,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <!--afficher list dmp trouver par la recherche-->
-      <table *ngIf="isDmp" border="true" >
+      <table *ngIf="isDmp" class="table-hover">
         <tr >
           <th class="mat-cell">firstname</th>
           <th class="mat-cell">lastname</th>
@@ -85,12 +85,13 @@
           <th class="mat-cell">Number of Hospitalization</th>
         </tr>
         <tbody *ngIf="dmpsSearch">
-       <tr *ngFor="let dmp of dmpsSearch;" [dmpSearch]="dmp" (dmpchoose)="getSejour($event)"></tr>
+
+        <tr *ngFor="let dmp of dmpsSearch;"  (click)="getSejour(dmp)" [dmpSearch]="dmp"></tr>
         </tbody>
       </table>
 
       <!--afficher list des hospitalisation relier au dmp choisi-->
-      <table border="true" *ngIf="isSejour">
+      <table *ngIf="isSejour" class="table-hover">
         <tr >
           <th class="mat-cell">Dmp</th>
           <th class="mat-cell">hospital</th>
@@ -101,14 +102,14 @@
         </tr>
 
         <tbody *ngIf="listHospitalization">
-        <tr *ngFor="let h of listHospitalization;" [sejour]="h" (sejourchoose)="getAssignement($event)">
+        <tr *ngFor="let h of listHospitalization;" (click)="getAssignement(h.assignments)" [sejour]="h">
         </tr>
         </tbody>
       </table>
 
       <!--afficher les affectation-->
 
-      <table class="center-table" border="true" *ngIf="isStructure">
+      <table class="center-table" *ngIf="isStructure" class="table-hover">
         <tr >
           <th class="mat-cell">Start Date</th>
           <th class="mat-cell">End Date</th>
@@ -116,13 +117,13 @@
         </tr>
         <tbody *ngIf="listAssignement">
 
-        <tr *ngFor="let assignement of listAssignement;" [assignement]="assignement" (assignementchoose)="getActOfAssignement($event)">
+        <tr *ngFor="let assignement of listAssignement;" (click)="getActOfAssignement(assignement)" [assignement]="assignement">
         </tr>
         </tbody>
       </table>
 
       <!--afficher les acts-->
-      <table *ngIf="isAssignement" border="true" >
+      <table *ngIf="isAssignement && !hide" class="table-bis">
         <tr >
           <th class="mat-cell">Type</th>
           <th class="mat-cell">Date</th>

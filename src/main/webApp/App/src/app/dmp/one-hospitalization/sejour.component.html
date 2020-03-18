@@ -1,4 +1,3 @@
-<a (click)="sejourChoose(sejour.assignments)">
 <td *ngIf="sejour.dmp">{{sejour.dmp.lastname}} {{sejour.dmp.firstname}}</td>
 <td *ngIf="sejour.hospital">{{sejour.hospital.name}}</td>
 <td *ngIf="sejour.startDate">{{printDate(sejour.startDate)}}</td>
@@ -8,4 +7,3 @@
 <td *ngIf="!sejour.endDate">Nullllllll</td>
 <td *ngIf="sejour.assignments">{{sejour.assignments.length}}</td>
 <td *ngIf="sejour.assignments">{{displayAssignements()}}</td>
-</a>

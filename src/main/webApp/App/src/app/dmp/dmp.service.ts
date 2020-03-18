@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Hospitalization} from "../model/Hospitalization";
 import {Dmp} from "../model/dmp";
@@ -11,6 +11,9 @@ import {Profil} from "../model/profil";
   providedIn: 'root'
 })
 export class DmpService {
+
+  event = new EventEmitter();
+
   constructor(private httpClient:HttpClient) { }
 
   logOut(key:String) : Observable<boolean> {
@@ -30,5 +33,13 @@ export class DmpService {
   }
   getActs(key:string,assignementId:number) : Observable<Array<Act>> {
     return this.httpClient.get<Array<Act>>('/dmp/hospitalization/assignment/acts/'+key+'/'+assignementId);
+  }
+
+  getUSerOfAct(key:string,actId:number) : Observable<Profil> {
+    return this.httpClient.get<Profil>('/dmp/hospitalization/assignment/act/user/'+key+'/'+actId);
+  }
+
+  sendHide() {
+    this.event.emit(1);
   }
 }

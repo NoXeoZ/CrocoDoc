@@ -3,3 +3,6 @@
   color: black;
 }
 a:hover {background-color: darkolivegreen;}
+td{
+  text-align: center;
+}

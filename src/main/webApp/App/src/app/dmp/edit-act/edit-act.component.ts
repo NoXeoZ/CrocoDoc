@@ -65,6 +65,7 @@ export class EditActComponent implements OnInit {
       .createAct(this.key,act,this.assignementId,this.idUser)
       .subscribe(
         data=>{console.log("data "+data.id);
+          this.dmpService.sendHide();
           this.router.navigate(['/']).then(r  =>console.log("create Ok"))},
         error=>console.log(error)
       );

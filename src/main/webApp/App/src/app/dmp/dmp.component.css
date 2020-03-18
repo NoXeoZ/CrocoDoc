@@ -5,6 +5,34 @@
   width:100%
 
 }
+.table-hover > tbody > tr:hover {
+  background-color: red;
+}
+
+.table-hover{
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate;
+  border-spacing: 52px;
+}
+
+.table-hover th{
+  background: greenyellow;
+  border-radius: 10px;
+}
+
+.table-bis{
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate;
+  border-spacing: 52px;
+}
+
+.table-bis th{
+  background: greenyellow;
+  border-radius: 10px;
+}
+
 
 .sidenav {
   position: absolute;

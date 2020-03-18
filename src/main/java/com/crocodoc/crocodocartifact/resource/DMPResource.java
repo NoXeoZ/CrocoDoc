@@ -221,6 +221,16 @@ public class DMPResource {
         }
     }
 
+    @GetMapping("/dmp/hospitalization/assignment/act/user/{key}/{id}")
+    public User getUserAct(@PathVariable String key, @PathVariable long id) {
+        User p= Authentification.getUser(key);
+        if(p!=null) {
+            return dmpService.getAct(id).get().getUser();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
     @PostMapping("/dmp/hospitalization/assignment/act/update/{key}")
     public Act updateAct(@PathVariable String key,@RequestBody Act a) {
         User p = Authentification.getUser(key);
