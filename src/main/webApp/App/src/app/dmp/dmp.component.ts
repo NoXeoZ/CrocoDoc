@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Dmp} from "../model/dmp";
 import {Hospitalization} from "../model/Hospitalization";
 import {HospitalizationService} from "../hospitalization/hospitalization.service";
+import {Assignement} from "../model/assignement";
 
 @Component({
   selector: 'app-dmp',
@@ -36,6 +37,7 @@ export class DmpComponent implements OnInit {
     );
   fullname='';
   private listHospitalization: Array<Hospitalization>;
+  private listAssignement:Array<Assignement>;
   constructor(private breakpointObserver: BreakpointObserver,
               private formBuilder: FormBuilder,
               private dmpService:DmpService,
@@ -109,4 +111,12 @@ export class DmpComponent implements OnInit {
           error => {console.log(error);
           })
     }
+
+  getAssignement($event: Array<Assignement>) {
+    console.log("get All Assignements");
+    this.isStructure=true;
+    this.isSejour=false;
+    this.isDmp=false;
+    this.listAssignement=$event;
+  }
 }

@@ -92,10 +92,26 @@
         </tr>
 
         <tbody *ngIf="listHospitalization">
-        <tr *ngFor="let h of listHospitalization;" [sejour]="h" >
+        <tr *ngFor="let h of listHospitalization;" [sejour]="h" (sejourchoose)="getAssignement($event)">
         </tr>
         </tbody>
       </table>
+
+      <!--afficher les affectation-->
+
+      <table class="center-table" border="true" *ngIf="isStructure">
+        <tr >
+          <th class="mat-cell">Start Date</th>
+          <th class="mat-cell">End Date</th>
+          <th class="mat-cell">Service</th>
+        </tr>
+        <tbody *ngIf="listAssignement">
+
+        <tr *ngFor="let assignement of listAssignement;" [assignement]="assignement">
+        </tr>
+        </tbody>
+      </table>
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
