@@ -16,6 +16,8 @@ export class DmpComponent implements OnInit {
   @Output()
   private disconnectEvent=new EventEmitter<boolean>();
 
+
+
   firstname='';
   lastname='';
   isDmp=false;
@@ -54,4 +56,5 @@ export class DmpComponent implements OnInit {
         }
       );
   }
+
 }

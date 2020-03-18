@@ -59,6 +59,7 @@ export class UpdateUserComponent implements OnInit {
               type: new FormControl(data.type),
             });
 
+
       })
 
 

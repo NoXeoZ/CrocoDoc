@@ -48,6 +48,8 @@ import {UserEditComponent} from "./user/edit/user-edit.component";
 import {UpdateUserComponent} from "./user/update-user/update-user.component";
 import {OneUserComponent} from "./user/one-user/one-user.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import { UpdateUserRegularComponent } from './user-regular/update-user-regular/update-user-regular.component';
+import {UserRegularComponent} from "./user-regular/user-regular.component";
 
 
 @NgModule({
@@ -79,7 +81,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     HospitalizationEditComponent,
     OneHospitalizationComponent,
     DialogOverviewAssignementComponent,
-    AssignementHospitalizationComponent
+    AssignementHospitalizationComponent,
+    UpdateUserRegularComponent,
+    UserRegularComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<tbody *ngIf="user">
+<td>{{user.id}}</td>
+<td>{{user.type}}</td>
+<td>{{user.firstname}}</td>
+<td>{{user.lastname}}</td>
+<td>{{user.birthDate}}</td>
+<td>{{user.address}}</td>
+<td>{{user.phoneNumber}}</td>
+<td>{{user.email}}</td>
+<td>{{user.RIB}}</td>
+<a mat-mini-fab class="icon" routerLink="update/{{user.id}}"><mat-icon> update</mat-icon>
+</a>
+</tbody>
+

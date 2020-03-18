@@ -17,6 +17,8 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
 import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
 import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
+import {UserRegularComponent} from "./user-regular/user-regular.component";
+import {UpdateUserRegularComponent} from "./user-regular/update-user-regular/update-user-regular.component";
 
 const routes: Routes = [
   {
@@ -96,16 +98,12 @@ const routes: Routes = [
       component: UpdateUserComponent
   },
   {
-    path: 'users/:key',
-    component: UserComponent
+    path: 'user-regular/:key',
+    component: UserRegularComponent
   },
   {
-    path: 'users/:key/edit',
-    component: UserEditComponent
-  },
-  {
-    path: 'users/:key/update/:id',
-    component: UpdateUserComponent
+    path: 'user-regular/:key/update/:id',
+    component: UpdateUserRegularComponent
   },
 
 ];

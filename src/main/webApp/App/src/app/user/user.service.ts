@@ -17,6 +17,8 @@ export class UserService {
   getUser(id: number,key:string) : Observable<User> {
     return this.httpClient.get<User>('/user/'+id+'/' + key);
   }
+
+
   deleteUser(id: number,key:string): Observable<EntityResponseType> {
     return this.httpClient.delete<User>('/user/'+key+'/' + id, { observe: 'response' });
   }

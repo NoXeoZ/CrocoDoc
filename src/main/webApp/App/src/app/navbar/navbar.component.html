@@ -4,7 +4,10 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <img class="logoAphp" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+      <a mat-list-item routerLink="/user-regular/{{Key}}">
+        <img class="logoAphp" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+      </a>
+
     </mat-toolbar>
     <mat-nav-list>
 
