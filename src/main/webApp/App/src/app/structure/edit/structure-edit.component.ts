@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Structure, StructureType} from "../../model/structure";
 import {StructureService} from "../structure.service";
+import {Speciality} from "../../model/speciality";
+import {SpecialityService} from "../../speciality/speciality.service";
 
 @Component({
   selector: 'app-structure',
@@ -16,11 +18,14 @@ export class StructureEditComponent implements OnInit {
 
   @Output()
   createStructure= new EventEmitter<Structure>();
-  private key: string;
+  key: string;
+  listSpecialities: Array<Speciality>;
+  listStructures: Array<Structure>;
 
   constructor(private formBuilder: FormBuilder,
               private strctureService:StructureService,
               protected router: Router,
+              protected specialityService:SpecialityService,
               private route:ActivatedRoute,
   ) {
   }
@@ -28,6 +33,25 @@ export class StructureEditComponent implements OnInit {
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
     this.createForm();
+    this.onGetSpeciality();
+    this.onGetStructures();
+  }
+  onGetSpeciality(){
+    this.specialityService
+      .getSpecialities(this.key)
+      .subscribe(
+        data=>{this.listSpecialities=data;},
+        error => {console.log(error);
+        })
+  }
+
+  onGetStructures(){
+    this.strctureService
+      .getStructures(this.key)
+      .subscribe(
+        data=>{this.listStructures=data;},
+        error => {console.log(error);
+        })
   }
 
   createForm() {
@@ -35,20 +59,26 @@ export class StructureEditComponent implements OnInit {
       'name': [null, Validators.required],
       'description': [null, Validators.required],
       'type': [null, Validators.required],
-      /*'parent': [null, Validators.required],
-      'chief': [null, Validators.required],
-      'specialities': [null, Validators.required],*/
+      'speciality': [null, Validators.required],
+      'parent': [null, Validators.required],
+      /*'chief': [null, Validators.required],*/
     });
   }
   onCreateStructure(){
     this.strctureService
       .createStructure(this.formGroup.value,this.key)
       .subscribe(
-        data=>{this.createStructure.emit(this.formGroup.value);
-          this.router.navigate(['/structures/' + this.key]).then(r  =>console.log("create Ok"))},
-        error=>console.log(error)
-      );
-  }
+        data=> {
+          this.createStructure.emit(this.formGroup.value);
+          if( this.formGroup.get("parent").value != null) {
+            this.strctureService.changeParent(this.key, data.body.id, this.formGroup.get("parent").value.id).subscribe(
+              data =>  this.router.navigate(['/structures/'+this.key])
+            )}
+          else{
+            this.router.navigate(['/structures/'+this.key])
+          }},
+        error => console.log(error)
+      );}
 
   reset(){
     this.formGroup.reset();

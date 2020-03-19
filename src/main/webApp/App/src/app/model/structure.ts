@@ -16,7 +16,7 @@ export interface Structure{
   type:StructureType,
   parent:Structure,
   chief:Profil,
-  specialities:Array<Speciality>,
+  speciality:Speciality,
   hospitalizations : Array<Hospitalization>
 
 }

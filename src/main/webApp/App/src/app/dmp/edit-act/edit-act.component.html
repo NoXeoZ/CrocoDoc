@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <span class="title">Add new Act</span>
+</mat-toolbar>
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
+
+      <mat-form-field class="form-element">
+        <mat-label>Type Act</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let t of type" [value]="t.toString()">
+            {{t.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="text" placeholder="Description" formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="date" placeholder="CreatedAt" formControlName="createdAt">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput type="time" placeholder="Heure" formControlName="heureCreated">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Validité</mat-label>
+        <mat-select formControlName="draft">
+          <mat-option [value]="false">
+            Not_Valid
+          </mat-option>
+          <mat-option [value]="true">
+            Valid
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <input type='file' (change)="fileChanged($event)">
+      <button type="button" class="btn btn-primary" (click)="uploadDocument()">Upload File</button>
+
+      <button mat-raised-button type="submit" (click)="onCreateAct()">Submit</button>
+
+    </form>
+
+  </div>
+</mat-card>

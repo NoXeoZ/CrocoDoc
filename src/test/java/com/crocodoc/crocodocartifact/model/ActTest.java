@@ -56,7 +56,7 @@ class ActTest {
         assertNotEquals(date, act.getCreatedAt());
         assertEquals(date.getYear(), act.getCreatedAt().getYear());
         assertEquals(date.getMonth(), act.getCreatedAt().getMonth());
-        assertEquals(date.getDayOfMonth(), act.getCreatedAt().getDayOfMonth());
+        assertEquals(date.getDayOfMonth(), act.getCreatedAt().getDay());
     }
 
     @Test

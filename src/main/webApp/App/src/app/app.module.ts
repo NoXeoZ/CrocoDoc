@@ -38,10 +38,18 @@ import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalizati
 import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization/one-hospitaliszation.component";
 import {DialogOverviewAssignementComponent} from './hospitalization/dialog-overview-assignement/dialog-overview-assignement.component';
 import {AssignementHospitalizationComponent} from './hospitalization/update-hospitalization/one-assignement/assignement-of-Hospitalization.component';
+import {OneDmpSearchComponent} from "./dmp/one-dmp/one-dmp-search.component";
+import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
+import {AssignementComponent} from "./dmp/one-assignement/assignement.component";
+import { EditActComponent } from './dmp/edit-act/edit-act.component';
+import {OneActComponent} from "./dmp/one-act/one-act.component";
+import {DialogChefComponent} from "./structure/dialog-overview/dialog-chef.component";
+import {StructureChefComponent} from "./structure/update-structure/one-chef/one-chef.component";
+import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-display.component";
 
 @NgModule({
-  exports: [DialogOverviewAssignementComponent],
-  entryComponents: [DialogOverviewAssignementComponent],
+  exports: [DialogOverviewAssignementComponent,DialogChefComponent],
+  entryComponents: [DialogOverviewAssignementComponent,DialogChefComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,
@@ -64,7 +72,15 @@ import {AssignementHospitalizationComponent} from './hospitalization/update-hosp
     HospitalizationEditComponent,
     OneHospitalizationComponent,
     DialogOverviewAssignementComponent,
-    AssignementHospitalizationComponent
+    AssignementHospitalizationComponent,
+    OneDmpSearchComponent,
+    SejourComponent,
+    AssignementComponent,
+    EditActComponent,
+    OneActComponent,
+    DialogChefComponent,
+    StructureChefComponent,
+    OneActToDisplayComponent
   ],
   imports: [
     BrowserModule,

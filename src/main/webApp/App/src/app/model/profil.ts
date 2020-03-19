@@ -7,7 +7,8 @@ export enum TypeProfil {
 }
 export interface Profil{
   id : number;
-  name:string;
+  firstname:string;
   role : TypeProfil;
 
 }
+
