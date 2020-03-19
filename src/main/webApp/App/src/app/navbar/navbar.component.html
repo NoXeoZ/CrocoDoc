@@ -1,3 +1,4 @@
+<!--
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -42,3 +43,155 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+-->
+
+<div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
+
+  <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " style="width:100%" type="submit">
+    <div class="card bg-transparent border-0">
+      <div class="card-img-top bg-transparent">
+        <img class="my-2" width="40" height="40" src="../assets/icons/Docteur/Doctor-White-64x64.png"/>
+      </div>
+      <div class="card-body bg-white m-0 p-0">
+        <div class="m-2 text-capitalize font-weight-normal">
+          {{fullname}}
+        </div>
+      </div>
+    </div>
+  </button>
+  <!--
+    <button class="btn bg-white m-0 p-0 shadow animated fadeInLeft delay-short3 my-3" style="width:100%" type="submit">-->
+
+  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " style="width:100%">
+    <i class="fas fa-sign-out-alt" style="color:white !important"></i>
+  </button>
+
+  <!--
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+  -->
+</div>
+<div class="row no-gutters px-3 ">
+  <div class="col-1">
+  </div>
+  <div class="col-11 animated fadeInDown delay-short1">
+    <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light ">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2">
+            <i class="fas fa-search" style="color:white !important"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <!--
+          <div class="card shadow">
+              <div class="card-header bg-light">
+                  <h5 class="my-0 font-weight-normal">DMP</h5>
+              </div>
+              <div class="card-body bg-light ">
+                  <h4>I'm a Card</h4>
+                  <p> My card-body is display:flex, flex-direction:column </p>
+                  <input type="button" class="btn btn-outline-primary align-self-end" value=".align-self-end">
+              </div>
+          </div>
+          -->
+  <div class="col-1 ">
+  </div>
+  <div class="col-11 py-3 animated fadeIn delay-short3 "  style="width:100%">
+    <div class="card border-0 shadow-sm ">
+      <table class="table table-borderless">
+        <tbody>
+        <tr class="bg-light" >
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+        <tr class="border-top">
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+
+
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@example.com</td>
+          <td>
+            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@example.com</td>
+          <td>
+            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="container">
+  </div>
+</div>
