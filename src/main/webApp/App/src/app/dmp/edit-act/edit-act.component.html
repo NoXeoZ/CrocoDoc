@@ -6,7 +6,7 @@
     <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
 
       <mat-form-field class="form-element">
-        <mat-label>Type De Structure</mat-label>
+        <mat-label>Type Act</mat-label>
         <mat-select formControlName="type">
           <mat-option *ngFor="let t of type" [value]="t.toString()">
             {{t.toString()}}

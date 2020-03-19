@@ -1,5 +1,8 @@
 package com.crocodoc.crocodocartifact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -33,6 +36,8 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "id_structure", nullable = false)
+    @JsonIgnoreProperties(value = {"chief"},allowSetters = true)
+    @JsonIgnore
     private Structure structure;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)

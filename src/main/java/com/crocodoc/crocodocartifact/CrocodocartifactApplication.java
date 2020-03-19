@@ -32,6 +32,7 @@ public class CrocodocartifactApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Speciality speciality=specialityService.create(new Speciality("pneumo","Corona"));
 		Structure s = structureService.create(new Structure("Big Brother", StructureType.HOSPITAL,speciality));
+		Structure service = structureService.create(new Structure("Service", StructureType.SERVICE,speciality));
 		userService.create(new User("admin", "admin", new Date(), "address", "+666", "admin", "pw", "rib", UserType.ADMIN, s));
 		userService.create(new User("kenza", "yahi", new Date(), "address", "+666", "kenza", "pw", "rib", UserType.DOCTOR, s));
 		userService.create(new User("daniel", "daniel", new Date(), "address", "+666", "daniel", "pw", "rib", UserType.SECRETARY, s));

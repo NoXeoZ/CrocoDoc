@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class StructureComponent implements OnInit {
   constructor(private structureService:StructureService,private route:ActivatedRoute) { }
-  listStructures:any;
+  listStructures:Array<Structure>;
   key:string;
   @Output()
   updateStructure = new EventEmitter<Structure>();
@@ -22,7 +22,14 @@ export class StructureComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data,console.log("structure===>>>>",data)},
+        data=>{this.listStructures=data,console.log("structure===>>>>",data);
+          for(let i = 0; i < this.listStructures.length; i++){
+            this.structureService.getParentFromStructure(this.listStructures[i].id, this.key).subscribe(
+              data => {
+                console.log(data);
+                this.listStructures[i].parent = data
+              }
+            )}},
         error => {console.log(error);
         })
   }

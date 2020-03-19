@@ -21,6 +21,8 @@ public class StructureService {
 
     public Structure update(Structure structure) {
         structureRepository.findById(structure.getId()).orElseThrow(NotFoundException::new);
+        User chef =  structureRepository.findById(structure.getId()).get().getChief();
+        structure.setChief(chef);
         return structureRepository.save(structure);
     }
 
@@ -43,6 +45,12 @@ public class StructureService {
     public Structure setChief(Optional<Structure> s, Optional<User> profil){
         Structure structure=s.get();
         structure.setChief(profil.get());
+        return structureRepository.save(structure);
+    }
+
+    public Structure setParent(Optional<Structure> s, Optional<Structure> parent) {
+        Structure structure=s.get();
+        structure.setParent(parent.get());
         return structureRepository.save(structure);
     }
 }

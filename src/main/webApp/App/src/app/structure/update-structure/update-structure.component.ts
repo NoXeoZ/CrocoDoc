@@ -24,9 +24,9 @@ export class UpdateStructureComponent implements OnInit {
   @Output()
   affectChief = new EventEmitter<Boolean>();
   key: string;
-  listSpecialities: Array<Speciality>;
+  listSpecialities: Array<Speciality> = [];
   structure:Structure;
-  listStructures: Array<Structure>;
+  listStructures: Array<Structure> = [];
   profils: Array<Profil>;
   idProfil: number;
   chief: Profil;
@@ -38,37 +38,49 @@ export class UpdateStructureComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.key = this.route.snapshot.params['key'];
-    this.structureService.getSpecialityFromStructure(this.id,this.key).subscribe(
-      data2=>{
-        this.structureService.getStructure(this.id,this.key).subscribe(data => {
-          this.structure=data;
-          this.formGroup = new FormGroup({
-            name: new FormControl(data.name),
-            description: new FormControl(data.description),
-            type: new FormControl(data.type),
-            speciality: new FormControl(data2.name),
-            parent: new FormControl(data.parent),
-          });
-          this.updateForm();
-        });
+    this.structureService.getParentFromStructure(this.id, this.key).subscribe(
+      data3 => {
+        this.structureService.getSpecialityFromStructure(this.id,this.key).subscribe(
+          data2=>{
+            this.structureService.getStructure(this.id,this.key).subscribe(data => {
+              this.structure=data;
+              this.onGetSpeciality();
+              this.onGetStructures();
+              this.onGetProfils();
+              this.formGroup = new FormGroup({
+                name: new FormControl(data.name),
+                description: new FormControl(data.description),
+                type: new FormControl(data.type),
+                speciality: new FormControl(data2.name),
+                parent: new FormControl(data3),
+              });
+              this.chief = this.structure.chief;
+            });
+          }
+        )
       }
-    );
-    this.onGetSpeciality();
-    this.onGetStructures();
-    this.onGetProfils();
+    )
+
   }
   updateForm(){
+    console.log("yooooo");
+    console.log(this.findIndiceOfSpeciality(this.structure.speciality))
+    console.log("yooooo");
+
     this.formGroup.patchValue({
       speciality : this.listSpecialities[this.findIndiceOfSpeciality(this.structure.speciality)],
       parent : this.listStructures[this.findIndiceOfStructure(this.structure.parent)],
-    })
+    });
   }
 
 
   findIndiceOfSpeciality(speciality: Speciality) {
+
     for(let i = 0; i < this.listSpecialities.length; i++)
       if(this.listSpecialities[i].id == speciality.id)
         return i;
+
+
     return 0;
   }
 
@@ -90,7 +102,8 @@ export class UpdateStructureComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data;},
+        data=>{this.listStructures=data;          this.updateForm();
+        },
         error => {console.log(error);
         })
   }
@@ -99,7 +112,8 @@ export class UpdateStructureComponent implements OnInit {
     this.specialityService
       .getSpecialities(this.key)
       .subscribe(
-        data=>{this.listSpecialities=data;console.log("specialityyyyyyyy",data)},
+        data=>{this.listSpecialities=data;console.log("specialityyyyyyyy",data);          this.updateForm();
+        },
         error => {console.log(error);
         })
   }
@@ -108,7 +122,9 @@ export class UpdateStructureComponent implements OnInit {
     structure.id = this.id;
     this.structureService.updateStructure(structure,this.key).subscribe(
       data => {this.updateStructure.emit(structure),
-                     this.router.navigate(['/structures/'+this.key])},
+        this.structureService.changeParent(this.key, this.id, this.formGroup.get("parent").value.id).subscribe(
+          data =>  this.router.navigate(['/structures/'+this.key])
+        )},
       error => console.log(error)
     );}
 
@@ -128,7 +144,8 @@ export class UpdateStructureComponent implements OnInit {
       this.structureService
         .affecteProfil(this.key,id, this.idProfil)
         .subscribe(
-          data=>{this.affectChief.emit(true);
+          data=>{
+            //this.affectChief.emit(true);
             this.onGetProfils();
             this.refreshList();
           },

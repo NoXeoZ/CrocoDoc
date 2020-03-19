@@ -27,11 +27,18 @@ export class StructureService {
   getSpecialityFromStructure(id: number,key:string) : Observable<Speciality> {
     return this.httpClient.get<Speciality>('/structures/getSpeciality/'+key+'/' + id);
   }
+  getParentFromStructure(id: number,key:string) : Observable<Structure> {
+    return this.httpClient.get<Structure>('/structures/getParent/'+key+'/' + id);
+  }
   getProfils(key: string) : Observable<Array<Profil>> {
     return this.httpClient.get<Array<Profil>>('/user/'+key);
   }
   affecteProfil(key:string,idStructure: number,idProfil:number) : Observable<Array<Structure>> {
     return this.httpClient.get<Array<Structure>>('/structures/'+ key+'/'+idStructure+'/'+idProfil);
+  }
+
+  changeParent(key:string,idStructure: number,idParent:number) : Observable<Structure> {
+    return this.httpClient.get<Structure>('/structures/changeParent/'+ key+'/'+idStructure+'/'+idParent);
   }
 
 }

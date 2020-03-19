@@ -23,4 +23,14 @@ export class OneActComponent implements OnInit {
     console.log("you have choose ==>",act);
     this.actchoose.emit(act);
   }
+
+  getStatus(draft: Boolean):string {
+    let status:string;
+    if(draft==true){
+      status="Brouillon"
+    }else {
+      status="Valid"
+    }
+    return status;
+  }
 }

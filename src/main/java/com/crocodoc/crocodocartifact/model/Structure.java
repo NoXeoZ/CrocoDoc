@@ -1,5 +1,6 @@
 package com.crocodoc.crocodocartifact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -21,20 +22,22 @@ public class Structure {
     @Column(name = "id_type")
     private StructureType type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_parent")
+    @JsonIgnore
     private Structure parent;
 
     @OneToOne
     @JoinColumn(name="id_user_responsible")
     private User chief;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Speciality speciality;
 
     @JsonManagedReference(value="valeur-hopital")
     @JsonIgnoreProperties(value = {"structure"},allowSetters = true)
     @OneToMany(mappedBy = "hospital",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Hospitalization> hospitalizations = new ArrayList<>();
     /** JPA */
     Structure() {}
