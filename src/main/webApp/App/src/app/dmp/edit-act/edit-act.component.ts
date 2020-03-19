@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Hospitalization} from "../../model/Hospitalization";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,7 +12,7 @@ import {Act, ActType} from "../../model/Act";
   styleUrls: ['./edit-act.component.css']
 })
 export class EditActComponent implements OnInit {
-
+  @Input() file: any;
   formGroup: FormGroup;
   type=[ActType.CONSTANT_REPORT,ActType.EXAM,ActType.PRESCRIPTION,ActType.OBSERVATION];
   @Output()
@@ -75,10 +75,13 @@ export class EditActComponent implements OnInit {
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
       if (typeof fileReader.result === 'string') {
-           console.log("" +
-             "")
+           console.log("file upload ===>",fileReader);
       }
     };
+  }
+  fileChanged(e) {
+    this.file = e.target.files[0];
+    console.log("filchanged==>",this.file);
   }
 
 }

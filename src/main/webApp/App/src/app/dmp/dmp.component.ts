@@ -166,6 +166,7 @@ export class DmpComponent implements OnInit {
     this.isStructure=false;
     this.isSejour=false;
     this.isDmp=false;
+    this.hide=false;
     console.log("idUser=>",this.idUser)
     console.log("idAssignement=>",this.assignementId)
     this.dmpService.getActs(this.key,this.assignementId).subscribe(
