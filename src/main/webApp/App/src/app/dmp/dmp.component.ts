@@ -116,6 +116,7 @@ export class DmpComponent implements OnInit {
   }
 
   searchDmp() {
+    this.router.navigate(['/']);
     this.isDmp=true;
     this.isSejour=false;
     this.isStructure=false;
