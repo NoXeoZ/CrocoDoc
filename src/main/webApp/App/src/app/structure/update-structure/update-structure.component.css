@@ -1,4 +1,14 @@
 
+mat-toolbar {
+  background-color: darkgreen;
+}
+mat-toolbar .title{
+  color: white;
+}
+button {
+  background: green;
+}
+
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */
@@ -12,27 +22,25 @@
 
 .form {
   min-width: 50%;
-  max-width: 50%;
+  max-width: 100%;
 }
 .form-element {
-  padding: 25px 0px 15px 2px;
-  width: 100%;
+  padding: 10px 5px 15px 2px;
+  width: 30%;
 }
 
+.button {
+  width: 100%;
+}
 mat-card{
   text-align: center;
-  width: 50%;
+  width: 90%;
   padding: 20px;
   margin-top: 30px;
   margin-left: 60px;
 
 }
-mat-toolbar {
-  background-color: darkgreen;
-}
-mat-toolbar .title{
-  color: white;
-}
-button {
-  background: green;
+table.center-table{
+  margin-right: auto;
+  margin-left: auto;
 }
