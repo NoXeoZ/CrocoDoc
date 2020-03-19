@@ -72,6 +72,7 @@ export class EditActComponent implements OnInit {
   }
 
   uploadDocument() {
+    console.log("file upload");
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
       if (typeof fileReader.result === 'string') {
@@ -80,6 +81,7 @@ export class EditActComponent implements OnInit {
     };
   }
   fileChanged(e) {
+    console.log("filchanged");
     this.file = e.target.files[0];
     console.log("filchanged==>",this.file);
   }

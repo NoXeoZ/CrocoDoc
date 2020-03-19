@@ -132,7 +132,14 @@
           <th class="mat-cell">Status</th>
         </tr>
         <tbody *ngIf="isAssignement">
-        <tr *ngFor="let act of acts;" [act]="act"></tr>
+        <tr *ngFor="let act of acts;" (click)="displayAct(act)" [act]="act"></tr>
+        </tbody>
+      </table>
+
+      <!--afficher les détails d'un act-->
+      <table *ngIf="isAct" class="table-bis">
+        <tbody *ngIf="isAct">
+        <tr   [actToDisplay]= "actToDsiplay"></tr>
         </tbody>
       </table>
 

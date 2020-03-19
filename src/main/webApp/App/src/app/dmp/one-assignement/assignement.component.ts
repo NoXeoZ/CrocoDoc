@@ -12,16 +12,8 @@ export class AssignementComponent implements OnInit {
   @Input()
   assignement: Assignement;
 
-  @Output()
-  private assignementchoose=new EventEmitter<Assignement>();
   constructor() { }
 
   ngOnInit() {
-  }
-
-
-  assignementChoose(assignement: Assignement) {
-    console.log("you choose =>",assignement);
-    this.assignementchoose.emit(assignement);
   }
 }

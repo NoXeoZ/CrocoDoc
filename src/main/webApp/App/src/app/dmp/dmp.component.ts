@@ -32,7 +32,8 @@ export class DmpComponent implements OnInit {
   isSejour=false;
   isAssignement=false;
   idUser:number;
-
+  isAct=false;
+  actToDsiplay:Act;
   dmpsSearch:Array<Dmp>;
   acts:Array<Act>;
   assignementId:number;
@@ -116,6 +117,7 @@ export class DmpComponent implements OnInit {
     this.isStructure=false;
     this.isAssignement=false;
     this.hide=true;
+    this.isAct=false;
     let name:string= this.formGroup.get('search').value;
     console.log(name)
     this.dmpService.
@@ -167,22 +169,16 @@ export class DmpComponent implements OnInit {
     this.isSejour=false;
     this.isDmp=false;
     this.hide=false;
-    console.log("idUser=>",this.idUser)
-    console.log("idAssignement=>",this.assignementId)
     this.dmpService.getActs(this.key,this.assignementId).subscribe(
       data=> {
         this.acts = data;
         console.log("act", data);
         for (let i = 0; i < this.acts.length; i++) {
           this.dmpService.getUSerOfAct(this.key, this.acts[i].id).subscribe(
-            data2 => this.acts[i].user = data2
-          )
-        }
+            data2 => this.acts[i].user = data2)}
       },
       error => {console.log(error);
-      }
-    )
-
+      })
   }
 
   hideAssign() {
@@ -190,4 +186,13 @@ export class DmpComponent implements OnInit {
   }
 
 
+  displayAct(act: Act) {
+     this.isAct=true;
+    this.isAssignement=false;
+    this.isStructure=false;
+    this.isSejour=false;
+    this.isDmp=false;
+    this.hide=false;
+    this.actToDsiplay=act;
+  }
 }

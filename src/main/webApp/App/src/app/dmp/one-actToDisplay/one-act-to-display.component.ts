@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Act} from "../../model/Act";
 
 @Component({
-  selector: 'tr [act]',
-  templateUrl: './one-act.component.html',
-  styleUrls: ['./one-act.component.css']
+  selector: 'tr [actToDisplay]',
+  templateUrl: './one-act-to-display.component.html',
+  styleUrls: ['./one-act-to-display.component.css']
 })
-export class OneActComponent implements OnInit {
+export class OneActToDisplayComponent implements OnInit {
 
   @Input()
-  act: Act;
+  actToDisplay: Act;
 
   constructor() { }
 

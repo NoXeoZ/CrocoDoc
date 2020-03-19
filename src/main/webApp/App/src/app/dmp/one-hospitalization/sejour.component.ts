@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Hospitalization} from "../../model/Hospitalization";
 import {HospitalizationService} from "../../hospitalization/hospitalization.service";
-import {Assignement} from "../../model/assignement";
-import {Dmp} from "../../model/dmp";
 
 @Component({
   selector: 'tr [sejour]',
@@ -14,9 +12,6 @@ export class SejourComponent implements OnInit {
   @Input()
   sejour: Hospitalization;
   private key: string;
-
-  @Output()
-  private sejourchoose=new EventEmitter<Array<Assignement>>();
 
   constructor(private hospitalizationService: HospitalizationService,private route :ActivatedRoute) { }
 
@@ -69,10 +64,5 @@ export class SejourComponent implements OnInit {
     let d2 = new Date(d);
     return "" + this.formatDate(d2.getDate(), 2) + "/" + this.formatDate(d2.getMonth()+1, 2) + "/" + this.formatDate(d2.getFullYear(), 4)+ '-> ' + this.formatDate(d2.getHours(), 2) + 'h' + this.formatDate(d2.getMinutes(), 2);
 
-  }
-
-  sejourChoose(assignments: Array<Assignement>) {
-    console.log("you have choose ==>",assignments);
-    this.sejourchoose.emit(assignments);
   }
 }

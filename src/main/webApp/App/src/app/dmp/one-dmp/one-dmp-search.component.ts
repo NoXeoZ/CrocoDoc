@@ -10,16 +10,9 @@ export class OneDmpSearchComponent implements OnInit {
 
   @Input()
   dmpSearch: Dmp;
-  @Output()
-  private dmpchoose=new EventEmitter<Dmp>();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  dmpChoose(dmpSearch: Dmp) {
-    console.log("you have choose ==>",dmpSearch);
-    this.dmpchoose.emit(dmpSearch);
   }
 }
