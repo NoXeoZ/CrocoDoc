@@ -44,6 +44,7 @@ export class UpdateStructureComponent implements OnInit {
           data2=>{
             this.structureService.getStructure(this.id,this.key).subscribe(data => {
               this.structure=data;
+              this.structure.parent=data3;
               this.onGetSpeciality();
               this.onGetStructures();
               this.onGetProfils();
@@ -121,10 +122,14 @@ export class UpdateStructureComponent implements OnInit {
     let structure: Structure =  this.formGroup.value;
     structure.id = this.id;
     this.structureService.updateStructure(structure,this.key).subscribe(
-      data => {this.updateStructure.emit(structure),
-        this.structureService.changeParent(this.key, this.id, this.formGroup.get("parent").value.id).subscribe(
-          data =>  this.router.navigate(['/structures/'+this.key])
-        )},
+      data => {this.updateStructure.emit(structure);
+        if( this.formGroup.get("parent").value != null) {
+          this.structureService.changeParent(this.key, this.id, this.formGroup.get("parent").value.id).subscribe(
+            data =>  this.router.navigate(['/structures/'+this.key])
+          )}
+        else{
+          this.router.navigate(['/structures/'+this.key])
+        }},
       error => console.log(error)
     );}
 

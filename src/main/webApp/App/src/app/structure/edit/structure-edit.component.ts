@@ -70,17 +70,15 @@ export class StructureEditComponent implements OnInit {
       .subscribe(
         data=> {
           this.createStructure.emit(this.formGroup.value);
-          console.log(data)
-          this.strctureService.changeParent(this.key, data.body.id, this.formGroup.get("parent").value.id).subscribe(
-            data2 => {
-              this.router.navigate(['/structures/' + this.key]).then(r => console.log("create Ok"))
-
-            }
-          )
-        },
-        error=>console.log(error)
-      );
-  }
+          if( this.formGroup.get("parent").value != null) {
+            this.strctureService.changeParent(this.key, data.body.id, this.formGroup.get("parent").value.id).subscribe(
+              data =>  this.router.navigate(['/structures/'+this.key])
+            )}
+          else{
+            this.router.navigate(['/structures/'+this.key])
+          }},
+        error => console.log(error)
+      );}
 
   reset(){
     this.formGroup.reset();

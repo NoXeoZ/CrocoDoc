@@ -71,4 +71,14 @@ export class EditActComponent implements OnInit {
       );
   }
 
+  uploadDocument() {
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      if (typeof fileReader.result === 'string') {
+           console.log("" +
+             "")
+      }
+    };
+  }
+
 }
