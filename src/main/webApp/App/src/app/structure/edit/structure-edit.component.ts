@@ -18,8 +18,9 @@ export class StructureEditComponent implements OnInit {
 
   @Output()
   createStructure= new EventEmitter<Structure>();
-  private key: string;
-  private listSpecialities: Array<Speciality>;
+  key: string;
+  listSpecialities: Array<Speciality>;
+  listStructures: Array<Structure>;
 
   constructor(private formBuilder: FormBuilder,
               private strctureService:StructureService,
@@ -33,6 +34,7 @@ export class StructureEditComponent implements OnInit {
     this.key = this.route.snapshot.params['key'];
     this.createForm();
     this.onGetSpeciality();
+    this.onGetStructures();
   }
   onGetSpeciality(){
     this.specialityService
@@ -43,14 +45,23 @@ export class StructureEditComponent implements OnInit {
         })
   }
 
+  onGetStructures(){
+    this.strctureService
+      .getStructures(this.key)
+      .subscribe(
+        data=>{this.listStructures=data;},
+        error => {console.log(error);
+        })
+  }
+
   createForm() {
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
       'description': [null, Validators.required],
       'type': [null, Validators.required],
-      'speciality': [null, Validators.required]
-      /*'parent': [null, Validators.required],
-      'chief': [null, Validators.required],*/
+      'speciality': [null, Validators.required],
+      'parent': [null, Validators.required],
+      /*'chief': [null, Validators.required],*/
     });
   }
   onCreateStructure(){

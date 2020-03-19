@@ -6,6 +6,9 @@ import {StructureService} from "../structure.service";
 import {Speciality} from "../../model/speciality";
 import {SpecialityService} from "../../speciality/speciality.service";
 import {Dmp} from "../../model/dmp";
+import {Profil} from "../../model/profil";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogChefComponent} from "../dialog-overview/dialog-chef.component";
 
 @Component({
   selector: 'app-update-structure',
@@ -18,12 +21,19 @@ export class UpdateStructureComponent implements OnInit {
   type=[ StructureType.FUNCTIONAL_UNIT,StructureType.HOSPITAL,StructureType.POLE,StructureType.SERVICE,StructureType.HOSPITAL_UNIT];
   @Output()
   updateStructure=new EventEmitter<Structure>();
+  @Output()
+  affectChief = new EventEmitter<Boolean>();
   key: string;
   listSpecialities: Array<Speciality>;
   structure:Structure;
+  listStructures: Array<Structure>;
+  profils: Array<Profil>;
+  idProfil: number;
+  chief: Profil;
   constructor(private structureService : StructureService,
               private route: ActivatedRoute,
-              private router:Router,
+              protected router: Router,
+              private dialog: MatDialog,
               private specialityService:SpecialityService) { }
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -37,24 +47,52 @@ export class UpdateStructureComponent implements OnInit {
             description: new FormControl(data.description),
             type: new FormControl(data.type),
             speciality: new FormControl(data2.name),
+            parent: new FormControl(data.parent),
           });
           this.updateForm();
         });
       }
     );
     this.onGetSpeciality();
+    this.onGetStructures();
+    this.onGetProfils();
   }
   updateForm(){
     this.formGroup.patchValue({
       speciality : this.listSpecialities[this.findIndiceOfSpeciality(this.structure.speciality)],
+      parent : this.listStructures[this.findIndiceOfStructure(this.structure.parent)],
     })
   }
+
 
   findIndiceOfSpeciality(speciality: Speciality) {
     for(let i = 0; i < this.listSpecialities.length; i++)
       if(this.listSpecialities[i].id == speciality.id)
         return i;
     return 0;
+  }
+
+  findIndiceOfStructure(parent: Structure) {
+    for(let i = 0; i < this.listStructures.length; i++)
+      if(this.listStructures[i].id == parent.id)
+        return i;
+    return 0;
+  }
+  onGetProfils(){
+    this.structureService
+      .getProfils(this.key)
+      .subscribe(
+        data=>{this.profils=data;},
+        error => {console.log(error);
+        })
+  }
+  onGetStructures(){
+    this.structureService
+      .getStructures(this.key)
+      .subscribe(
+        data=>{this.listStructures=data;},
+        error => {console.log(error);
+        })
   }
   onGetSpeciality(){;
     console.log("get spéciality")
@@ -73,4 +111,40 @@ export class UpdateStructureComponent implements OnInit {
                      this.router.navigate(['/structures/'+this.key])},
       error => console.log(error)
     );}
+
+  affecteChief(id:any) :void {
+    const  dialogConfig  =  new  MatDialogConfig ( ) ;
+    dialogConfig . disableClose  =  true ;
+    dialogConfig . id  =  "composant modal" ;
+    dialogConfig .height  =  "350 px" ;
+    dialogConfig . width  =  "600px" ;
+    const dialogRef = this.dialog.open(DialogChefComponent,{
+      width:"350",height:"600",
+      data:this.profils,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.idProfil = result.data;
+      this.structureService
+        .affecteProfil(this.key,id, this.idProfil)
+        .subscribe(
+          data=>{this.affectChief.emit(true);
+            this.onGetProfils();
+            this.refreshList();
+          },
+          error => {console.log("errrrrrror affectation chief",error)}
+        );
+    });
+  }
+  refreshList(){
+    this.structureService.getStructure(this.id,this.key).subscribe(data => {
+        this.chief=data.chief;
+
+      }
+    );
+  }
+
+  deleteChefStructure($event: any) {
+
+  }
 }

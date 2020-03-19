@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Structure} from "../model/structure";
 import {Speciality} from "../model/speciality";
+import {Profil} from "../model/profil";
 type EntityResponseType = HttpResponse<Structure>;
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,11 @@ export class StructureService {
   getSpecialityFromStructure(id: number,key:string) : Observable<Speciality> {
     return this.httpClient.get<Speciality>('/structures/getSpeciality/'+key+'/' + id);
   }
+  getProfils(key: string) : Observable<Array<Profil>> {
+    return this.httpClient.get<Array<Profil>>('/user/'+key);
+  }
+  affecteProfil(key:string,idStructure: number,idProfil:number) : Observable<Array<Structure>> {
+    return this.httpClient.get<Array<Structure>>('/structures/'+ key+'/'+idStructure+'/'+idProfil);
+  }
+
 }

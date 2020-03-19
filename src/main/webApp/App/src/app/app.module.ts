@@ -43,10 +43,12 @@ import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
 import {AssignementComponent} from "./dmp/one-assignement/assignement.component";
 import { EditActComponent } from './dmp/edit-act/edit-act.component';
 import {OneActComponent} from "./dmp/one-act/one-act.component";
+import {DialogChefComponent} from "./structure/dialog-overview/dialog-chef.component";
+import {StructureChefComponent} from "./structure/update-structure/one-chef/one-chef.component";
 
 @NgModule({
-  exports: [DialogOverviewAssignementComponent],
-  entryComponents: [DialogOverviewAssignementComponent],
+  exports: [DialogOverviewAssignementComponent,DialogChefComponent],
+  entryComponents: [DialogOverviewAssignementComponent,DialogChefComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,
@@ -74,7 +76,9 @@ import {OneActComponent} from "./dmp/one-act/one-act.component";
     SejourComponent,
     AssignementComponent,
     EditActComponent,
-    OneActComponent
+    OneActComponent,
+    DialogChefComponent,
+    StructureChefComponent
   ],
   imports: [
     BrowserModule,

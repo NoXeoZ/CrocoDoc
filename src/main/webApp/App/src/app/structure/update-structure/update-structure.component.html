@@ -30,8 +30,31 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button type="submit" (click)="onUpdateStructure()"
-              [disabled]="!formGroup.valid" >Submit
+      <mat-form-field class="form-element">
+        <mat-label>Parent</mat-label>
+        <mat-select formControlName="parent">
+          <mat-option *ngFor="let parent of listStructures" [value]="parent">
+            {{parent.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button color="primary" (click)="affecteChief(id)">Affecter Chef</button>
+
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">First Name</th>
+          <th class="mat-cell">Role</th>
+        </tr>
+        <tbody *ngIf="chief">
+
+        <tr (deleteChefInStructure)="deleteChefStructure($event)" [chefStructure]="chief" >
+        </tr>
+        </tbody>
+      </table>
+
+      <button mat-raised-button type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Submit
       </button>
     </form>
   </div>

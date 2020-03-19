@@ -5,6 +5,7 @@ import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.model.User;
 import com.crocodoc.crocodocartifact.service.SpecialityService;
 import com.crocodoc.crocodocartifact.service.StructureService;
+import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ public class StructureResource {
     private StructureService structureService;
     @Autowired
     private SpecialityService specialityService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/structures/{key}")
     public List<Structure> getAll(@PathVariable String key) {
@@ -53,9 +56,7 @@ public class StructureResource {
 
     @GetMapping("structures/getSpeciality/{key}/{id}")
     public Optional<Speciality> getSpecialityFromStructure(@PathVariable Long id, @PathVariable String key) {
-        System.out.println("get speciality");
         long idSpeciality=structureService.getOne(id).get().getSpeciality().getId();
-        System.out.println("get speciality  iiidddd==+>"+idSpeciality);
         User p=Authentification.getUser(key);
         if(p!=null) {
             return specialityService.getOne(idSpeciality);
@@ -79,6 +80,23 @@ public class StructureResource {
         User p=Authentification.getUser(key);
         if(p!=null) {
             return structureService.update(structure);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("structures/{key}/{idStructure}/{idProfil}")
+    public Iterable<Structure> affectChief(@PathVariable String key, @PathVariable long idStructure, @PathVariable long idProfil) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            if(!structureService.getOne(idStructure).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idStructure  +  " inconnu");
+
+            if(!userService.getUser(idProfil).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idProfil  +  " inconnu");
+
+            structureService.setChief(structureService.getOne(idStructure), userService.getUser(idStructure));
+            return structureService.getAll();
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
