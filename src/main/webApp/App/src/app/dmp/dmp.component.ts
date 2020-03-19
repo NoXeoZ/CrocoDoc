@@ -96,8 +96,13 @@ export class DmpComponent implements OnInit {
     this.dmpService
       .logOut(this.loginlist[0])
       .subscribe(
-        data=>{this.disconnectEvent.emit(data);
-          console.log("emiiiit event");
+        data=>{
+          setTimeout(() =>
+            {
+              window.location.replace("http://localhost:8080")
+            },
+            0);
+          //this.disconnect.emit(data);
         },
         error=> {
           console.log(error);
