@@ -6,6 +6,9 @@ export enum ActType{
   EXAM='EXAM',
   PRESCRIPTION='PRESCRIPTION',
   CONSTANT_REPORT='CONSTANT_REPORT',
+  CR='CR',
+  ORDONNANCE='ORDONNANCE',
+  RADIO='RADIO'
 }
 export interface Act{
   id : number;

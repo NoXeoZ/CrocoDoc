@@ -90,10 +90,6 @@ public class DMPResource {
     public List<Hospitalization> getAllHospitalization(@PathVariable String key) {
         User p= Authentification.getUser(key);
         if(p!=null) {
-            List<Hospitalization> lst =  dmpService.getAllHospitalization();
-            for(int i = 0; i < lst.size(); i++){
-                System.out.println(lst.get(i));
-            }
             return dmpService.getAllHospitalization();
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
@@ -153,8 +149,6 @@ public class DMPResource {
     @PostMapping("/dmp/hospitalization/assignment/create/{key}")
     public Assignment createHospitalization(@PathVariable String key, @RequestBody Assignment a) {
         User p= Authentification.getUser(key);
-        System.out.println("here");
-        System.out.println(a);
         if(p!=null) {
             return dmpService.createAssignment(a);
         }else{
@@ -187,7 +181,6 @@ public class DMPResource {
     public Iterable<Act> getAllActsForAssignment(@PathVariable String key, @PathVariable long id) {
         User p = Authentification.getUser(key);
         Iterable<Act> acts= dmpService.getAllActsForAssignment(id);
-        acts.forEach(act -> System.out.println(act));
         if (p != null) {
             return dmpService.getAllActsForAssignment(id);
         } else {

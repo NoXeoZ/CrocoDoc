@@ -76,6 +76,10 @@ export class DmpComponent implements OnInit {
             }
             this.hide = false;
 
+            this.isAssignement = true;
+            this.isAct = false;
+            console.log("here");
+
           },
           error => {console.log(error);
           }
