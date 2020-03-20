@@ -1,20 +1,77 @@
-<mat-toolbar>
-  <a mat-fab class="icon" routerLink="/structures/{{key}}/edit"><mat-icon> add</mat-icon></a>
-  <span class="title">Structure</span>
-</mat-toolbar>
-<mat-card class="card">
-  <table border="true" >
-    <tr >
-      <th class="mat-cell">Name</th>
-      <th class="mat-cell">Description</th>
-      <th class="mat-cell">Type</th>
-      <th class="mat-cell">Parent</th>
-      <th class="mat-cell">Speciality</th>
-      <th class="mat-cell">chief</th>
+<div class="p-3 text-center" >
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4" >
+      <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class ="font-weight-normal text-center m-1">
+              Structures
+          </h3>
+        </div>
+      </div>
+    </div>
+</div>
+
+<table class=" table animated fadeIn delay-short1 table-borderless py-3 ">
+  <tbody>
+    <tr class=" bg-red blue lighten-2 shadow text-light">
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Parent</th>
+      <th>Speciality</th>
+      <th>Chief</th>
+      <th></th>
     </tr>
-    <tbody *ngIf="listStructures">
-    <tr *ngFor="let s of listStructures;" [structure]="s" >
-    </tr>
-    </tbody>
-  </table>
-</mat-card>
+  <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let s of listStructures;" [structure]="s" >
+  <!--
+    <td>John</td>
+    <td>Doe</td>
+    <td>john@example.com</td>
+    <td>
+      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+        <i class="fas fa-pen  "style="color:white !important"></i>
+      </button>
+
+    </td>
+    <td>
+      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+        <i class="fas fa-trash " style="color:white !important"></i>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td>Mary</td>
+    <td>Moe</td>
+    <td>mary@example.com</td>
+    <td>
+      <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+        <i class="fas fa-pen  "style="color:white !important"></i>
+      </button>
+
+    </td>
+    <td>
+      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+        <i class="fas fa-trash " style="color:white !important"></i>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td>July</td>
+    <td>Dooley</td>
+    <td>july@example.com</td>
+    <td>
+      <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+        <i class="fas fa-pen  "style="color:white !important"></i>
+      </button>
+
+    </td>
+    <td>
+      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+        <i class="fas fa-trash " style="color:white !important"></i>
+      </button>
+    </td>
+    -->
+  </tr>
+  </tbody>
+</table>
+</div>
