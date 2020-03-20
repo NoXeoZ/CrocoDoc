@@ -2,12 +2,15 @@ package com.crocodoc.crocodocartifact.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
@@ -21,9 +24,7 @@ public class Act {
     @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "creation_date", nullable = false)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
-    private Timestamp createdAt;
+    private Date createdAt;
     @Column(name = "draft", nullable = false)
     private boolean draft = true;
 
@@ -33,16 +34,19 @@ public class Act {
 
     @Lob
     @Column(name = "images")
-    @Basic(fetch = FetchType.LAZY)
+    @Basic(fetch = FetchType.EAGER)
     private HashMap<String, byte[]> images= new HashMap<>();
 
     @ManyToOne
     @JoinColumn(name = "id_assignment", nullable = false)
     @JsonBackReference
+    @JsonIgnoreProperties(value = {"acts"},allowSetters = true)
+
     private Assignment assignment;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
+    @JsonIgnore
     private User user;
 
     /** JPA */
@@ -65,12 +69,12 @@ public class Act {
 
     public void setDescription(String description) {
         if(!draft)
-            throw new IllegalStateException("The act has been validate and can no longer be modify.");
+            throw new IllegalStateException("The act has been validatljljle and can no longer be modify.");
         this.description = Objects.requireNonNull(description);
     }
 
-    public LocalDateTime getCreatedAt() {
-        return (createdAt != null) ? createdAt.toLocalDateTime() : null;
+    public Date getCreatedAt() {
+        return (createdAt != null) ? createdAt : null;
     }
 
     public ActType getType() {
@@ -78,13 +82,15 @@ public class Act {
     }
 
     public void setType(ActType type) {
-        if(!draft)
-            throw new IllegalStateException("The act has been validate and can no longer be modify.");
         this.type = Objects.requireNonNull(type);
     }
 
     public boolean isDraft() {
         return draft;
+    }
+
+    public void setDraft(boolean draft){
+        this.draft = draft;
     }
 
     public void validate() {
@@ -130,9 +136,7 @@ public class Act {
     }
 
     public void setAssignment(Assignment assignment) {
-        if(!draft)
-            throw new IllegalStateException("The act has been validate and can no longer be modify.");
-        this.assignment = Objects.requireNonNull(assignment);
+        this.assignment = (assignment);
     }
 
     public User getUser() {
@@ -140,9 +144,7 @@ public class Act {
     }
 
     public void setUser(User user) {
-        if(!draft)
-            throw new IllegalStateException("The act has been validate and can no longer be modify.");
-        this.user = Objects.requireNonNull(user);
+        this.user = (user);
     }
 
     @Override
@@ -162,5 +164,19 @@ public class Act {
     @Override
     public int hashCode() {
         return Objects.hash(id, type, user, assignment);
+    }
+
+    @Override
+    public String toString() {
+        return "Act{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                ", draft=" + draft +
+                ", type=" + type +
+                ", images=" + images +
+                ", assignment=" + assignment +
+                ", user=" + user +
+                '}';
     }
 }

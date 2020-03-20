@@ -1,8 +1,11 @@
 package com.crocodoc.crocodocartifact.resource;
 
+import com.crocodoc.crocodocartifact.model.Speciality;
 import com.crocodoc.crocodocartifact.model.Structure;
 import com.crocodoc.crocodocartifact.model.User;
+import com.crocodoc.crocodocartifact.service.SpecialityService;
 import com.crocodoc.crocodocartifact.service.StructureService;
+import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +13,16 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StructureResource {
     @Autowired
     private StructureService structureService;
+    @Autowired
+    private SpecialityService specialityService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/structures/{key}")
     public List<Structure> getAll(@PathVariable String key) {
@@ -46,6 +54,29 @@ public class StructureResource {
         }
     }
 
+    @GetMapping("structures/getSpeciality/{key}/{id}")
+    public Optional<Speciality> getSpecialityFromStructure(@PathVariable Long id, @PathVariable String key) {
+        long idSpeciality=structureService.getOne(id).get().getSpeciality().getId();
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return specialityService.getOne(idSpeciality);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+
+    @GetMapping("structures/getParent/{key}/{id}")
+    public Structure getParentFromStructure(@PathVariable Long id, @PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return structureService.getOne(id).get().getParent();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+
     @DeleteMapping("structures/{key}/{id}")
     public void delete(@PathVariable String key, @PathVariable Long id) {
         User p=Authentification.getUser(key);
@@ -62,6 +93,47 @@ public class StructureResource {
         if(p!=null) {
             return structureService.update(structure);
         }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("structures/{key}/{idStructure}/{idProfil}")
+    public Iterable<Structure> affectChief(@PathVariable String key, @PathVariable long idStructure, @PathVariable long idProfil) {
+        User p=Authentification.getUser(key);
+        System.out.println("here");
+        if(p!=null) {
+            if(!structureService.getOne(idStructure).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idStructure  +  " inconnu");
+
+            if(!userService.getUser(idProfil).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idProfil  +  " inconnu");
+
+            System.out.println("founddddd");
+            structureService.setChief(structureService.getOne(idStructure), userService.getUser(idProfil));
+            return structureService.getAll();
+        }else{
+            System.out.println("not found!!");
+
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
+    @GetMapping("structures/changeParent/{key}/{idStructure}/{idParent}")
+    public Iterable<Structure> changeParent(@PathVariable String key, @PathVariable long idStructure, @PathVariable long idParent) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            if(!structureService.getOne(idStructure).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idStructure  +  " inconnu");
+
+            if(!structureService.getOne(idParent).isPresent())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  idStructure  +  " inconnu");
+
+            System.out.println("founddddd");
+            structureService.setParent(structureService.getOne(idStructure), structureService.getOne(idParent));
+            return structureService.getAll();
+        }else{
+            System.out.println("not found!!");
+
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
