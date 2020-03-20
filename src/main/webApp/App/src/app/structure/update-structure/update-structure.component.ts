@@ -9,6 +9,7 @@ import {Dmp} from "../../model/dmp";
 import {Profil} from "../../model/profil";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DialogChefComponent} from "../dialog-overview/dialog-chef.component";
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-update-structure',
@@ -29,7 +30,7 @@ export class UpdateStructureComponent implements OnInit {
   listStructures: Array<Structure> = [];
   profils: Array<Profil>;
   idProfil: number;
-  chief: Profil;
+  chief: User;
   constructor(private structureService : StructureService,
               private route: ActivatedRoute,
               protected router: Router,
@@ -65,11 +66,11 @@ export class UpdateStructureComponent implements OnInit {
   }
   updateForm(){
     console.log("yooooo");
-    console.log(this.findIndiceOfSpeciality(this.structure.speciality))
+    console.log(this.findIndiceOfSpeciality(this.structure.specialities))
     console.log("yooooo");
 
     this.formGroup.patchValue({
-      speciality : this.listSpecialities[this.findIndiceOfSpeciality(this.structure.speciality)],
+      speciality : this.listSpecialities[this.findIndiceOfSpeciality(this.structure.specialities)],
       parent : this.listStructures[this.findIndiceOfStructure(this.structure.parent)],
     });
   }
@@ -132,41 +133,4 @@ export class UpdateStructureComponent implements OnInit {
         }},
       error => console.log(error)
     );}
-
-  affecteChief(id:any) :void {
-    const  dialogConfig  =  new  MatDialogConfig ( ) ;
-    dialogConfig . disableClose  =  true ;
-    dialogConfig . id  =  "composant modal" ;
-    dialogConfig .height  =  "350 px" ;
-    dialogConfig . width  =  "600px" ;
-    const dialogRef = this.dialog.open(DialogChefComponent,{
-      width:"350",height:"600",
-      data:this.profils,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.idProfil = result.data;
-      this.structureService
-        .affecteProfil(this.key,id, this.idProfil)
-        .subscribe(
-          data=>{
-            //this.affectChief.emit(true);
-            this.onGetProfils();
-            this.refreshList();
-          },
-          error => {console.log("errrrrrror affectation chief",error)}
-        );
-    });
-  }
-  refreshList(){
-    this.structureService.getStructure(this.id,this.key).subscribe(data => {
-        this.chief=data.chief;
-
-      }
-    );
-  }
-
-  deleteChefStructure($event: any) {
-
-  }
 }

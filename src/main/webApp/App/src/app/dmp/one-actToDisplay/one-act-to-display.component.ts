@@ -35,7 +35,7 @@ export class OneActToDisplayComponent implements OnInit {
     let s = this.actToDisplay.type.toString();
     s += "\n\n\n\n\nDescription : " + this.actToDisplay.description;
     s += "\n\n\n\n\nFait le : " + (this.dateToString(this.actToDisplay.createdAt));
-    s += "\n\nRédigé par : " + this.actToDisplay.user.firstname;
+    s += "\n\nRédigé par : " + this.actToDisplay.user.name;
     return s;
   }
 
