@@ -12,7 +12,7 @@
 </div>
 
 <table class=" table animated fadeIn delay-short1 table-borderless py-3 ">
-  <tbody>
+  <tbody *ngIf="listStructures">
     <tr class=" bg-red blue lighten-2 shadow text-light">
       <th>Name</th>
       <th>Description</th>
@@ -23,55 +23,12 @@
       <th></th>
     </tr>
   <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let s of listStructures;" [structure]="s" >
-  <!--
-    <td>John</td>
-    <td>Doe</td>
-    <td>john@example.com</td>
-    <td>
-      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-        <i class="fas fa-pen  "style="color:white !important"></i>
-      </button>
-
-    </td>
-    <td>
-      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-        <i class="fas fa-trash " style="color:white !important"></i>
-      </button>
-    </td>
   </tr>
-  <tr>
-    <td>Mary</td>
-    <td>Moe</td>
-    <td>mary@example.com</td>
-    <td>
-      <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-        <i class="fas fa-pen  "style="color:white !important"></i>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn bg-light blue lighten-2 z-depth-2 animated fadeInUp" routerLink="/structures/{{key}}/edit">
+        <i class="fas fa-plus" style="color:white !important"></i>
       </button>
-
-    </td>
-    <td>
-      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-        <i class="fas fa-trash " style="color:white !important"></i>
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td>July</td>
-    <td>Dooley</td>
-    <td>july@example.com</td>
-    <td>
-      <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-        <i class="fas fa-pen  "style="color:white !important"></i>
-      </button>
-
-    </td>
-    <td>
-      <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-        <i class="fas fa-trash " style="color:white !important"></i>
-      </button>
-    </td>
-    -->
-  </tr>
+    </div>
   </tbody>
 </table>
 </div>

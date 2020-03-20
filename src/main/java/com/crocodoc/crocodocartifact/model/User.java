@@ -37,7 +37,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "id_structure", nullable = false)
     @JsonIgnoreProperties(value = {"chief"},allowSetters = true)
-    @JsonIgnore
+    //@JsonIgnore
     private Structure structure;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)

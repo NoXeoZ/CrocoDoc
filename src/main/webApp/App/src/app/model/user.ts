@@ -1,6 +1,4 @@
 import {Structure} from "./structure";
-import {Speciality} from "./speciality";
-
 
 export enum TypeUser{
   SECRETARY='SECRETARY',

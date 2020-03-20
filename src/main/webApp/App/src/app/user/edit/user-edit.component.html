@@ -38,10 +38,10 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <mat-label>Choose UserType</mat-label>
+        <mat-label>Choose Structure</mat-label>
         <mat-select formControlName="structure">
-          <mat-option *ngFor="let s of structures" [value]="s">
-            {{s.id}} {{s.name}}
+          <mat-option *ngFor="let struct of structures" [value]="struct">
+            {{struct.id}} {{struct.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
