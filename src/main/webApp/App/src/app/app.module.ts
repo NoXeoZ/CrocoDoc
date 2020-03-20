@@ -51,10 +51,18 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { UpdateUserRegularComponent } from './user-regular/update-user-regular/update-user-regular.component';
 import {UserRegularComponent} from "./user-regular/user-regular.component";
 
+import {OneDmpSearchComponent} from "./dmp/one-dmp/one-dmp-search.component";
+import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
+import {AssignementComponent} from "./dmp/one-assignement/assignement.component";
+import { EditActComponent } from './dmp/edit-act/edit-act.component';
+import {OneActComponent} from "./dmp/one-act/one-act.component";
+import {DialogChefComponent} from "./structure/dialog-overview/dialog-chef.component";
+import {StructureChefComponent} from "./structure/update-structure/one-chef/one-chef.component";
+import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-display.component";
 
 @NgModule({
-  exports: [DialogOverviewAssignementComponent],
-  entryComponents: [DialogOverviewAssignementComponent],
+  exports: [DialogOverviewAssignementComponent,DialogChefComponent],
+  entryComponents: [DialogOverviewAssignementComponent,DialogChefComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,
@@ -84,6 +92,15 @@ import {UserRegularComponent} from "./user-regular/user-regular.component";
     AssignementHospitalizationComponent,
     UpdateUserRegularComponent,
     UserRegularComponent,
+    AssignementHospitalizationComponent,
+    OneDmpSearchComponent,
+    SejourComponent,
+    AssignementComponent,
+    EditActComponent,
+    OneActComponent,
+    DialogChefComponent,
+    StructureChefComponent,
+    OneActToDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -127,9 +144,8 @@ import {UserRegularComponent} from "./user-regular/user-regular.component";
         MatNativeDateModule,
       FontAwesomeModule
 
-    ],
+  ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

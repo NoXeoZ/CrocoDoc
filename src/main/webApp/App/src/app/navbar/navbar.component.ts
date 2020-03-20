@@ -50,12 +50,16 @@ export class NavbarComponent {
   }
 
   desconnect() {
-    console.log("dicon");
     this.dmpService
       .logOut(this.loginlistNav[0])
       .subscribe(
-        data=>{this.disconnect.emit(data);
-          console.log("emiiiit event");
+        data=>{
+          setTimeout(() =>
+            {
+              window.location.replace("http://localhost:8080")
+            },
+            0);
+          //this.disconnect.emit(data);
         },
         error=> {
           console.log(error);

@@ -10,13 +10,6 @@ export enum StructureType{
   HOSPITAL_UNIT='HOSPITAL_UNIT',
 }
 export interface Structure{
-  id : number;
-  name:string;
-  description : string;
-  type:StructureType,
-  parent:Structure,
-  chief:User,
-  specialities:Array<Speciality>,
-  hospitalizations : Array<Hospitalization>
+g
 
 }

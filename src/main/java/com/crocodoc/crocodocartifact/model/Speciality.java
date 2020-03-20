@@ -11,10 +11,14 @@ public class Speciality {
     private long id ;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     Speciality() {}
+
+    public Speciality(String name) {
+        this.name = Objects.requireNonNull(name);
+    }
 
     public Speciality(String name, String description) {
         this.name = Objects.requireNonNull(name);
@@ -38,7 +42,7 @@ public class Speciality {
     }
 
     public void setDescription(String description) {
-        this.description = Objects.requireNonNull(description);
+        this.description = (description);
     }
 
     @Override
