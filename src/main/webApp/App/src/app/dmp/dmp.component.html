@@ -1,37 +1,41 @@
-<!--<mat-toolbar>
+<mat-toolbar>
   <mat-toolbar-row>
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <span>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      *ngIf="isHandset$ | async">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>
         <a routerLink="/profil">
       <img width="75%" src="assets/img/doctor.png" alt="Doctor" />
         </a>
     </span>
-  <span>
+    <span>
         <a routerLink="/profil">
          <input type="text" readonly="true" value="{{fullname}}" >
       </a>
    </span>
-  <span>
+    <span>
         <a (click)="desconnect()">
       <img width="75%" src="assets/img/logout.png" alt="logout" />
         </a>
   </span>
-  <span>
-        <input type="text" >
-      <a class="icon" href=""><mat-icon>search</mat-icon></a>
+    <span>
+    <form [formGroup]="formGroup"  *ngIf="formGroup">
+
+      <input type="text" formControlName="search">
+      <button type="submit" (click)="searchDmp()"><mat-icon>search</mat-icon></button>
+
+    </form>
  </span>
-  <span>
+    <span>
         <a mat-list-item class="icon" routerLink="/home">
         <mat-icon>help</mat-icon></a>
  </span>
-  <span class="span">12:14 01/02/2020</span>
+    <span class="span">12:14 01/02/2020</span>
   </mat-toolbar-row>
 
   <mat-sidenav-container class="sidenav-container">
@@ -60,194 +64,86 @@
         <div *ngIf="isStructure"><span>U</span></div>
         <div *ngIf="isStructure"><span>R</span></div>
 
+        <div *ngIf="isAssignement"><a (click)="hideAssign()" mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
+          <span><mat-icon>broken_image</mat-icon></span></a>
+        </div>
+        <div *ngIf="isAssignement"><span><mat-icon>event_note</mat-icon></span></div>
+        <div *ngIf="isAssignement"><span><mat-icon>emoji_people</mat-icon></span></div>
+        <div *ngIf="isAssignement"><span>
+          <img width="75%" src="assets/img/doctor.png" alt="Doctor" /></span></div>
 
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+      <!--afficher list dmp trouver par la recherche-->
+      <table *ngIf="isDmp" class="table-hover">
+        <tr >
+          <th class="mat-cell">firstname</th>
+          <th class="mat-cell">lastname</th>
+          <th class="mat-cell">birthCity</th>
+          <th class="mat-cell">socialSecurityNumber</th>
+          <th class="mat-cell">Number of Hospitalization</th>
+        </tr>
+        <tbody *ngIf="dmpsSearch">
+
+        <tr *ngFor="let dmp of dmpsSearch;"  (click)="getSejour(dmp)" [dmpSearch]="dmp"></tr>
+        </tbody>
+      </table>
+
+      <!--afficher list des hospitalisation relier au dmp choisi-->
+      <table *ngIf="isSejour" class="table-hover">
+        <tr >
+          <th class="mat-cell">Dmp</th>
+          <th class="mat-cell">hospital</th>
+          <th class="mat-cell">startDate</th>
+          <th class="mat-cell">endDate</th>
+          <th class="mat-cell">Nombre d'affectations</th>
+          <th class="mat-cell">Les différents services</th>
+        </tr>
+
+        <tbody *ngIf="listHospitalization">
+        <tr *ngFor="let h of listHospitalization;" (click)="getAssignement(h.assignments)" [sejour]="h">
+        </tr>
+        </tbody>
+      </table>
+
+      <!--afficher les affectation-->
+
+      <table class="center-table" *ngIf="isStructure" class="table-hover">
+        <tr >
+          <th class="mat-cell">Start Date</th>
+          <th class="mat-cell">End Date</th>
+          <th class="mat-cell">Service</th>
+        </tr>
+        <tbody *ngIf="listAssignement">
+
+        <tr *ngFor="let assignement of listAssignement;" (click)="getActOfAssignement(assignement)" [assignement]="assignement">
+        </tr>
+        </tbody>
+      </table>
+
+      <!--afficher les acts-->
+      <table *ngIf="isAssignement && !hide" class="table-hover">
+        <tr >
+          <th class="mat-cell">Type</th>
+          <th class="mat-cell">Date</th>
+          <th class="mat-cell">Description</th>
+          <th class="mat-cell">User</th>
+          <th class="mat-cell">Status</th>
+        </tr>
+        <tbody *ngIf="isAssignement">
+        <tr *ngFor="let act of acts;" (click)="displayAct(act)" [act]="act"></tr>
+        </tbody>
+      </table>
+
+      <!--afficher les détails d'un act-->
+      <table *ngIf="isAct" class="table-bis">
+        <tbody *ngIf="isAct">
+        <tr   [actToDisplay]= "actToDsiplay"></tr>
+        </tbody>
+      </table>
 
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </mat-toolbar>
--->
-
-<!--
-<nav class="navbar navbar-expand-lg navbar-light default-color shadow">
-  <a class="navbar-brand" href="#">Crocodoc2</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto ">
-      <li class="nav-item mr-2">
-        <button class="btn btn-success my-2 my-sm-0" >
-          <div class="d-flex flex-wrap align-items-center">
-          <img class="mr-2" width="17" height="17" src="assets/img/doctor.png" alt="Doctor" />     {{fullname}}
-            <i class="fas fa-pen"></i>
-            <i class="fas fa-trash"></i>
-          </div>
-        </button>
-      </li>
-      <li class="nav-item mr-2">
-      <button class="btn btn-danger my-2 my-sm-0" >
-        dope
-      </button>
-    </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
--->
-<div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
-
-  <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " style="width:100%" type="submit">
-    <div class="card bg-transparent border-0">
-      <div class="card-img-top bg-transparent">
-        <img class="my-2" width="40" height="40" src="../assets/icons/Docteur/Doctor-White-64x64.png"/>
-      </div>
-      <div class="card-body bg-white m-0 p-0">
-        <div class="m-2 text-capitalize font-weight-normal">
-          {{fullname}}
-        </div>
-      </div>
-    </div>
-  </button>
-<!--
-  <button class="btn bg-white m-0 p-0 shadow animated fadeInLeft delay-short3 my-3" style="width:100%" type="submit">-->
-
-  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " style="width:100%">
-    <i class="fas fa-sign-out-alt" style="color:white !important"></i>
-  </button>
-
-  <!--
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-  -->
-</div>
-<div class="row no-gutters px-3 ">
-  <div class="col-1">
-  </div>
-  <div class="col-11 animated fadeInDown delay-short1">
-    <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light ">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2">
-            <i class="fas fa-search" style="color:white !important"></i>
-          </button>
-        </form>
-      </div>
-    </nav>
-  </div>
-  <!--
-          <div class="card shadow">
-              <div class="card-header bg-light">
-                  <h5 class="my-0 font-weight-normal">DMP</h5>
-              </div>
-              <div class="card-body bg-light ">
-                  <h4>I'm a Card</h4>
-                  <p> My card-body is display:flex, flex-direction:column </p>
-                  <input type="button" class="btn btn-outline-primary align-self-end" value=".align-self-end">
-              </div>
-          </div>
-          -->
-  <div class="col-1 ">
-  </div>
-  <div class="col-11 py-3 animated fadeIn delay-short3 "  style="width:100%">
-    <div class="card border-0 shadow-sm ">
-      <table class="table table-borderless">
-        <tbody>
-        <tr class="bg-light" >
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
-          <th> </th>
-          <th> </th>
-        </tr>
-        <tr class="border-top">
-          <td>John</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-          <td>
-            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-              <i class="fas fa-pen  "style="color:white !important"></i>
-          </button>
-
-             </td>
-          <td>
-            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-              <i class="fas fa-trash " style="color:white !important"></i>
-            </button>
-         </td>
-
-
-        </tr>
-        <tr>
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-          <td>
-            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-              <i class="fas fa-pen  "style="color:white !important"></i>
-            </button>
-
-          </td>
-          <td>
-            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-              <i class="fas fa-trash " style="color:white !important"></i>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
-          <td>
-            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
-              <i class="fas fa-pen  "style="color:white !important"></i>
-            </button>
-
-          </td>
-          <td>
-            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
-              <i class="fas fa-trash " style="color:white !important"></i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="container">
-  </div>
-</div>

@@ -1,0 +1,9 @@
+.icon{
+  background-color: green;
+  color: black;
+}
+a:hover {background-color: dodgerblue;}
+
+td{
+  text-align: center;
+}

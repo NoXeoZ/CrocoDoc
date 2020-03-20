@@ -40,6 +40,7 @@ public class Authentification {
             infos.add(getUser(uuid.toString()).getFirstname());
             infos.add(getUser(uuid.toString()).getLastname());
             infos.add(getUser(uuid.toString()).getType().toString());
+            infos.add(String.valueOf(getUser(uuid.toString()).getId()));
             return infos;
         }catch(Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"wrong login and password");

@@ -17,6 +17,7 @@ import {UpdateSpecialityComponent} from './speciality/update-speciality/update-s
 import {HospitalizationComponent} from "./hospitalization/hospitalization.component";
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
 import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
+import {EditActComponent} from "./dmp/edit-act/edit-act.component";
 import {UserRegularComponent} from "./user-regular/user-regular.component";
 import {UpdateUserRegularComponent} from "./user-regular/update-user-regular/update-user-regular.component";
 
@@ -84,6 +85,10 @@ const routes: Routes = [
   {
     path: 'dmp/update/:id',
     component: UpdateStructureComponent
+  },
+  {
+    path: 'act/edit/:assignementId/:idUser/:key',
+    component: EditActComponent
   },
   {
     path: 'user/:key',
