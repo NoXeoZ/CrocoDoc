@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<!--<mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -42,9 +42,9 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+-->
 
 
-<!--
 <div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
 
   <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " style="width:100%" type="submit">
@@ -72,48 +72,20 @@
     </button>
   </div>
   <div *ngIf="isAdmin">
-    <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
-      <i class="fas fa-home"></i>
+    <button title="Structures" routerLink="/structures/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-project-diagram" ></i>
     </button>
   </div>
   <div *ngIf="isAdmin">
-    <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
-      <i class="fas fa-home"></i>
+    <button title="Certificate" routerLink="/speciality/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-certificate"></i>
     </button>
   </div>
   <div *ngIf="isAdmin">
-    <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
-      <i class="fas fa-home"></i>
+    <button title="Users" routerLink="/user/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-users"></i>
     </button>
   </div>
-  -->
-  <!--
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/structures/{{Key}}">1Structure</a></div>
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/speciality/{{Key}}">Speciality</a></div>
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/user/{{Key}}">Profil</a></div>
-
-  <div *ngIf="isSecretary"><hr><a mat-list-item routerLink="/home">Home</a></div>
-  <div *ngIf="isSecretary"><hr><a mat-list-item routerLink="/hospitalization/{{Key}}">Hospitalisation</a></div>
-  <div *ngIf="isSecretary"><hr><a mat-list-item (click)="getDmp()">Dmp</a></div>
-
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/home">Home</a> </div>
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/structures/{{Key}}">Structure</a></div>
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/speciality/{{Key}}">Speciality</a></div>
-  <div *ngIf="isAdmin"><hr><a mat-list-item routerLink="/user/{{Key}}">Profil</a></div>
-
-  <div *ngIf="isSecretary"><hr><a mat-list-item routerLink="/home">Home</a></div>
-  <div *ngIf="isSecretary"><hr><a mat-list-item routerLink="/hospitalization/{{Key}}">Hospitalisation</a></div>
-  <div *ngIf="isSecretary"><hr><a mat-list-item (click)="getDmp()">Dmp</a></div>
-
-
--->
-  <!--
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-  -->
-  <!--
 </div>
 <div class="row no-gutters px-3 ">
   <div class="col-1">
@@ -155,22 +127,13 @@
     </nav>
   </div>
 
-          <div class="card shadow">
-              <div class="card-header bg-light">
-                  <h5 class="my-0 font-weight-normal">DMP</h5>
-              </div>
-              <div class="card-body bg-light ">
-                  <h4>I'm a Card</h4>
-                  <p> My card-body is display:flex, flex-direction:column </p>
-                  <input type="button" class="btn btn-outline-primary align-self-end" value=".align-self-end">
-              </div>
-          </div>
-          -->
-<!--
   <div class="col-1 ">
   </div>
   <div class="col-11 py-3 animated fadeIn delay-short3 "  style="width:100%">
     <div class="card border-0 shadow-sm ">
+      <router-outlet></router-outlet>
+
+      <!--
       <table class="table table-borderless">
         <tbody>
         <tr class="bg-light" >
@@ -232,9 +195,10 @@
         </tr>
         </tbody>
       </table>
+      -->
     </div>
   </div>
   <div class="container">
   </div>
 </div>
--->
+
