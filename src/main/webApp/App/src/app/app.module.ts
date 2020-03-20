@@ -61,8 +61,8 @@ import {StructureChefComponent} from "./structure/update-structure/one-chef/one-
 import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-display.component";
 
 @NgModule({
-  exports: [DialogOverviewAssignementComponent],
-  entryComponents: [DialogOverviewAssignementComponent],
+  exports: [DialogOverviewAssignementComponent,DialogChefComponent],
+  entryComponents: [DialogOverviewAssignementComponent,DialogChefComponent],
   declarations: [
     AppComponent,
     AuthentificationComponent,

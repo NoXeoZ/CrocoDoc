@@ -103,7 +103,7 @@ export class UpdateStructureComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data;          this.updateForm();
+        data=>{this.listStructures=data;this.updateForm();
         },
         error => {console.log(error);
         })

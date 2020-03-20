@@ -4,9 +4,9 @@
   <form [formGroup]="formGroup" *ngIf="formGroup" class="form">
 
   <mat-form-field class="form-element">
-    <mat-select formControlName="profil">
-        <mat-option *ngFor="let profil of data" [value]="profil.id">
-          {{profil.firstname}}
+    <mat-select formControlName="user">
+        <mat-option *ngFor="let user of data" [value]="user.id">
+          {{user.id}} {{user.firstname}}
         </mat-option>
     </mat-select>
   </mat-form-field>
@@ -15,3 +15,4 @@
     <button mat-button (click)="doAction()" cdkFocusInitial>Ok</button>
   </form>
 </div>
+
