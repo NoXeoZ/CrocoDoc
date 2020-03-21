@@ -45,24 +45,26 @@
 -->
 
 
-<div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
-  <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " routerLink="/user-regular/{{Key}}" style="width:100%" type="submit">
-    <div class="card bg-transparent border-0">
-      <div class="card-img-top bg-transparent">
-        <img class="my-2" width="40" height="40" src="../assets/icons/Docteur/Doctor-White-64x64.png"/>
-      </div>
-      <div class="card-body bg-white m-0 p-0">
-        <div class="m-2 text-capitalize font-weight-normal">
-          {{fullname}}
+
+
+  <div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
+    <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " routerLink="/user-regular/{{Key}}" style="width:100%" type="submit">
+      <div class="card bg-transparent border-0">
+        <div class="card-img-top bg-transparent">
+          <i class="fas fa-user-cog fa-2x m-1" style="color:white !important"></i>
+        </div>
+        <div class="card-body bg-white m-0 p-0">
+          <div class="m-2 text-capitalize font-weight-normal">
+            Admin
+          </div>
         </div>
       </div>
-    </div>
-  </button>
+    </button>
 
 
 
-  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " style="width:100%">
-    <i class="fas fa-sign-out-alt" style="color:white !important"></i>
+  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " (click)= "desconnect()" style="width:100%">
+    <i class="fas fa-sign-out-alt " style="color:white !important"></i>
   </button>
 
   <div *ngIf="isAdmin"><hr>
