@@ -1,4 +1,5 @@
 import {Structure} from "./structure";
+import {TypeProfil} from "./profil";
 
 export enum TypeUser{
   SECRETARY='SECRETARY',
