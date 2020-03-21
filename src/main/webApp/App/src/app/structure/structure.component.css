@@ -5,7 +5,7 @@ td{
   width: 10%
 }
 .card{
-  display: flex;
+  /*display: flex;*/
   text-align: center;
 }
 mat-toolbar {

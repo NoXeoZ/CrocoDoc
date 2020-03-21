@@ -197,8 +197,6 @@ public class DMPResource {
         a.setUser(user.get());
         a.setAssignment(assignment.get());
         a.setDraft(true);
-        System.out.println("image");
-        System.out.println(a.getImage());
         if (p != null) {
             return dmpService.createAct(a);
         } else {

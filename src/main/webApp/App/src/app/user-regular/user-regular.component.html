@@ -1,0 +1,66 @@
+<div class="p-3 text-center">
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4">
+      <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class="font-weight-normal text-center m-1 align-content-center"> Votre profil</h3>
+
+        </div>
+        <div class="card-title text-center mb-4 mt-1 font-weight-bolder">
+          <!--
+          <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> </div>
+          -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="container my-5 shadow rounded p-0">
+  <table class=" rounded table animated fadeIn delay-short1 p-0  font-weight-light">
+    <tbody *ngIf="user">
+    <tr >
+      <th class=" blue lighten-2">ID</th>
+      <th >{{user.id}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Prénom</th>
+      <th >{{user.firstname}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Nom</th>
+      <th >{{user.lastname}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Date de naissance</th>
+      <th >{{user.birthDate}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Address</th>
+      <th >{{user.address}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Téléphone</th>
+      <th >{{user.phoneNumber}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Email</th>
+      <th >{{user.email}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">RIB</th>
+      <th >{{user.rib}}</th>
+    </tr>
+    <tr >
+      <th class=" blue lighten-2">Structure</th>
+      <th >{{user.structure.name}}</th>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--
+<a mat-fab class="icon blue lighten-2 " routerLink="/user-regular/{{key}}}/update/{{user.id}}">Modifier</a>
+-->

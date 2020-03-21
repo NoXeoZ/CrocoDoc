@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Profil} from "../../../model/profil";
+import {User} from "../../../model/user";
 
 @Component({
   selector: 'tr [chefStructure]',
@@ -8,10 +8,10 @@ import {Profil} from "../../../model/profil";
 })
 export class StructureChefComponent implements OnInit {
   @Input()
-  chefStructure: Profil;
+  chefStructure: User;
 
   @Output()
-  deleteChefInStructure = new EventEmitter<Profil>();
+  deleteChefInStructure = new EventEmitter<User>();
   constructor() { }
 
   ngOnInit() {

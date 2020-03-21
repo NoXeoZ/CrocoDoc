@@ -1,0 +1,30 @@
+<td>{{user.id}}</td>
+<td>{{user.type}}</td>
+<td>{{user.firstname}}</td>
+<td>{{user.lastname}}</td>
+<td>{{user.birthDate}}</td>
+<td>{{user.address}}</td>
+<td>{{user.phoneNumber}}</td>
+<td>{{user.email}}</td>
+<td>{{user.rib}}</td>
+
+<!--
+<td>
+  <button (click)="onDeleteUser(user.id)" class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-short1 blue lighten-2" type="submit">
+    <i class="fas fa-trash  "style="color:white !important"></i>
+  </button>
+</td>
+-->
+
+<td>
+  <button routerLink="update/{{user.id}}" class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-short1 blue lighten-2" type="submit">
+    <i class="fas fa-pen  "style="color:white !important"></i>
+  </button>
+</td>
+
+<td>
+  <button (click)="onDeleteUser(user.id)" class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-short1 blue lighten-2" type="submit">
+    <i class="fas fa-trash  "style="color:white !important"></i>
+  </button>
+</td>
+

@@ -6,7 +6,7 @@
     <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
 
       <mat-form-field class="form-element">
-        <mat-label>Type Act</mat-label>
+        <mat-label>Type d'acte</mat-label>
         <mat-select formControlName="type">
           <mat-option *ngFor="let t of type" [value]="t.toString()">
             {{t.toString()}}
@@ -19,21 +19,21 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <input  matInput type="date" placeholder="CreatedAt" formControlName="createdAt">
+        <input  matInput type="date" placeholder="date de création" formControlName="createdAt">
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <input  matInput type="time" placeholder="Heure" formControlName="heureCreated">
+        <input  matInput type="time" placeholder="Heure de création" formControlName="heureCreated">
       </mat-form-field>
 
       <mat-form-field class="form-element">
         <mat-label>Validité</mat-label>
         <mat-select formControlName="draft">
           <mat-option [value]="false">
-            Not_Valid
+            Non valide
           </mat-option>
           <mat-option [value]="true">
-            Valid
+            Valide
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -41,7 +41,7 @@
       <input-file fileLimit="1" fileAccept="image/*" [(ngModel)]="fileUpload" [ngModelOptions]="{standalone: true}">
       </input-file>
 
-      <button mat-raised-button type="submit" (click)="onCreateAct()">Submit</button>
+      <button mat-raised-button type="submit" (click)="onCreateAct()">Envoyé</button>
 
     </form>
 

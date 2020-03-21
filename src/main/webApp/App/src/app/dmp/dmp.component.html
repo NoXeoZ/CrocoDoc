@@ -1,3 +1,4 @@
+<!--
 <mat-toolbar>
   <mat-toolbar-row>
     <button
@@ -75,7 +76,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <!--afficher list dmp trouver par la recherche-->
+     afficher list dmp trouver par la recherche
       <table *ngIf="isDmp" class="table-hover">
         <tr >
           <th class="mat-cell">firstname</th>
@@ -90,7 +91,7 @@
         </tbody>
       </table>
 
-      <!--afficher list des hospitalisation relier au dmp choisi-->
+      afficher list des hospitalisation relier au dmp choisi
       <table *ngIf="isSejour" class="table-hover">
         <tr >
           <th class="mat-cell">Dmp</th>
@@ -107,7 +108,7 @@
         </tbody>
       </table>
 
-      <!--afficher les affectation-->
+      afficher les affectation
 
       <table class="center-table" *ngIf="isStructure" class="table-hover">
         <tr >
@@ -122,7 +123,7 @@
         </tbody>
       </table>
 
-      <!--afficher les acts-->
+      afficher les acts
       <table *ngIf="isAssignement && !hide" class="table-hover">
         <tr >
           <th class="mat-cell">Type</th>
@@ -137,7 +138,7 @@
         </tbody>
       </table>
 
-      <!--afficher les détails d'un act-->
+      afficher les détails d'un act
       <table *ngIf="isAct" class="table-bis">
         <tbody *ngIf="isAct">
         <tr   [actToDisplay]= "actToDsiplay"></tr>
@@ -148,4 +149,233 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </mat-toolbar>
+-->
+<div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
+  <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " routerLink="user-regular/{{key}}" style="width:100%" type="submit">
+    <div class="card bg-transparent border-0">
+      <div class="card-img-top bg-transparent">
+        <img class="my-2" width="40" height="40" src="../assets/icons/Docteur/Doctor-White-64x64.png"/>
+      </div>
+      <div class="card-body bg-white m-0 p-0">
+        <div class="m-2 text-capitalize font-weight-normal">
+          {{this.firstname}} {{this.lastname}}
+        </div>
+      </div>
+    </div>
+  </button>
 
+
+
+  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " (click)="desconnect()" style="width:100%">
+    <i class="fas fa-sign-out-alt" style="color:white !important"></i>
+  </button>
+
+  <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+    <i class="fas fa-home"></i>
+  </button>
+
+  <div *ngIf="isAssignement">
+    <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" (click)="hideAssign()"  style="width:100%"  mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
+      <i class="fas fa-paste"></i>
+    </button>
+  </div>
+</div>
+<!--
+  <div *ngIf="isDmp"><span>D</span></div>
+  <div *ngIf="isDmp"><span>M</span></div>
+  <div *ngIf="isDmp"><span>P</span></div>
+
+  <div *ngIf="isSejour"><span>S</span></div>
+  <div *ngIf="isSejour"><span>E</span></div>
+  <div *ngIf="isSejour"><span>J</span></div>
+  <div *ngIf="isSejour"><span>O</span></div>
+  <div *ngIf="isSejour"><span>U</span></div>
+  <div *ngIf="isSejour"><span>R</span></div>
+
+  <div *ngIf="isStructure"><span>S</span></div>
+  <div *ngIf="isStructure"><span>T</span></div>
+  <div *ngIf="isStructure"><span>R</span></div>
+  <div *ngIf="isStructure"><span>U</span></div>
+  <div *ngIf="isStructure"><span>C</span></div>
+  <div *ngIf="isStructure"><span>T</span></div>
+  <div *ngIf="isStructure"><span>U</span></div>
+  <div *ngIf="isStructure"><span>R</span></div>
+  -->
+
+  <!-- ajout d'un doc
+  <button title="Structures" routerLink="/structures/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+    <i class="fas fa-project-diagram" ></i>
+  </button>
+  -->
+  <!--
+</div>
+-->
+<div class="row no-gutters px-3 ">
+  <div class="col-1">
+  </div>
+  <div class="col-11 animated fadeInDown delay-short1">
+    <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light ">
+      <a class="navbar-brand" href="#">
+
+        <div *ngIf="isDmp">Dossier Médical Partagé </div>
+        <div *ngIf="isSejour" class="animate fadeIn">  Dossier Médical Partagé > Hospitalisations</div>
+        <div *ngIf="isStructure" class="animate fadeIn">   Dossier Médical Partagé > Hospitalisations > Affectations</div>
+
+
+
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form  [formGroup]="formGroup"  *ngIf="formGroup" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" formControlName="search" type="search" placeholder="Rechercher" aria-label="Search">
+          <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" (click)="searchDmp()" type="submit">
+            <i class="fas fa-search" style="color:white !important"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
+  </div>
+
+  <div class="col-1 ">
+  </div>
+  <div class="col-11 py-3 animated fadeIn delay-short3"  style="width:100%">
+    <div class="card border-0 shadow-sm">
+
+      <div *ngIf="isDmp">
+      <div class="p-3 text-center" >
+        <div class="col d-flex justify-content-center">
+          <div class="card text-center shadow-none border-0 center-block p-4" >
+            <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+              <div class="card-body ">
+                <h3 class ="font-weight-normal text-center m-1">
+                  Dossiers médicaux partagés
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class=" table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
+          <tbody *ngIf="isDmp">
+          <tr class=" bg-red blue lighten-2 shadow text-light">
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Lieu de naissance</th>
+            <th>Numéro de sécurité sociale</th>
+            <th>Hospitalisations</th>
+          </tr>
+            <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let dmp of dmpsSearch;"  (click)="getSejour(dmp)" [dmpSearch]="dmp" >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+
+      <div *ngIf="isSejour">
+        <div class="p-3 text-center" >
+          <div class="col d-flex justify-content-center">
+            <div class="card text-center shadow-none border-0 center-block p-4" >
+              <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+                <div class="card-body ">
+                  <h3 class ="font-weight-normal text-center m-1">
+                    Hospitalisations
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class=" table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
+            <tbody *ngIf="isSejour">
+            <tr class=" bg-red blue lighten-2 shadow text-light">
+              <th>DMP</th>
+              <th>Hopital</th>
+              <th>Entrée</th>
+              <th>Sortie</th>
+              <th>Nombre d'affectations</th>
+              <th>les différents services</th>
+            </tr>
+              <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let h of listHospitalization;" (click)="getAssignement(h.assignments)" [sejour]="h" >
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="isStructure">
+        <div class="p-3 text-center" >
+          <div class="col d-flex justify-content-center">
+            <div class="card text-center shadow-none border-0 center-block p-4" >
+              <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+                <div class="card-body ">
+                  <h3 class ="font-weight-normal text-center m-1">
+                  Affectations
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="center-table table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
+            <tbody *ngIf="listAssignement">
+            <tr class=" bg-red blue lighten-2 shadow text-light">
+              <th>Entrée</th>
+              <th>Sortie</th>
+              <th>Service</th>
+            </tr>
+            <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let assignement of listAssignement;" (click)="getActOfAssignement(assignement)" [assignement]="assignement" >
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="isAssignement && !hide" >
+        <div class="p-3 text-center" >
+          <div class="col d-flex justify-content-center">
+            <div class="card text-center shadow-none border-0 center-block p-4" >
+              <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+                <div class="card-body ">
+                  <h3 class ="font-weight-normal text-center m-1">
+                    Actes
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="center-table table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
+            <tbody *ngIf="isAssignement">
+            <tr class=" bg-red blue lighten-2 shadow text-light">
+              <th>Type</th>
+              <th>Crée le</th>
+              <th>Description</th>
+              <th>Auteur</th>
+              <th>Status</th>
+            </tr>
+            <tr class=" animated fadeIn delay-short1 my-3"*ngFor="let act of acts;" (click)="displayAct(act)" [act]="act" >
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div  *ngIf="isAct" >
+        <div class="p-3 text-center align-content-center justify-content-center text-center" >
+          <table class="table-bis table-hover animated fadeIn delay-short1 table-borderless py-3 align-content-center justify-content-center text-center ">
+            <tbody *ngIf="isAct" class="align-content-center justify-content-center text-center">
+            <tr class=" bg-red blue lighten-2 shadow text-light"  [actToDisplay]= "actToDsiplay">
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -10,5 +10,7 @@
 <td *ngIf="!structure.chief">Aucun chef</td>
 
 <td>
-  <a mat-mini-fab class="icon" routerLink="update/{{structure.id}}"><mat-icon> create</mat-icon></a>
+  <button routerLink="update/{{structure.id}}" class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-short1 blue lighten-2" type="submit">
+    <i class="fas fa-pen  "style="color:white !important"></i>
+  </button>
 </td>

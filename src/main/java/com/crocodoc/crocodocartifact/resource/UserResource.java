@@ -28,6 +28,16 @@ public class UserResource {
         }
     }
 
+    @GetMapping("/user-regular/{key}")
+    public Long getId(@PathVariable String key) {
+        User p=Authentification.getUser(key);
+        if(p!=null) {
+            return p.getId();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
+        }
+    }
+
     @PostMapping("/user/{key}")
     public User post(@RequestBody User profile, @PathVariable String key) {
         User p=Authentification.getUser(key);
@@ -47,9 +57,6 @@ public class UserResource {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
         }
     }
-
-
-
     @DeleteMapping("/user/{id}/{key}")
     public void delete(@PathVariable Long id, @PathVariable String key) {
         User p=Authentification.getUser(key);
@@ -60,13 +67,5 @@ public class UserResource {
         }
     }
 
-    /*@PostMapping("/user/{key}")
-    public User update(@PathVariable String key,@RequestBody User profile) {
-        User p=Authentification.getUser(key);
-        if(p!=null && p.getId()==profile.getId()) {
-            return profileService.updateUser(profile);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  key  "+  key  +  " not found");
-        }
-    }*/
+
 }

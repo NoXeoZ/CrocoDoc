@@ -1,17 +1,20 @@
-<mat-sidenav-container class="sidenav-container">
+<!--<mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <img class="logoAphp" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+      <a mat-list-item routerLink="/user-regular/{{Key}}">
+        <img class="logoAphp" src="assets/img/Logo_APHP.png" alt="LogoAPHP" />
+      </a>
+
     </mat-toolbar>
     <mat-nav-list>
 
       <div *ngIf="isAdmin">  <a mat-list-item routerLink="/home">Home</a> </div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/structures/{{Key}}">Structure</a></div>
       <div *ngIf="isAdmin"><a mat-list-item routerLink="/speciality/{{Key}}">Speciality</a></div>
-      <div *ngIf="isAdmin"><a mat-list-item routerLink="/profil">Profil</a></div>
+      <div *ngIf="isAdmin"><a mat-list-item routerLink="/user/{{Key}}">Profil</a></div>
 
        <div *ngIf="isSecretary"><a mat-list-item routerLink="/home">Home</a></div>
       <div *ngIf="isSecretary"><a mat-list-item routerLink="/hospitalization/{{Key}}">Hospitalisation</a></div>
@@ -39,3 +42,187 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+-->
+
+
+
+
+  <div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
+    <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " routerLink="/user-regular/{{Key}}" style="width:100%" type="submit">
+      <div class="card bg-transparent border-0">
+        <div class="card-img-top bg-transparent">
+          <div *ngIf="isAdmin">
+          <i class="fas fa-user-cog fa-2x m-1" style="color:white !important"></i>
+            </div>
+          <div *ngIf="isSecretary">
+            <i class="fas fa-user-edit fa-2x m-1" style="color:white !important"></i>
+          </div>
+        </div>
+        <div class="card-body bg-white m-0 p-0">
+          <div class="m-2 text-capitalize font-weight-normal">
+           {{this.firstname}} {{this.lastname}}
+          </div>
+        </div>
+      </div>
+    </button>
+
+
+
+  <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3 red lighten-2 " (click)= "desconnect()" style="width:100%">
+    <i class="fas fa-sign-out-alt " style="color:white !important"></i>
+  </button>
+
+  <div *ngIf="isAdmin"><hr>
+    <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-home"></i>
+    </button>
+  </div>
+  <div *ngIf="isAdmin">
+    <button title="Structures" routerLink="/structures/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-project-diagram" ></i>
+    </button>
+  </div>
+  <div *ngIf="isAdmin">
+    <button title="Spécialités" routerLink="/speciality/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-certificate"></i>
+    </button>
+  </div>
+  <div *ngIf="isAdmin">
+    <button title="Users" routerLink="/user/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-users"></i>
+    </button>
+  </div>
+
+  <div *ngIf="isSecretary"><hr>
+    <button routerLink="/home" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-home"></i>
+    </button>
+  </div>
+  <div *ngIf="isSecretary">
+    <button title="Hospitalisation" routerLink="/hospitalization/{{Key}}" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-bed" ></i>
+    </button>
+  </div>
+  <div *ngIf="isSecretary">
+    <button (click)="getDmp()" title="DMP" class="font-weight-light text-capitalize btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" style="width:100%">
+      <i class="fas fa-notes-medical"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row no-gutters px-3 ">
+  <!--
+  <div class="col-1">
+  </div>
+  <div class="col-11 animated fadeInDown delay-short1">
+    <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light ">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2">
+            <i class="fas fa-search" style="color:white !important"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  -->
+  <div class="col-1 ">
+  </div>
+  <div class="col-11 py-3 animated fadeIn delay-short3"  style="width:100%">
+    <div class="card border-0 shadow-sm">
+      <router-outlet></router-outlet>
+
+      <!--
+      <table class="table table-borderless">
+        <tbody>
+        <tr class="bg-light" >
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+        <tr class="border-top">
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+
+
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@example.com</td>
+          <td>
+            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@example.com</td>
+          <td>
+            <button class="btn white bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" type="submit">
+              <i class="fas fa-pen  "style="color:white !important"></i>
+            </button>
+
+          </td>
+          <td>
+            <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2 " type="submit">
+              <i class="fas fa-trash " style="color:white !important"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      -->
+    </div>
+  </div>
+  <div class="container">
+  </div>
+</div>
+

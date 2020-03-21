@@ -6,7 +6,7 @@ import {StructureService} from "../structure.service";
 import {Speciality} from "../../model/speciality";
 import {SpecialityService} from "../../speciality/speciality.service";
 import {Dmp} from "../../model/dmp";
-import {Profil} from "../../model/profil";
+import {User} from "../../model/user";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DialogChefComponent} from "../dialog-overview/dialog-chef.component";
 
@@ -27,9 +27,9 @@ export class UpdateStructureComponent implements OnInit {
   listSpecialities: Array<Speciality> = [];
   structure:Structure;
   listStructures: Array<Structure> = [];
-  profils: Array<Profil>;
-  idProfil: number;
-  chief: Profil;
+  users: Array<User>;
+  idUser: number;
+  chief: User;
   constructor(private structureService : StructureService,
               private route: ActivatedRoute,
               protected router: Router,
@@ -47,7 +47,7 @@ export class UpdateStructureComponent implements OnInit {
               this.structure.parent=data3;
               this.onGetSpeciality();
               this.onGetStructures();
-              this.onGetProfils();
+              this.onGetUsers();
               this.formGroup = new FormGroup({
                 name: new FormControl(data.name),
                 description: new FormControl(data.description),
@@ -91,11 +91,11 @@ export class UpdateStructureComponent implements OnInit {
         return i;
     return 0;
   }
-  onGetProfils(){
+  onGetUsers(){
     this.structureService
-      .getProfils(this.key)
+      .getUsers(this.key)
       .subscribe(
-        data=>{this.profils=data;},
+        data=>{this.users=data;},
         error => {console.log(error);
         })
   }
@@ -141,17 +141,17 @@ export class UpdateStructureComponent implements OnInit {
     dialogConfig . width  =  "600px" ;
     const dialogRef = this.dialog.open(DialogChefComponent,{
       width:"350",height:"600",
-      data:this.profils,
+      data:this.users,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.idProfil = result.data;
+      this.idUser = result.data;
       this.structureService
-        .affecteProfil(this.key,id, this.idProfil)
+        .affecteUser(this.key,id, this.idUser)
         .subscribe(
           data=>{
             //this.affectChief.emit(true);
-            this.onGetProfils();
+            this.onGetUsers();
             this.refreshList();
           },
           error => {console.log("errrrrrror affectation chief",error)}

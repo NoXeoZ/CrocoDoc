@@ -1,6 +1,7 @@
-import {Profil} from "./profil";
 import {Speciality} from "./speciality";
 import {Hospitalization} from "./Hospitalization";
+import {User} from "./user";
+
 
 export enum StructureType{
   HOSPITAL='HOSPITAL',
@@ -15,7 +16,7 @@ export interface Structure{
   description : string;
   type:StructureType,
   parent:Structure,
-  chief:Profil,
+  chief:User,
   speciality:Speciality,
   hospitalizations : Array<Hospitalization>
 

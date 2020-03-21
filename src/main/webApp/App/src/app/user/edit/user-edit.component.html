@@ -1,0 +1,195 @@
+<div class="p-3 text-center">
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4">
+      <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class="font-weight-normal text-center m-1"> Crée un utilisateur</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-card>
+  <div class="container  my-5 bg-white rounded shadow align-items-center text-center" >
+    <form [formGroup]="formGroup" (ngSubmit)="onCreateUser()" class="form" *ngIf="formGroup">
+<p>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Prénom" formControlName="firstname">
+      </mat-form-field>
+</p>
+      <p>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Nom" formControlName="lastname">
+      </mat-form-field>
+      </p>
+      <p><mat-form-field class="form-element">
+        <input  matInput type="date" placeholder="Date de naissance" formControlName="birthDate">
+      </mat-form-field>
+      </p>
+      <p><mat-form-field >
+       <mat-label>Email</mat-label>
+        <input matInput [formControl]="email1" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="email1.hasError('email') && !email1.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email1.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field></p>
+      <p>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="RIB" formControlName="rib">
+      </mat-form-field>
+      </p>
+<p>
+      <mat-form-field class="form-element">
+        <mat-label>Choisir un type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let t of types" [value]="t">
+            {{t}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</p>
+      <p>
+      <mat-form-field class="form-element">
+        <mat-label>Choisir un structure</mat-label>
+        <mat-select formControlName="structure">
+          <mat-option *ngFor="let struct of structures" [value]="struct">
+            {{struct.id}} {{struct.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </p>
+      <!--
+      <div class="p-3 text-center">
+        <div class="col d-flex justify-content-center">
+          <div class="card text-center shadow-none border-0 center-block p-4">
+            <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
+              <div class="card-body ">
+                <h3 class="font-weight-normal text-center m-1"> Crée un utilisateur</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container my-5 bg-light rounded shadow">
+        <table class="table table-borderless bg-transparent">
+          <tbody>
+          <tr>
+            <td>
+              <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Prénom</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                        </div>
+                        <input formControlName="firstname" class="form-control font-weight-light " placeholder="Prénom">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Nom</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                        </div>
+                        <input formControlName="lastname" class="form-control font-weight-light " placeholder="Nom">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Date de naissance</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fas fa-birthday-cake"></i>  </span>
+                        </div>
+                        <input formControlName="birthDate" type="date"class="form-control font-weight-light " placeholder="Date de naissance">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Email</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input [formControl]="email1"  type="email" class="form-control font-weight-light " placeholder="Exemple@email.com">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Relevé d'identitée bancaire</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fas fa-credit-card"></i></span>
+                        </div>
+                        <input formControlName="rib" type="number" class="form-control font-weight-light " placeholder="RIB">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Choose UserType</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-text"> <i class="fas fa-users"></i> </span>
+                        <select class="selectpicker form-control" formControlName="type">
+                          <option *ngFor="let t of types" [value]="t">
+                            {{t}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row p-3">
+                    <label class="col-md-4 control-label text-right">Choose Structure</label>
+                    <div class="col-md-8 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-text"> <i class="fas fa-link"></i> </span>
+                        <select class="selectpicker form-control" formControlName="structure">
+                          <option *ngFor="let struct of structures" [value]="struct">
+                            {{struct.id}} {{struct.name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                <button  class="btn blue lighten-2 float-right" (click)="onCreateUser()" type="submit" >Créer</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput formlControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+      <mat-form-field class="form-element">
+        <mat-label>Type De User</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let t of type" [value]="t.toString()">
+            {{t.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      -->
+
+      <button mat-raised-button class="m-3" type="submit" >Envoyer</button>
+    </form>
+  </div>
+</mat-card>

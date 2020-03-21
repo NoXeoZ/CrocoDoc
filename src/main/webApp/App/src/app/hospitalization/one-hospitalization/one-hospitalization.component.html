@@ -1,13 +1,14 @@
 <td *ngIf="hospitalization.dmp">{{hospitalization.dmp.lastname}} {{hospitalization.dmp.firstname}}</td>
 <td *ngIf="hospitalization.hospital">{{hospitalization.hospital.name}}</td>
 <td *ngIf="hospitalization.startDate">{{printDate(hospitalization.startDate)}}</td>
-<td *ngIf="!hospitalization.startDate">Nullllllll</td>
+<td *ngIf="!hospitalization.startDate">Pas de date</td>
 
 <td *ngIf="hospitalization.endDate">{{printDate(hospitalization.endDate)}}</td>
-<td *ngIf="!hospitalization.endDate">Nullllllll</td>
+<td *ngIf="!hospitalization.endDate">Pas de date</td>
 <td *ngIf="hospitalization.assignments">{{hospitalization.assignments.length}}</td>
 <td *ngIf="hospitalization.assignments">{{displayAssignements()}}</td>
 <td>
-  <a mat-mini-fab class="icon" routerLink="update/{{hospitalization.id}}"><mat-icon> create</mat-icon>
-  </a>
+  <button type="button" class="btn bg-light blue lighten-2 z-depth-2 animated fadeInUp" routerLink="update/{{hospitalization.id}}">
+    <i class="fas fa-pen" style="color:white !important"></i>
+  </button>
 </td>
