@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Hospitalization} from "../../model/Hospitalization";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,7 +13,8 @@ import {Act, ActType} from "../../model/Act";
 })
 export class EditActComponent implements OnInit {
   formGroup: FormGroup;
-  type=[ActType.CONSTANT_REPORT,ActType.EXAM,ActType.PRESCRIPTION,ActType.OBSERVATION];
+  type=[ActType.CONSTANT_REPORT,ActType.EXAM,ActType.PRESCRIPTION,
+        ActType.RADIO,ActType.ORDONNANCE,ActType.OBSERVATION,ActType.CR];
   @Output()
   createHospitalization= new EventEmitter<Hospitalization>();
   key: string;
