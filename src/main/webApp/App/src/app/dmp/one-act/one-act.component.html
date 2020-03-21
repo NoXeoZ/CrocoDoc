@@ -1,5 +1,5 @@
 <td>{{act.type}}</td>
 <td>{{act.createdAt |date:'medium'}}</td>
 <td>{{act.description}}</td>
-<td *ngIf="act.user">{{act.user.firstname}}</td>
+<td *ngIf="act.user != undefined ">{{act.user.name}}</td>
 <td>{{getStatus(act.draft)}}</td>

@@ -1,11 +1,10 @@
-<mat-toolbar>
-  <span class="title">Upadate Structure {{id}}</span>
-</mat-toolbar>
-<mat-card>
+<mat-toolbar class="blue lighten-2 text-center">
+  <span class="title  ">Mise à jour d'une Structure {{id}}</span>
+</mat-toolbar><mat-card>
   <div class="container" >
     <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
       <mat-form-field class="form-element">
-        <input  matInput placeholder="Name" formControlName="name">
+        <input  matInput placeholder="Nom" formControlName="name">
       </mat-form-field>
 
       <mat-form-field class="form-element">
@@ -22,7 +21,7 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <mat-label>Speciality</mat-label>
+        <mat-label>Specialité</mat-label>
         <mat-select formControlName="speciality">
           <mat-option *ngFor="let s of listSpecialities" [value]="s">
             {{s.name}}
@@ -40,22 +39,22 @@
       </mat-form-field>
 
       <br>
-      <button mat-raised-button color="primary" (click)="affecteChief(id)">Affecter Chef</button>
-
-      <table class="center-table" border="true" >
+      <button mat-raised-button class="blue lighten-2 my-3" (click)="affecteChief(id)">Affecter Chef</button>
+<br>
+      <table class="table table-bordered " border="true" >
         <tr >
-          <th class="mat-cell">First Name</th>
+          <th class="mat-cell">Prénom</th>
           <th class="mat-cell">Role</th>
         </tr>
         <tbody *ngIf="chief">
-
         <tr (deleteChefInStructure)="deleteChefStructure($event)" [chefStructure]="chief" >
         </tr>
         </tbody>
       </table>
 
-      <button mat-raised-button type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Submit
+      <button mat-raised-button class="blue lighten-2" type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Envoyer
       </button>
     </form>
   </div>
 </mat-card>
+

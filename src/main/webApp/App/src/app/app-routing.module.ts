@@ -6,6 +6,9 @@ import {StructureComponent} from "./structure/structure.component";
 import {StructureEditComponent} from "./structure/edit/structure-edit.component";
 import {UpdateStructureComponent} from "./structure/update-structure/update-structure.component";
 import {DmpComponent} from "./dmp/dmp.component";
+import {UserComponent} from "./user/user.component";
+import {UserEditComponent} from "./user/edit/user-edit.component";
+import {UpdateUserComponent} from "./user/update-user/update-user.component";
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -15,6 +18,8 @@ import {HospitalizationComponent} from "./hospitalization/hospitalization.compon
 import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalization-edit.component";
 import {UpdateHospitalizationComponent} from "./hospitalization/update-hospitalization/update-hospitalization.component";
 import {EditActComponent} from "./dmp/edit-act/edit-act.component";
+import {UserRegularComponent} from "./user-regular/user-regular.component";
+import {UpdateUserRegularComponent} from "./user-regular/update-user-regular/update-user-regular.component";
 
 const routes: Routes = [
   {
@@ -84,6 +89,26 @@ const routes: Routes = [
   {
     path: 'act/edit/:assignementId/:idUser/:key',
     component: EditActComponent
+  },
+  {
+    path: 'user/:key',
+    component: UserComponent
+  },
+  {
+    path: 'user/:key/edit',
+    component: UserEditComponent
+  },
+  {
+      path: 'user/:key/update/:id',
+      component: UpdateUserComponent
+  },
+  {
+    path: 'user-regular/:key',
+    component: UserRegularComponent
+  },
+  {
+    path: 'user-regular/:key/update/:id',
+    component: UpdateUserRegularComponent
   },
 
 ];

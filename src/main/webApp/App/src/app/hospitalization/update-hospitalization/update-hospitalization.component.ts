@@ -59,8 +59,6 @@ export class UpdateHospitalizationComponent implements OnInit {
               this.updateForm();
             }
           )
-
-
         }
       )
       console.log("data"+this.hosp.hospital);

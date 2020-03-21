@@ -34,9 +34,7 @@ mat-card{
 mat-toolbar {
   background-color: darkgreen;
 }
-button {
-  background: green;
-}
+
 
 mat-toolbar .title{
   color: white;

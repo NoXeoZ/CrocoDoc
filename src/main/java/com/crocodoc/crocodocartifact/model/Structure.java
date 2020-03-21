@@ -31,7 +31,7 @@ public class Structure {
     @JoinColumn(name="id_user_responsible")
     private User chief;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.MERGE}) // CascadeType.MERGE
     private Speciality speciality;
 
     @JsonManagedReference(value="valeur-hopital")
@@ -128,4 +128,6 @@ public class Structure {
     public int hashCode() {
         return Objects.hash(id, name, type);
     }
+
+
 }

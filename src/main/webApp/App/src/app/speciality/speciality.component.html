@@ -1,3 +1,4 @@
+<!--
 <mat-toolbar>
   <a mat-fab class="icon" routerLink="/speciality/{{key}}/edit"><mat-icon> add</mat-icon></a>
   <span class="title">Speciality</span>
@@ -13,3 +14,37 @@
     </tbody>
   </table>
 </mat-card>
+-->
+
+<div class="p-3 text-center" >
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4" >
+      <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class ="font-weight-normal text-center m-1">
+            Spécialités
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class=" table animated fadeIn delay-short1 table-borderless py-3 ">
+    <tbody *ngIf="listSpecialities">
+    <tr class=" bg-red blue lighten-2 shadow text-light">
+      <th>Nom</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+    <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let s of listSpecialities;" [speciality]="s">
+    </tr>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn bg-light blue lighten-2 z-depth-2 animated fadeInUp" routerLink="/speciality/{{key}}/edit">
+        <i class="fas fa-plus" style="color:white !important"></i>
+      </button>
+    </div>
+    </tbody>
+  </table>
+</div>
+
+

@@ -1,0 +1,106 @@
+<!--
+<mat-toolbar>
+  <span class="title">Update Users {{id}}</span>
+</mat-toolbar>
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup" (ngSubmit)="onUpdateUser()" class="form" *ngIf="formGroup">
+        <mat-form-field class="form-element">
+          <input  matInput placeholder="First Name" formControlName="firstname">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input  matInput placeholder="Last Name" formControlName="lastname">
+        </mat-form-field>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+        <mat-form-field class="form-element">
+          <input  matInput placeholder="RIB" formControlName="rib">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label>Choose UserType</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let t of types" [value]="t">
+              {{t}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label>Choose Structure</mat-label>
+          <mat-select formControlName="structure">
+            <mat-option *ngFor="let s of structures" [value]="s">
+              {{s.id}} {{s.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit" >Submit</button>
+      </form>
+    </div>
+  </mat-card>
+
+-->
+
+<div class="p-3 text-center">
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4">
+      <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class="font-weight-normal text-center m-1"> Mettre à jour un utilisateur</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-card>
+  <div class="container  my-5 bg-white rounded shadow align-items-center text-center" >
+    <form [formGroup]="formGroup" (ngSubmit)="onUpdateUser()" class="form p-3 m-3" *ngIf="formGroup">
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Prénom" formControlName="firstname">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Nom" formControlName="lastname">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="RIB" formControlName="rib">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+      <input  matInput placeholder="Adresse" formControlName="address">
+    </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Téléphone" formControlName="phoneNumber">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Choisir un type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let t of types" [value]="t">
+            {{t}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Choisir une structure</mat-label>
+        <mat-select formControlName="structure">
+          <mat-option *ngFor="let s of structures" [value]="s">
+            {{s.id}} {{s.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>
+      <button mat-raised-button type="submit" >Envoyer</button>
+      </p>
+    </form>
+  </div>
+</mat-card>
+
+

@@ -1,9 +1,9 @@
 <td *ngIf="sejour.dmp">{{sejour.dmp.lastname}} {{sejour.dmp.firstname}}</td>
 <td *ngIf="sejour.hospital">{{sejour.hospital.name}}</td>
 <td *ngIf="sejour.startDate">{{printDate(sejour.startDate)}}</td>
-<td *ngIf="!sejour.startDate">Nullllllll</td>
+<td *ngIf="!sejour.startDate">Pas de date</td>
 
 <td *ngIf="sejour.endDate">{{printDate(sejour.endDate)}}</td>
-<td *ngIf="!sejour.endDate">Nullllllll</td>
+<td *ngIf="!sejour.endDate">Pas de date</td>
 <td *ngIf="sejour.assignments">{{sejour.assignments.length}}</td>
 <td *ngIf="sejour.assignments">{{displayAssignements()}}</td>

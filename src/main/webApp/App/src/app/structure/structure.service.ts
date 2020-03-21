@@ -3,7 +3,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Structure} from "../model/structure";
 import {Speciality} from "../model/speciality";
-import {Profil} from "../model/profil";
+import {User} from "../model/user";
 type EntityResponseType = HttpResponse<Structure>;
 @Injectable({
   providedIn: 'root'
@@ -30,11 +30,11 @@ export class StructureService {
   getParentFromStructure(id: number,key:string) : Observable<Structure> {
     return this.httpClient.get<Structure>('/structures/getParent/'+key+'/' + id);
   }
-  getProfils(key: string) : Observable<Array<Profil>> {
-    return this.httpClient.get<Array<Profil>>('/user/'+key);
+  getUsers(key: string) : Observable<Array<User>> {
+    return this.httpClient.get<Array<User>>('/user/'+key);
   }
-  affecteProfil(key:string,idStructure: number,idProfil:number) : Observable<Array<Structure>> {
-    return this.httpClient.get<Array<Structure>>('/structures/'+ key+'/'+idStructure+'/'+idProfil);
+  affecteUser(key:string,idStructure: number,idUser:number) : Observable<Array<Structure>> {
+    return this.httpClient.get<Array<Structure>>('/structures/'+ key+'/'+idStructure+'/'+idUser);
   }
 
   changeParent(key:string,idStructure: number,idParent:number) : Observable<Structure> {

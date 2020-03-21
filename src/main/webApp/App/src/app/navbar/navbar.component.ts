@@ -3,8 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router} from "@angular/router";
-import {TypeProfil} from "../model/profil";
+import {TypeUser} from "../model/user";
 import {DmpService} from "../dmp/dmp.service";
+import {UserRegularService} from "../user-regular/user-regular.service";
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,8 @@ export class NavbarComponent {
   @Input()
   typeUser:any;
 
+
+
   @Output()
   private disconnect=new EventEmitter<boolean>();
 
@@ -32,15 +35,19 @@ export class NavbarComponent {
       map(result => result.matches),
       shareReplay()
     );
+  private firstname: string;
+  private lastname: string;
 
   constructor(private breakpointObserver: BreakpointObserver,private router:Router,private dmpService:DmpService) {
   }
   ngOnInit() {
+    this.firstname=this.loginlistNav[1];
+    this.lastname=this.loginlistNav[2];
     console.log(this.typeUser);
-    if(this.typeUser==TypeProfil.ADMIN){
+    if(this.typeUser==TypeUser.ADMIN){
       this.isAdmin=true;
       console.log(this.typeUser);
-    }else if(this.typeUser==TypeProfil.SECRETARY){
+    }else if(this.typeUser==TypeUser.SECRETARY){
       this.isSecretary=true;
       console.log(this.typeUser);
     }

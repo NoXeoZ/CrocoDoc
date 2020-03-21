@@ -24,7 +24,7 @@ import {OneStructureComponent} from './structure/one-structure/one-structure.com
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DmpComponent} from './dmp/dmp.component';
-import {MatDialogModule, MatSnackBarModule} from "@angular/material";
+import  {MatSnackBarModule} from "@angular/material";
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {OneDmpComponent} from './dmp-admin/one-dmp/one-dmp.component';
@@ -38,6 +38,19 @@ import {HospitalizationEditComponent} from "./hospitalization/edit/hospitalizati
 import {OneHospitalizationComponent} from "./hospitalization/one-hospitalization/one-hospitaliszation.component";
 import {DialogOverviewAssignementComponent} from './hospitalization/dialog-overview-assignement/dialog-overview-assignement.component';
 import {AssignementHospitalizationComponent} from './hospitalization/update-hospitalization/one-assignement/assignement-of-Hospitalization.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AngularFontAwesomeModule} from "angular-font-awesome";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {UserComponent} from "./user/user.component";
+import {UserEditComponent} from "./user/edit/user-edit.component";
+import {UpdateUserComponent} from "./user/update-user/update-user.component";
+import {OneUserComponent} from "./user/one-user/one-user.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import { UpdateUserRegularComponent } from './user-regular/update-user-regular/update-user-regular.component';
+import {UserRegularComponent} from "./user-regular/user-regular.component";
+
 import {OneDmpSearchComponent} from "./dmp/one-dmp/one-dmp-search.component";
 import {SejourComponent} from "./dmp/one-hospitalization/sejour.component";
 import {AssignementComponent} from "./dmp/one-assignement/assignement.component";
@@ -60,6 +73,10 @@ import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-displa
     OneStructureComponent,
     UpdateStructureComponent,
     DmpComponent,
+    UserComponent,
+    UserEditComponent,
+    UpdateUserComponent,
+    OneUserComponent,
     DmpSecretaryComponent,
     DmpSecretaryEditComponent,
     OneDmpComponent,
@@ -72,6 +89,9 @@ import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-displa
     HospitalizationEditComponent,
     OneHospitalizationComponent,
     DialogOverviewAssignementComponent,
+    AssignementHospitalizationComponent,
+    UpdateUserRegularComponent,
+    UserRegularComponent,
     AssignementHospitalizationComponent,
     OneDmpSearchComponent,
     SejourComponent,
@@ -102,9 +122,31 @@ import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-displa
     MatDialogModule,
     LayoutModule,
     MatSnackBarModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatListModule,
+        LayoutModule,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+      FontAwesomeModule
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

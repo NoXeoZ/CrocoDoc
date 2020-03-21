@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TypeProfil} from "./model/profil";
+import {TypeUser} from "./model/user";
 
 @Component({
   selector: 'app-root',
@@ -24,21 +24,21 @@ export class AppComponent {
     this.connectKey=this.loginlist[0];
     if(this.connectKey!=null){
       this.isConnected=true;
-      this.setTypeProfil(this.typeUser);
+      this.setTypeUser(this.typeUser);
     }else {
       this.isConnected=false;
     }
   }
-  setTypeProfil(typeUser:string){
-    if(typeUser==TypeProfil.ADMIN){
+  setTypeUser(typeUser:string){
+    if(typeUser==TypeUser.ADMIN){
       this.isAdmin=true;
-    }else if(typeUser==TypeProfil.DOCTOR){
+    }else if(typeUser==TypeUser.DOCTOR){
       this.isDOCTOR=true;
-    }else if(typeUser==TypeProfil.NURSE){
+    }else if(typeUser==TypeUser.NURSE){
       this.isNurse=true;
-    } else if(typeUser==TypeProfil.LAB_STAFF){
+    } else if(typeUser==TypeUser.LAB_STAFF){
       this.isLasStaff=true;
-    }else if(typeUser==TypeProfil.SECRETARY){
+    }else if(typeUser==TypeUser.SECRETARY){
       this.isSecretary=true;
     }
   }
