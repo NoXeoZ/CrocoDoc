@@ -177,7 +177,7 @@ export class DmpComponent implements OnInit {
     this.dmpService.getActs(this.key,this.assignementId).subscribe(
       data=> {
         this.acts = data;
-        console.log("act", data);
+        console.log("get act==>", data);
         for (let i = 0; i < this.acts.length; i++) {
           this.dmpService.getUSerOfAct(this.key, this.acts[i].id).subscribe(
             data2 => this.acts[i].user = data2)}
@@ -199,5 +199,7 @@ export class DmpComponent implements OnInit {
     this.isDmp=false;
     this.hide=false;
     this.actToDsiplay=act;
+    console.log("id",act.id);
+    console.log("image=>",act.image);
   }
 }

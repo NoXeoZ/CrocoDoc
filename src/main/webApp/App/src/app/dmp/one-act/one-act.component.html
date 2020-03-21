@@ -3,3 +3,6 @@
 <td>{{act.description}}</td>
 <td *ngIf="act.user">{{act.user.firstname}}</td>
 <td>{{getStatus(act.draft)}}</td>
+<td>
+  <img src = "{{act.image}}" alt="Card image" (click)="getimage(act.image)">
+</td>

@@ -12,7 +12,6 @@ import {Act, ActType} from "../../model/Act";
   styleUrls: ['./edit-act.component.css']
 })
 export class EditActComponent implements OnInit {
-  @Input() file: any;
   formGroup: FormGroup;
   type=[ActType.CONSTANT_REPORT,ActType.EXAM,ActType.PRESCRIPTION,ActType.OBSERVATION];
   @Output()
@@ -41,6 +40,7 @@ export class EditActComponent implements OnInit {
         error=>console.log(error)
       );
     this.createForm();
+    this.fileUpload = [];
   }
 
   createForm() {
@@ -56,8 +56,18 @@ export class EditActComponent implements OnInit {
     let act:Act=this.formGroup.value;
     act.assignment=null;
     act.user=null;
-
-    act.images = this.fileUpload[0].preview;
+    if (act.id) {
+      this.fileUpload.push({
+        'preview': act.image
+      });
+    }
+    if(this.fileUpload.length > 0) {
+      act.image = this.fileUpload[0].preview;
+      console.log("dans le if");
+      console.log(this.fileUpload[0].preview)
+    }
+    console.log("end if==>");
+    console.log(act.image);
 
     let start = new Date(act.createdAt);
     let tab = this.formGroup.get('heureCreated').value.split(":");
@@ -68,26 +78,11 @@ export class EditActComponent implements OnInit {
     this.dmpService
       .createAct(this.key,act,this.assignementId,this.idUser)
       .subscribe(
-        data=>{console.log("data "+data.id);
+        data=>{console.log("data imge"+data.image);
           this.dmpService.sendHide();
           this.router.navigate(['/']).then(r  =>console.log("create Ok"))},
         error=>console.log(error)
       );
-  }
-
-  uploadDocument() {
-    console.log("file upload");
-    const fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      if (typeof fileReader.result === 'string') {
-           console.log("file upload ===>",fileReader);
-      }
-    };
-  }
-  fileChanged(e) {
-    console.log("filchanged");
-    this.file = e.target.files[0];
-    console.log("filchanged==>",this.file);
   }
 
 }

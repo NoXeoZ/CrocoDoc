@@ -3,7 +3,6 @@ package com.crocodoc.crocodocartifact.resource;
 import com.crocodoc.crocodocartifact.model.*;
 import com.crocodoc.crocodocartifact.service.DMPService;
 import com.crocodoc.crocodocartifact.service.StructureService;
-import com.crocodoc.crocodocartifact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -181,6 +180,7 @@ public class DMPResource {
     public Iterable<Act> getAllActsForAssignment(@PathVariable String key, @PathVariable long id) {
         User p = Authentification.getUser(key);
         Iterable<Act> acts= dmpService.getAllActsForAssignment(id);
+        acts.forEach(act -> System.out.println(act.getImage()));
         if (p != null) {
             return dmpService.getAllActsForAssignment(id);
         } else {
@@ -197,6 +197,8 @@ public class DMPResource {
         a.setUser(user.get());
         a.setAssignment(assignment.get());
         a.setDraft(true);
+        System.out.println("image");
+        System.out.println(a.getImage());
         if (p != null) {
             return dmpService.createAct(a);
         } else {

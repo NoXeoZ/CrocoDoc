@@ -46,6 +46,9 @@ import {OneActComponent} from "./dmp/one-act/one-act.component";
 import {DialogChefComponent} from "./structure/dialog-overview/dialog-chef.component";
 import {StructureChefComponent} from "./structure/update-structure/one-chef/one-chef.component";
 import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-display.component";
+import { InputFileConfig, InputFileModule} from 'ngx-input-file';
+
+const config: InputFileConfig = {};
 
 @NgModule({
   exports: [DialogOverviewAssignementComponent,DialogChefComponent],
@@ -102,6 +105,7 @@ import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-displa
     MatDialogModule,
     LayoutModule,
     MatSnackBarModule,
+    InputFileModule.forRoot(config)
 
   ],
   providers: [],

@@ -121,7 +121,7 @@ public class Act {
         image = null;//images.remove(title);
     }
 
-    public String getImage(String title) {
+    public String getImage() {
         //if(!images.containsKey(Objects.requireNonNull(title)))
           //  throw new IllegalArgumentException("The image is not in the list.");
 
