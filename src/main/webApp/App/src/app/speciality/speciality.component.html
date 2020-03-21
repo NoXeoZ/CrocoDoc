@@ -22,7 +22,7 @@
       <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
         <div class="card-body ">
           <h3 class ="font-weight-normal text-center m-1">
-            Specialities
+            Specialités
           </h3>
         </div>
       </div>
@@ -38,6 +38,11 @@
     </tr>
     <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let s of listSpecialities;" [speciality]="s">
     </tr>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn bg-light blue lighten-2 z-depth-2 animated fadeInUp" routerLink="/speciality/{{key}}/edit">
+        <i class="fas fa-plus" style="color:white !important"></i>
+      </button>
+    </div>
     </tbody>
   </table>
 </div>

@@ -2,6 +2,7 @@
 <td>{{chefStructure.role}}</td>
 
 <td>
-  <a mat-mini-fab (click)="onDeleteChef(chefStructure.id)" ><mat-icon> delete</mat-icon>
-  </a>
+  <button (click)="onDeleteChef(chefStructure.id)" class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-short1 blue lighten-2" type="submit">
+    <i class="fas fa-trash  "style="color:white !important"></i>
+  </button>
 </td>

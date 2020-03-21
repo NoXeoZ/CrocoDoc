@@ -1,3 +1,4 @@
+<!--
 <div class="p-3 text-center">
   <div class="col d-flex justify-content-center">
     <div class="card text-center shadow-none border-0 center-block p-4">
@@ -85,19 +86,27 @@
     </tbody>
   </table>
 </div>
+-->
 
 
-
-<mat-toolbar>
-  <span class="title">Add new Structure</span>
-</mat-toolbar>
+<div class="p-3 text-center">
+  <div class="col d-flex justify-content-center">
+    <div class="card text-center shadow-none border-0 center-block p-4">
+      <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
+        <div class="card-body ">
+          <h3 class="font-weight-normal text-center m-1"> Crée une structure</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <mat-card>
-  <div class="container" >
-    <form [formGroup]="formGroup" (ngSubmit)="onCreateStructure()" class="form"*ngIf="formGroup">
-      <mat-form-field class="form-element row">
+  <div class="container  my-5 bg-white rounded shadow align-items-center text-center" >
+    <form [formGroup]="formGroup" (ngSubmit)="onCreateStructure()" class="form p-3 m-3" *ngIf="formGroup">
+      <mat-form-field class="form-element ">
         <input  matInput placeholder="Name" formControlName="name">
       </mat-form-field>
-      <mat-form-field class="form-element row">
+      <mat-form-field class="form-element ">
         <mat-label>Type De Structure</mat-label>
         <mat-select formControlName="type">
           <mat-option *ngFor="let t of type" [value]="t.toString()">
@@ -106,11 +115,11 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="form-element row">
+      <mat-form-field class="form-element ">
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
 
-      <mat-form-field class="form-element row">
+      <mat-form-field class="form-element ">
         <mat-label>Speciality</mat-label>
         <mat-select formControlName="speciality">
           <mat-option *ngFor="let s of listSpecialities" [value]="s">
@@ -119,7 +128,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="form-element row">
+      <mat-form-field class="form-element">
         <mat-label>Parent</mat-label>
         <mat-select formControlName="parent">
           <mat-option *ngFor="let parent of listStructures" [value]="parent">
