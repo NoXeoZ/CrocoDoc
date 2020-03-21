@@ -1,21 +1,21 @@
+
 <div class="p-3 text-center">
   <div class="col d-flex justify-content-center">
     <div class="card text-center shadow-none border-0 center-block p-4">
-      <div class="card blue lighten-2  m-2 text-dark shadow animated fadeInDown border-0">
+      <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
         <div class="card-body ">
-          <h3 class="font-weight-normal text-center m-1"> Ajouter une structure </h3>
+          <h3 class="font-weight-normal text-center m-1"> Mettre à jour une structure </h3>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container bg-light rounded shadow">
+<div class="container my-5 bg-light rounded shadow">
   <table class="table table-borderless bg-transparent">
     <tbody>
     <tr>
       <td>
-        <!--<form class="well form-horizontal">-->
-        <form>
+        <form [formGroup]="formGroup" (ngSubmit)="onUpdateStructure()" class="form" *ngIf="formGroup">
           <fieldset>
             <div class="form-group  row p-3">
               <label class="col-md-4 control-label text-right">Name</label>
@@ -25,18 +25,20 @@
                     <span class="input-group-text"> <i class="fas fa-project-diagram"></i> </span>
                   </div>
                   <input formControlName="name" class="form-control font-weight-light " placeholder="Name">
-                </div> <!-- input-group.// -->
+                </div>
               </div>
             </div>
             <div class="form-group row p-3">
               <label class="col-md-4 control-label text-right">Type de structure</label>
               <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-project-diagram"></i> </span>
-                  </div>
-                  <input formControlName="type" class="form-control font-weight-light " placeholder="Type">
-                </div> <!-- input-group.// -->
+                  <span class="input-group-text"> <i class="fas fa-certificate"></i> </span>
+                  <select class="selectpicker form-control" formControlName="type">
+                    <option *ngFor="let t of type" [value]="t.toString()">
+                      {{t.toString()}}
+                    </option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="form-group row p-3">
@@ -47,7 +49,7 @@
                     <span class="input-group-text"> <i class="fas fa-eye"></i> </span>
                   </div>
                   <input formControlName="description" class="form-control font-weight-light " placeholder="Description">
-                </div> <!-- input-group.// -->
+                </div>
               </div>
             </div>
             <div class="form-group row p-3">
@@ -68,8 +70,8 @@
               <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
                   <span class="input-group-text"> <i class="fas fa-link"></i> </span>
-                  <select class="selectpicker form-control" formControlName="speciality">
-                    <option *ngFor="let parent of listStructures" [value]="s">
+                  <select class="selectpicker form-control" formControlName="parent">
+                    <option *ngFor="let parent of listStructures" [value]="parent">
                       {{parent.name}}
                     </option>
                   </select>
@@ -80,16 +82,82 @@
               <label class="col-md-4 control-label text-right">Ajouter chef</label>
               <div class="col-md-8 inputGroupContainer">
                 <div class="input-group">
-                  <button class="btn btn-info" (click)="affecteChief(id)">
+                  <div *ngIf="id">
+                  <button class="btn blue lighten-2 " (click)="affecteChief(id)">
                     <i class="fas fa-user"></i>
                   </button>
+                  </div>
                 </div>
               </div>
             </div>
           </fieldset>
+          <button class="btn blue lighten-2 float-right text-capitalize text-white" type="submit" >Mettre à jour</button>
         </form>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+<!--
+<mat-toolbar>
+  <span class="title">Upadate Structure {{id}}</span>
+</mat-toolbar>
+<mat-card>
+  <div class="container" >
+    <form [formGroup]="formGroup"  class="form" *ngIf="formGroup">
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Type De Structure</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let t of type" [value]="t.toString()">
+            {{t.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Description" formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Speciality</mat-label>
+        <mat-select formControlName="speciality">
+          <mat-option *ngFor="let s of listSpecialities" [value]="s">
+            {{s.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Parent</mat-label>
+        <mat-select formControlName="parent">
+          <mat-option *ngFor="let parent of listStructures" [value]="parent">
+            {{parent.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button color="primary" (click)="affecteChief(id)">Affecter Chef</button>
+
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">First Name</th>
+          <th class="mat-cell">Role</th>
+        </tr>
+        <tbody *ngIf="chief">
+
+        <tr (deleteChefInStructure)="deleteChefStructure($event)" [chefStructure]="chief" >
+        </tr>
+        </tbody>
+      </table>
+
+      <button mat-raised-button type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Submit
+      </button>
+    </form>
+  </div>
+</mat-card>
+-->

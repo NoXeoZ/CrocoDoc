@@ -1,4 +1,3 @@
-
 import {Speciality} from "./speciality";
 import {Hospitalization} from "./Hospitalization";
 import {User} from "./user";

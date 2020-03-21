@@ -6,9 +6,9 @@ import {StructureService} from "../structure.service";
 import {Speciality} from "../../model/speciality";
 import {SpecialityService} from "../../speciality/speciality.service";
 import {Dmp} from "../../model/dmp";
+import {User} from "../../model/user";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DialogChefComponent} from "../dialog-overview/dialog-chef.component";
-import {User} from "../../model/user";
 
 @Component({
   selector: 'app-update-structure',
@@ -103,7 +103,7 @@ export class UpdateStructureComponent implements OnInit {
     this.structureService
       .getStructures(this.key)
       .subscribe(
-        data=>{this.listStructures=data;this.updateForm();
+        data=>{this.listStructures=data;          this.updateForm();
         },
         error => {console.log(error);
         })
