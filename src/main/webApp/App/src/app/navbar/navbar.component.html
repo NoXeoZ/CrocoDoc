@@ -51,11 +51,16 @@
     <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " routerLink="/user-regular/{{Key}}" style="width:100%" type="submit">
       <div class="card bg-transparent border-0">
         <div class="card-img-top bg-transparent">
+          <div *ngIf="isAdmin">
           <i class="fas fa-user-cog fa-2x m-1" style="color:white !important"></i>
+            </div>
+          <div *ngIf="isSecretary">
+            <i class="fas fa-user-edit fa-2x m-1" style="color:white !important"></i>
+          </div>
         </div>
         <div class="card-body bg-white m-0 p-0">
           <div class="m-2 text-capitalize font-weight-normal">
-            Admin
+           {{this.firstname}} {{this.lastname}}
           </div>
         </div>
       </div>

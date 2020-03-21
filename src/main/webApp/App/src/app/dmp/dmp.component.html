@@ -157,7 +157,7 @@
       </div>
       <div class="card-body bg-white m-0 p-0">
         <div class="m-2 text-capitalize font-weight-normal">
-          {{fullname}}
+          {{this.firstname}} {{this.lastname}}
         </div>
       </div>
     </div>
@@ -216,9 +216,9 @@
     <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light ">
       <a class="navbar-brand" href="#">
 
-        <div *ngIf="isDmp">Dossier Médical Partagée </div>
-        <div *ngIf="isSejour" class="animate fadeIn">  Dossier Médical Partagée > Hospitalisations</div>
-        <div *ngIf="isStructure" class="animate fadeIn">   Dossier Médical Partagée > Hospitalisations > Affectations</div>
+        <div *ngIf="isDmp">Dossier Médical Partagé </div>
+        <div *ngIf="isSejour" class="animate fadeIn">  Dossier Médical Partagé > Hospitalisations</div>
+        <div *ngIf="isStructure" class="animate fadeIn">   Dossier Médical Partagé > Hospitalisations > Affectations</div>
 
 
 
@@ -230,7 +230,7 @@
         <ul class="navbar-nav mr-auto">
         </ul>
         <form  [formGroup]="formGroup"  *ngIf="formGroup" class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" formControlName="search" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2 animated fadeInDown delay-short2 font-weight-lighter" formControlName="search" type="search" placeholder="Rechercher" aria-label="Search">
           <button class="btn bg-light my-2 my-sm-0 animated fadeInRight shadow delay-1s blue lighten-2" (click)="searchDmp()" type="submit">
             <i class="fas fa-search" style="color:white !important"></i>
           </button>
@@ -265,7 +265,7 @@
             <th>Nom</th>
             <th>Lieu de naissance</th>
             <th>Numéro de sécurité sociale</th>
-            <th>Date de naissance</th>
+            <th>Hospitalisations</th>
           </tr>
             <tr class=" animated fadeIn delay-short1 my-3" *ngFor="let dmp of dmpsSearch;"  (click)="getSejour(dmp)" [dmpSearch]="dmp" >
             </tr>
@@ -365,9 +365,8 @@
       <div  *ngIf="isAct" >
         <div class="p-3 text-center" >
           <table class="table-bis table-hover animated fadeIn delay-short1 table-borderless py-3 ">
-            <tbody *ngIf="isAct">
+            <tbody *ngIf="isAct" class="align-content-center justify-content-center text-center">
             <tr class=" bg-red blue lighten-2 shadow text-light"  [actToDisplay]= "actToDsiplay">
-            <tr class=" animated fadeIn delay-short1 my-3"*ngFor="let act of acts;" (click)="displayAct(act)" [act]="act" >
             </tr>
             </tbody>
           </table>
