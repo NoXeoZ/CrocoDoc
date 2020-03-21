@@ -38,22 +38,12 @@
   <table class=" table animated fadeIn delay-short1 table-borderless py-3 ">
     <tbody *ngIf="listHospitalization">
     <tr class=" bg-red blue lighten-2 shadow text-light">
-      <th class="mat-cell">Dmp</th>
-      <th class="mat-cell">hospital</th>
-      <th class="mat-cell">startDate</th>
-      <th class="mat-cell">endDate</th>
-      <th class="mat-cell">Nombre d'affectations</th>
-      <th class="mat-cell">Les différents services</th>
       <th>Dmp</th>
       <th>Hospitalitions</th>
-      <th>hospital</th>
-      <th>Lastname</th>
-      <th>Birthdate</th>
-      <th>Address</th>
-      <th>Phone number</th>
-      <th>Email</th>
-      <th>RIB</th>
-      <th></th>
+      <th>Entrée</th>
+      <th>Sortie</th>
+      <th>Nombre d'affectations</th>
+      <th>Services</th>
       <th></th>
     </tr>
     <tr *ngFor="let h of listHospitalization;" [hospitalization]="h" >

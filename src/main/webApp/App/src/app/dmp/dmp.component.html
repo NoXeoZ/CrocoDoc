@@ -1,4 +1,4 @@
-
+<!--
 <mat-toolbar>
   <mat-toolbar-row>
     <button
@@ -148,7 +148,7 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </mat-toolbar>
-<!--
+-->
 <div class="sidenav col-1 bg-light shadow animated fadeInLeft text-center " style="width:100%">
   <button class="btn bg-light m-0 p-0 shadow animated fadeInLeft delay-short2 blue lighten-2 border-0 " style="width:100%" type="submit">
     <div class="card bg-transparent border-0">
@@ -178,6 +178,7 @@
       <i class="fas fa-paste"></i>
     </button>
   </div>
+</div>
 <!--
   <div *ngIf="isDmp"><span>D</span></div>
   <div *ngIf="isDmp"><span>M</span></div>
@@ -207,6 +208,7 @@
   -->
   <!--
 </div>
+-->
 <div class="row no-gutters px-3 ">
   <div class="col-1">
   </div>
@@ -317,7 +319,7 @@
           </div>
 
           <table class="center-table table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
-            <tbody *ngIf="isSejour">
+            <tbody *ngIf="listAssignement">
             <tr class=" bg-red blue lighten-2 shadow text-light">
               <th>Entrée</th>
               <th>Sortie</th>
@@ -337,7 +339,7 @@
               <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
                 <div class="card-body ">
                   <h3 class ="font-weight-normal text-center m-1">
-                    Affectations
+                    Actes
                   </h3>
                 </div>
               </div>
@@ -360,22 +362,9 @@
 
       <div  *ngIf="isAct" >
         <div class="p-3 text-center" >
-          <div class="col d-flex justify-content-center">
-            <div class="card text-center shadow-none border-0 center-block p-4" >
-              <div class="card blue lighten-2  m-2 text-light shadow animated fadeInDown border-0">
-                <div class="card-body ">
-                  <h3 class ="font-weight-normal text-center m-1">
-                    Affectations
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <table class="table-bis table-hover animated fadeIn delay-short1 table-borderless py-3 ">
             <tbody *ngIf="isAct">
             <tr class=" bg-red blue lighten-2 shadow text-light"  [actToDisplay]= "actToDsiplay">
-            </tr>
             <tr class=" animated fadeIn delay-short1 my-3"*ngFor="let act of acts;" (click)="displayAct(act)" [act]="act" >
             </tr>
             </tbody>
@@ -386,4 +375,3 @@
     </div>
   </div>
 </div>
--->
