@@ -39,22 +39,22 @@
       </mat-form-field>
 
       <br>
-      <button mat-raised-button color="primary" (click)="affecteChief(id)">Affecter Chef</button>
-
-      <table class="center-table" border="true" >
+      <button mat-raised-button class="blue lighten-2 my-3" (click)="affecteChief(id)">Affecter Chef</button>
+<br>
+      <table class="table table-bordered " border="true" >
         <tr >
           <th class="mat-cell">First Name</th>
           <th class="mat-cell">Role</th>
         </tr>
         <tbody *ngIf="chief">
-
         <tr (deleteChefInStructure)="deleteChefStructure($event)" [chefStructure]="chief" >
         </tr>
         </tbody>
       </table>
 
-      <button mat-raised-button type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Submit
+      <button mat-raised-button class="blue lighten-2" type="submit" (click)="onUpdateStructure()" [disabled]="!formGroup.valid" >Envoyer
       </button>
     </form>
   </div>
 </mat-card>
+

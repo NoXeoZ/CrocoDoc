@@ -20,7 +20,7 @@ export class UserService {
 
 
   deleteUser(id: number,key:string): Observable<EntityResponseType> {
-    return this.httpClient.delete<User>('/user/'+key+'/' + id, { observe: 'response' });
+    return this.httpClient.delete<User>('/user/'+id+'/' +key , { observe: 'response' });
   }
   createUser(user:User,key:string): Observable<EntityResponseType> {
     return this.httpClient.post<User>('/user/'+key, user, { observe: 'response' });

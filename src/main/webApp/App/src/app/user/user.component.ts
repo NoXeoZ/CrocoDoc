@@ -30,9 +30,9 @@ export class UserComponent implements OnInit {
   refresh($event: any) {
     this.userService.getUsers(this.key).subscribe(
       data => this.listUsers = data
-    );}
-
-  add() {
-    console.log("addddd");
+    );
+    this.ngOnInit();
   }
+
+
 }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from "../../model/user";
 import {UserService} from "../user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'tr [user]',
@@ -15,7 +15,7 @@ export class OneUserComponent implements OnInit {
   @Output()
   deleteUser = new EventEmitter<User>();
   private key: string;
-  constructor(private userService: UserService,private route :ActivatedRoute) { }
+  constructor(private userService: UserService,private route :ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
@@ -24,7 +24,10 @@ export class OneUserComponent implements OnInit {
     this.userService
       .deleteUser(this.user.id,this.key)
       .subscribe(
-        data=> this.deleteUser.emit(this.user),
+        data=> {
+          this.deleteUser.emit(this.user);
+          this.router.navigateByUrl("/home");
+        },
         error => {console.log(error);
         })}
 }
