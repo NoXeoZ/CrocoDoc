@@ -3,15 +3,15 @@
     <div class="card text-center shadow-none border-0 center-block p-4">
       <div class="card blue lighten-2 text-white animated  z-depth-1 fadeInDown border-0">
         <div class="card-body ">
-          <h3 class="font-weight-normal text-center m-1"> Mettre à jour une hospitalisation</h3>
+          <h3 class="font-weight-normal text-center m-1"> Mettre à jour une hospitalisation </h3>
         </div>
       </div>
     </div>
   </div>
 </div>
 <mat-card>
-  <div class="container  my-5 bg-white rounded shadow align-items-center text-center" >
-    <form [formGroup]="formGroup" (ngSubmit)="onUpdateHospitalization()" class="form" *ngIf="formGroup">
+  <div class="container" >
+    <form [formGroup]="formGroup" class="form" *ngIf="formGroup">
       <mat-form-field class="form-element">
         <mat-label>Choose Dmp</mat-label>
         <mat-select formControlName="dmp">
