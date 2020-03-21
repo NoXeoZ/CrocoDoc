@@ -22,6 +22,8 @@ export class EditActComponent implements OnInit {
   assignement: Assignement;
   idUser: number;
 
+  fileUpload: any;
+
   constructor(private formBuilder: FormBuilder,
               private dmpService:DmpService,
               protected router: Router,
@@ -54,6 +56,8 @@ export class EditActComponent implements OnInit {
     let act:Act=this.formGroup.value;
     act.assignment=null;
     act.user=null;
+
+    act.images = this.fileUpload[0].preview;
 
     let start = new Date(act.createdAt);
     let tab = this.formGroup.get('heureCreated').value.split(":");

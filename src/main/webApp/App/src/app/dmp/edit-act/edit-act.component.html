@@ -40,6 +40,10 @@
       <input type='file' (change)="fileChanged($event)">
       <button type="button" class="btn btn-primary" (click)="uploadDocument()">Upload File</button>
 
+
+      <label>Image</label>
+      <input type="file" [(ngModel)]="fileUpload" [ngModelOptions]="{standalone: true}"/>
+
       <button mat-raised-button type="submit" (click)="onCreateAct()">Submit</button>
 
     </form>

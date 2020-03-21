@@ -18,4 +18,5 @@ export interface Act{
   type :ActType;
   assignment :Assignement;
   user:Profil;
+  images: Array<any>;
 }
