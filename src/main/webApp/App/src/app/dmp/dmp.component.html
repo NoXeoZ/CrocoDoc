@@ -174,7 +174,7 @@
   </button>
 
   <div *ngIf="isAssignement">
-    <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" (click)="hideAssign()" mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
+    <button class="btn bg-light my-3 mx-0 animated fadeInLeft shadow delay-short3" (click)="hideAssign()"  style="width:100%"  mat-list-item routerLink="/act/edit/{{assignementId}}/{{idUser}}/{{key}}">
       <i class="fas fa-paste"></i>
     </button>
   </div>
@@ -351,9 +351,11 @@
           <table class="center-table table table-hover animated fadeIn delay-short1 table-borderless py-3 ">
             <tbody *ngIf="isAssignement">
             <tr class=" bg-red blue lighten-2 shadow text-light">
-              <th>Entrée</th>
-              <th>Sortie</th>
-              <th>Service</th>
+              <th>Type</th>
+              <th>Crée le</th>
+              <th>Description</th>
+              <th>Auteur</th>
+              <th>Status</th>
             </tr>
             <tr class=" animated fadeIn delay-short1 my-3"*ngFor="let act of acts;" (click)="displayAct(act)" [act]="act" >
             </tr>
@@ -363,8 +365,8 @@
       </div>
 
       <div  *ngIf="isAct" >
-        <div class="p-3 text-center" >
-          <table class="table-bis table-hover animated fadeIn delay-short1 table-borderless py-3 ">
+        <div class="p-3 text-center align-content-center justify-content-center text-center" >
+          <table class="table-bis table-hover animated fadeIn delay-short1 table-borderless py-3 align-content-center justify-content-center text-center ">
             <tbody *ngIf="isAct" class="align-content-center justify-content-center text-center">
             <tr class=" bg-red blue lighten-2 shadow text-light"  [actToDisplay]= "actToDsiplay">
             </tr>
