@@ -1,5 +1,5 @@
 import {Assignement} from './assignement';
-import {Profil} from "./profil";
+import {User} from "./user";
 
 export enum ActType{
   OBSERVATION='OBSERVATION',
@@ -17,6 +17,6 @@ export interface Act{
   draft :Boolean;
   type :ActType;
   assignment :Assignement;
-  user:Profil;
+  user:User;
   image: any;
 }
