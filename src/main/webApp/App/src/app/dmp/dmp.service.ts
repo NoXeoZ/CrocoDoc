@@ -5,7 +5,7 @@ import {Hospitalization} from "../model/Hospitalization";
 import {Dmp} from "../model/dmp";
 import {Assignement} from "../model/assignement";
 import {Act} from "../model/Act";
-import {Profil} from "../model/profil";
+import {User} from "../model/user";
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,8 @@ export class DmpService {
     return this.httpClient.get<Array<Act>>('/dmp/hospitalization/assignment/acts/'+key+'/'+assignementId);
   }
 
-  getUSerOfAct(key:string,actId:number) : Observable<Profil> {
-    return this.httpClient.get<Profil>('/dmp/hospitalization/assignment/act/user/'+key+'/'+actId);
+  getUSerOfAct(key:string,actId:number) : Observable<User> {
+    return this.httpClient.get<User>('/dmp/hospitalization/assignment/act/user/'+key+'/'+actId);
   }
 
   sendHide() {

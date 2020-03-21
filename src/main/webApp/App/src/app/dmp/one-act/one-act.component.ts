@@ -25,4 +25,9 @@ export class OneActComponent implements OnInit {
     }
     return status;
   }
+
+  getimage(image: any) {
+    console.log("immmmmmmmmmmmmmmmmmaaaaaaage");
+    console.log(image);
+  }
 }

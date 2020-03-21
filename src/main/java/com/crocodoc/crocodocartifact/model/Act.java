@@ -35,7 +35,7 @@ public class Act {
     @Lob
     @Column(name = "images")
     @Basic(fetch = FetchType.EAGER)
-    private HashMap<String, byte[]> images= new HashMap<>();
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "id_assignment", nullable = false)
@@ -100,36 +100,37 @@ public class Act {
         createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public void addImage(String title, byte[] image) {
+    public void addImage(String title, String image) {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
 
-        if(images.containsKey(Objects.requireNonNull(title)))
-            throw new IllegalArgumentException("The title of the image is already present in the act's list of image. Please change the title.");
+        //if(images.containsKey(Objects.requireNonNull(title)))
+          //  throw new IllegalArgumentException("The title of the image is already present in the act's list of image. Please change the title.");
 
-        images.put(title, Objects.requireNonNull(image));
+        //images.put(title, Objects.requireNonNull(image));
+        this.image = Objects.requireNonNull(image);
     }
 
     public void removeImage(String title) {
         if(!draft)
             throw new IllegalStateException("The act has been validate and can no longer be modify.");
 
-        if(!images.containsKey(Objects.requireNonNull(title)))
-            throw new IllegalArgumentException("The image is not in the list.");
+        //if(!images.containsKey(Objects.requireNonNull(title)))
+          //  throw new IllegalArgumentException("The image is not in the list.");
 
-        images.remove(title);
+        image = null;//images.remove(title);
     }
 
-    public byte[] getImage(String title) {
-        if(!images.containsKey(Objects.requireNonNull(title)))
-            throw new IllegalArgumentException("The image is not in the list.");
+    public String getImage() {
+        //if(!images.containsKey(Objects.requireNonNull(title)))
+          //  throw new IllegalArgumentException("The image is not in the list.");
 
-        return images.get(title);
+        return image;//.get(title);
     }
 
-    public Set<String> getImagesTitles() {
+    /*public Set<String> getImagesTitles() {
         return images.keySet();
-    }
+    }*/
 
     public Assignment getAssignment() {
         return assignment;
@@ -174,7 +175,7 @@ public class Act {
                 ", createdAt=" + createdAt +
                 ", draft=" + draft +
                 ", type=" + type +
-                ", images=" + images +
+                ", images=" + image +
                 ", assignment=" + assignment +
                 ", user=" + user +
                 '}';

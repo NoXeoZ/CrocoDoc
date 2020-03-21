@@ -1,3 +1,6 @@
+<div *ngIf="actToDisplay.image">
+  <img src = "{{actToDisplay.image}}" alt="Card image" >
+</div>
 <textarea rows="20" cols="90" class="font-weight-light shadow" [value]="displayAct()" disabled></textarea>
 <br>
 <div class="return"><button (click)="return()">Retour</button>

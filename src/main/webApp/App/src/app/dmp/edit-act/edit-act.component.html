@@ -37,8 +37,9 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <input type='file' (change)="fileChanged($event)">
-      <button type="button" class="btn btn-primary" (click)="uploadDocument()">Importer un fichier</button>
+
+      <input-file fileLimit="1" fileAccept="image/*" [(ngModel)]="fileUpload" [ngModelOptions]="{standalone: true}">
+      </input-file>
 
       <button mat-raised-button type="submit" (click)="onCreateAct()">Envoyé</button>
 

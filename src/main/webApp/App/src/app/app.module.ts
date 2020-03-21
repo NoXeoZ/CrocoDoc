@@ -24,7 +24,7 @@ import {OneStructureComponent} from './structure/one-structure/one-structure.com
 import {UpdateStructureComponent} from './structure/update-structure/update-structure.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DmpComponent} from './dmp/dmp.component';
-import  {MatSnackBarModule} from "@angular/material";
+import { MatSnackBarModule} from "@angular/material";
 import {DmpSecretaryComponent} from './dmp-admin/dmp-secretary.component';
 import {DmpSecretaryEditComponent} from './dmp-admin/edit/dmp-secretary-edit.component';
 import {OneDmpComponent} from './dmp-admin/one-dmp/one-dmp.component';
@@ -59,6 +59,9 @@ import {OneActComponent} from "./dmp/one-act/one-act.component";
 import {DialogChefComponent} from "./structure/dialog-overview/dialog-chef.component";
 import {StructureChefComponent} from "./structure/update-structure/one-chef/one-chef.component";
 import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-display.component";
+import { InputFileConfig, InputFileModule} from 'ngx-input-file';
+
+const config: InputFileConfig = {};
 
 @NgModule({
   exports: [DialogOverviewAssignementComponent,DialogChefComponent],
@@ -142,7 +145,8 @@ import {OneActToDisplayComponent} from "./dmp/one-actToDisplay/one-act-to-displa
         MatSnackBarModule,
         MatDatepickerModule,
         MatNativeDateModule,
-      FontAwesomeModule
+      FontAwesomeModule,
+    InputFileModule.forRoot(config)
 
   ],
   providers: [],
